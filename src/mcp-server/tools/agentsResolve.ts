@@ -18,7 +18,7 @@ name resolves to at most one agent; unknown names are returned under
 not_found. Use this before run-agent-tests when you have names instead
 of UUIDs. Does not create or modify agents.
 `,
-  scopes: ["write"],
+  scopes: ["read"],
   annotations: {
     "title": "Resolve agent names to UUIDs",
     "destructiveHint": false,
