@@ -18,18 +18,18 @@ export const JudgeResult$zodSchema: z.ZodType<JudgeResult> = z.object({
     "ID of the evaluator that produced this verdict",
   ),
   match: z.boolean().nullable().optional().describe(
-    "Pass/fail verdict, for binary evaluators",
+    "Pass/fail verdict, set for binary evaluators",
   ),
   reasoning: z.string().nullable().optional().describe(
-    "Judge's rationale for this verdict",
+    "The judge's rationale for this verdict",
   ),
   score: z.number().nullable().optional().describe(
-    "Numeric score, for rating evaluators",
+    "Numeric score, set for rating evaluators",
   ),
   value_name: z.string().nullable().optional().describe(
-    "Readable label for the verdict, from the run's rubric",
+    "Readable label for the verdict, taken from the run's rubric",
   ),
   variable_values: z.record(z.string(), z.any()).nullable().optional().describe(
-    "`{{\"{{\"}}var}}` substitutions used for this evaluator on this test case",
+    "Values filled into the evaluator prompt's `{{\"{{\"}}variable}}` placeholders for this test case, keyed by variable name",
   ),
 });

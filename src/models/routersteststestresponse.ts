@@ -37,7 +37,7 @@ export const RoutersTestsTestResponseType$zodSchema = z.enum([
   "tool_call",
   "conversation",
 ]).describe(
-  "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation",
+  "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n",
 );
 
 export type RoutersTestsTestResponse = {
@@ -54,20 +54,18 @@ export const RoutersTestsTestResponse$zodSchema: z.ZodType<
   RoutersTestsTestResponse
 > = z.object({
   config: z.record(z.string(), z.any()).nullable().optional().describe(
-    "Config for the test (`history`, `evaluation`, optional `settings`)",
+    "The stored config: `history`, `evaluation`, and an optional `settings`",
   ),
-  created_at: z.string().describe(
-    "Timestamp when the test was created (ISO 8601 UTC)",
-  ),
+  created_at: z.string().describe("When the test was created (ISO 8601 UTC)"),
   evaluators: z.array(z.record(z.string(), z.any())).optional().describe(
     "Linked evaluators, resolved to their current live version at read time",
   ),
   name: z.string().describe("Name of the test"),
   type: RoutersTestsTestResponseType$zodSchema.describe(
-    "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation",
+    "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n",
   ),
   updated_at: z.string().describe(
-    "Timestamp when the test was last updated (ISO 8601 UTC)",
+    "When the test was last updated (ISO 8601 UTC)",
   ),
   uuid: z.string().describe("Unique ID for the test"),
 });

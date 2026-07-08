@@ -15,7 +15,6 @@ import {
 
 export type CreateAgentEndpointAgentsPostRequest = {
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
   body: AgentCreate;
 };
 
@@ -24,7 +23,6 @@ export const CreateAgentEndpointAgentsPostRequest$zodSchema: z.ZodType<
 > = z.object({
   body: AgentCreate$zodSchema,
   xAPIKey: z.string().nullable().optional(),
-  xOrgUUID: z.string().nullable().optional(),
 });
 
 export type CreateAgentEndpointAgentsPostResponse =

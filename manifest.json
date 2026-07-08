@@ -42,6 +42,10 @@
   "version": "0.0.1",
   "tools": [
     {
+      "name": "verify-agent-connection",
+      "description": "Verify that a connection-type agent responds. Optionally pass a model to verify it before benchmarking. The endpoint and headers come from the agent's stored config; a successful check is recorded on the agent.\n"
+    },
+    {
       "name": "resolve-agent-names",
       "description": "Map human-friendly agent names to UUIDs within the caller's org. Each\nname resolves to at most one agent; unknown names are returned under\nnot_found. Use this before run-agent-tests when you have names instead\nof UUIDs. Does not create or modify agents.\n"
     },
@@ -82,6 +86,18 @@
       "description": "Update an existing test by UUID within the caller's org. Supply the\nfields to change (name, config). Returns the updated test. Fails with\n404 if the test does not exist or belongs to another org.\n"
     },
     {
+      "name": "link-tests-to-agent",
+      "description": "Link one or more existing tests to an agent so they run together. Tests already linked are skipped. The agent and every test must be in your workspace.\n"
+    },
+    {
+      "name": "list-agent-tests",
+      "description": "List the tests linked to an agent.\n"
+    },
+    {
+      "name": "list-agent-test-runs",
+      "description": "List an agent's test and benchmark runs, most recently created first, with their status and results.\n"
+    },
+    {
       "name": "run-agent-tests",
       "description": "Start a background LLM unit-test job for one agent. Runs all tests\nlinked to the agent unless test_uuids is provided. Returns a task_id\nto poll with get-agent-test-run. The agent must belong to the caller's\norg and have a verified connection; otherwise the call fails with 400\nor 404.\n"
     },
@@ -92,6 +108,70 @@
     {
       "name": "get-agent-test-run",
       "description": "Poll the status and results of an agent test run by task_id. Returns\nqueued, in_progress, completed, failed, or aborted status. When\ncompleted, includes per-test-case pass/fail results and evaluator\njudgments. Use the task_id from run-agent-tests or\nrun-agent-tests-batch.\n"
+    },
+    {
+      "name": "run-agent-benchmark",
+      "description": "Start a multi-model benchmark over an agent's linked tests as a background job. Optionally restrict to a subset of linked tests. Returns a task_id to poll with get-agent-benchmark.\n"
+    },
+    {
+      "name": "get-agent-benchmark",
+      "description": "Get the results of a benchmark run, including per-model scores and the leaderboard.\n"
+    },
+    {
+      "name": "create-evaluator",
+      "description": "Create an evaluator and its first version, which is set live. An evaluator judges an output against a prompt and rubric.\n"
+    },
+    {
+      "name": "list-evaluators",
+      "description": "List your evaluators. Optionally filter by what they judge or their modality, and include the built-in defaults.\n"
+    },
+    {
+      "name": "get-evaluator",
+      "description": "Get one evaluator with its full version history.\n"
+    },
+    {
+      "name": "create-evaluator-version",
+      "description": "Add a new version to an evaluator you created, optionally making it live. The variable names must match the previous version.\n"
+    },
+    {
+      "name": "create-annotation-task",
+      "description": "Create an annotation task for labelling items against evaluators. Optionally link evaluators in order.\n"
+    },
+    {
+      "name": "list-annotation-tasks",
+      "description": "List your annotation tasks with their linked evaluators.\n"
+    },
+    {
+      "name": "get-annotation-task",
+      "description": "Get one annotation task with its evaluators, items, and labelling jobs.\n"
+    },
+    {
+      "name": "link-evaluator-to-task",
+      "description": "Link an evaluator to an annotation task, appending it to the display order.\n"
+    },
+    {
+      "name": "add-annotation-items",
+      "description": "Bulk-create items in an annotation task, optionally seeding human annotations.\n"
+    },
+    {
+      "name": "update-annotation-items",
+      "description": "Bulk-update item payloads in an annotation task.\n"
+    },
+    {
+      "name": "run-annotation-evaluators",
+      "description": "Run one or more of a task's evaluators over its items as a background job. Returns a job_uuid to poll with get-annotation-evaluator-run.\n"
+    },
+    {
+      "name": "get-annotation-evaluator-run",
+      "description": "Get one evaluator-run job with its results and human-agreement summary.\n"
+    },
+    {
+      "name": "get-annotation-agreement",
+      "description": "Get human-vs-human and human-vs-evaluator agreement metrics for a task, with a trend series.\n"
+    },
+    {
+      "name": "get-annotation-summary",
+      "description": "Get a paginated summary table for a task, with each item's evaluator values and human labels.\n"
     }
   ]
 }

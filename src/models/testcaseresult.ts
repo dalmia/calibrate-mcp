@@ -19,25 +19,23 @@ export type TestCaseResult = {
 };
 
 export const TestCaseResult$zodSchema: z.ZodType<TestCaseResult> = z.object({
-  cost: z.number().nullable().optional().describe("Cost of this case in USD"),
+  cost: z.number().nullable().optional().describe("Cost of this case (USD)"),
   judge_results: z.array(JudgeResult$zodSchema).nullable().optional().describe(
-    "One verdict per evaluator, for response and conversation tests. Null for tool-call tests or rows still running",
+    "One verdict for each evaluator",
   ),
   latency_ms: z.number().nullable().optional().describe(
-    "Response latency in milliseconds for the agent under test",
+    "How long the agent took to respond, in milliseconds",
   ),
   name: z.string().nullable().optional().describe("Name of the test"),
   output: TestOutput$zodSchema.nullable().optional().describe(
-    "The agent's output for this case. Present only when done",
+    "The agent's output for this case",
   ),
-  passed: z.boolean().nullable().optional().describe(
-    "Whether the case passed. Present only when done",
-  ),
+  passed: z.boolean().nullable().optional().describe("Whether the case passed"),
   reasoning: z.string().nullable().optional().describe(
-    "Judge reasoning, or the tool-call diff for tool-call tests",
+    "The judge's reasoning, or the tool-call diff for a tool-call test",
   ),
   test_case: z.record(z.string(), z.any()).nullable().optional().describe(
-    "The input test case definition. Present only when done",
+    "The test case definition that was run",
   ),
   test_case_id: z.string().nullable().optional().describe(
     "ID of the test case within the run",

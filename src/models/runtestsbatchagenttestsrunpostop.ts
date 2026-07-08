@@ -18,7 +18,6 @@ import {
 
 export type RunTestsBatchAgentTestsRunPostRequest = {
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
   body?: BatchRunRequest | null | undefined;
 };
 
@@ -27,7 +26,6 @@ export const RunTestsBatchAgentTestsRunPostRequest$zodSchema: z.ZodType<
 > = z.object({
   body: BatchRunRequest$zodSchema.nullable().optional(),
   xAPIKey: z.string().nullable().optional(),
-  xOrgUUID: z.string().nullable().optional(),
 });
 
 export type RunTestsBatchAgentTestsRunPostResponse =

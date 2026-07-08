@@ -92,10 +92,6 @@ async function $do(
       explode: false,
       charEncoding: "none",
     }),
-    "X-Org-UUID": encodeSimple("X-Org-UUID", payload$.xOrgUUID, {
-      explode: false,
-      charEncoding: "none",
-    }),
   }));
   const securityInput = await extractSecurity(client$._options.security);
   const requestSecurity = resolveGlobalSecurity(securityInput);

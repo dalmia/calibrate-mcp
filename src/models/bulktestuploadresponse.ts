@@ -20,6 +20,6 @@ export const BulkTestUploadResponse$zodSchema: z.ZodType<
     "IDs of the created tests, in request order",
   ),
   warnings: z.array(z.string()).nullable().optional().describe(
-    "Non-fatal issues (e.g. agents some tests couldn't link to). Null when there were none",
+    "Non-fatal issues, such as agents some tests could not be linked to",
   ),
 });

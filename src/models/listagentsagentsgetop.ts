@@ -14,14 +14,12 @@ import {
 
 export type ListAgentsAgentsGetRequest = {
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
 };
 
 export const ListAgentsAgentsGetRequest$zodSchema: z.ZodType<
   ListAgentsAgentsGetRequest
 > = z.object({
   xAPIKey: z.string().nullable().optional(),
-  xOrgUUID: z.string().nullable().optional(),
 });
 
 export type ListAgentsAgentsGetResponse =

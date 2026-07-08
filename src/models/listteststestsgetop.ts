@@ -12,16 +12,12 @@ import {
   RoutersTestsTestResponse$zodSchema,
 } from "./routersteststestresponse.js";
 
-export type ListTestsTestsGetRequest = {
-  xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
-};
+export type ListTestsTestsGetRequest = { xAPIKey?: string | null | undefined };
 
 export const ListTestsTestsGetRequest$zodSchema: z.ZodType<
   ListTestsTestsGetRequest
 > = z.object({
   xAPIKey: z.string().nullable().optional(),
-  xOrgUUID: z.string().nullable().optional(),
 });
 
 export type ListTestsTestsGetResponse =

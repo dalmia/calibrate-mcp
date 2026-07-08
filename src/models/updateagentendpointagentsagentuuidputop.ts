@@ -16,17 +16,15 @@ import {
 export type UpdateAgentEndpointAgentsAgentUuidPutRequest = {
   agent_uuid: string;
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
   body: AgentUpdate;
 };
 
 export const UpdateAgentEndpointAgentsAgentUuidPutRequest$zodSchema: z.ZodType<
   UpdateAgentEndpointAgentsAgentUuidPutRequest
 > = z.object({
-  agent_uuid: z.string().describe("The agent to update."),
+  agent_uuid: z.string().describe("The agent to update"),
   body: AgentUpdate$zodSchema,
   xAPIKey: z.string().nullable().optional(),
-  xOrgUUID: z.string().nullable().optional(),
 });
 
 export type UpdateAgentEndpointAgentsAgentUuidPutResponse =

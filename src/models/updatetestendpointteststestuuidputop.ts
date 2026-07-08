@@ -16,7 +16,6 @@ import { TestUpdate, TestUpdate$zodSchema } from "./testupdate.js";
 export type UpdateTestEndpointTestsTestUuidPutRequest = {
   test_uuid: string;
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
   body: TestUpdate;
 };
 
@@ -26,7 +25,6 @@ export const UpdateTestEndpointTestsTestUuidPutRequest$zodSchema: z.ZodType<
   body: TestUpdate$zodSchema,
   test_uuid: z.string().describe("Test to update"),
   xAPIKey: z.string().nullable().optional(),
-  xOrgUUID: z.string().nullable().optional(),
 });
 
 export type UpdateTestEndpointTestsTestUuidPutResponse =

@@ -15,7 +15,7 @@ import { BulkTestItem, BulkTestItem$zodSchema } from "./bulktestitem.js";
  * - `tool_call`: diffs the generated tool calls
  * - `conversation`: judges the full conversation
  *
- * Applied to every test in the batch.
+ * Applied to every test in the batch
  */
 export const BulkTestUploadType = {
   Response: "response",
@@ -31,7 +31,7 @@ export const BulkTestUploadType = {
  * - `tool_call`: diffs the generated tool calls
  * - `conversation`: judges the full conversation
  *
- * Applied to every test in the batch.
+ * Applied to every test in the batch
  */
 export type BulkTestUploadType = ClosedEnum<typeof BulkTestUploadType>;
 
@@ -40,7 +40,7 @@ export const BulkTestUploadType$zodSchema = z.enum([
   "tool_call",
   "conversation",
 ]).describe(
-  "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n\nApplied to every test in the batch.",
+  "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n\n\nApplied to every test in the batch",
 );
 
 export type BulkTestUpload = {
@@ -52,15 +52,15 @@ export type BulkTestUpload = {
 
 export const BulkTestUpload$zodSchema: z.ZodType<BulkTestUpload> = z.object({
   agent_uuids: z.array(z.string()).nullable().optional().describe(
-    "Agents (IDs) to link every created test to. Omit to link none",
+    "IDs of agents to link every created test to. Omit to link none",
   ),
   language: z.string().nullable().optional().describe(
     "Language written to each test's `config.settings.language`. Omit to leave unset",
   ),
   tests: z.array(BulkTestItem$zodSchema).describe(
-    "Test items to create (non-empty, max 500 per request, names unique within the batch)",
+    "Test items to create, at most 500 per request, with names unique within the batch",
   ),
   type: BulkTestUploadType$zodSchema.describe(
-    "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n\nApplied to every test in the batch.",
+    "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n\n\nApplied to every test in the batch",
   ),
 });

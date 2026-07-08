@@ -14,6 +14,6 @@ export const RoutersTestsEvaluatorRef$zodSchema: z.ZodType<
 > = z.object({
   evaluator_uuid: z.string().describe("Evaluator to attach to the test"),
   variable_values: z.record(z.string(), z.any()).nullable().optional().describe(
-    "Values for the evaluator's `{{\"{{\"}}placeholder}}` variables, pinned per test. Omit to inherit the evaluator version's defaults",
+    "Values for the evaluator's `{{\"{{\"}}placeholder}}` variables, pinned on this test. Omit to inherit the evaluator version's defaults",
   ),
 });

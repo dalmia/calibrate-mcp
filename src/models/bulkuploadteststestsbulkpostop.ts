@@ -15,7 +15,6 @@ import {
 
 export type BulkUploadTestsTestsBulkPostRequest = {
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
   body: BulkTestUpload;
 };
 
@@ -24,7 +23,6 @@ export const BulkUploadTestsTestsBulkPostRequest$zodSchema: z.ZodType<
 > = z.object({
   body: BulkTestUpload$zodSchema,
   xAPIKey: z.string().nullable().optional(),
-  xOrgUUID: z.string().nullable().optional(),
 });
 
 export type BulkUploadTestsTestsBulkPostResponse =

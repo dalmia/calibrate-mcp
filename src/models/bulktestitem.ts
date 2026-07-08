@@ -22,7 +22,7 @@ export type BulkTestItem = {
 
 export const BulkTestItem$zodSchema: z.ZodType<BulkTestItem> = z.object({
   conversation_history: z.array(ChatMessage$zodSchema).describe(
-    "Ordered messages ending at the user turn the agent should answer (must be non-empty)",
+    "Ordered messages ending at the user turn the agent should answer",
   ),
   evaluators: z.array(RoutersTestsEvaluatorRef$zodSchema).nullable().optional()
     .describe(

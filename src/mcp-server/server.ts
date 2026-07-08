@@ -22,9 +22,29 @@ import { tool$agentsGet } from "./tools/agentsGet.js";
 import { tool$agentsList } from "./tools/agentsList.js";
 import { tool$agentsResolve } from "./tools/agentsResolve.js";
 import { tool$agentsUpdate } from "./tools/agentsUpdate.js";
+import { tool$agentsVerifyConnection } from "./tools/agentsVerifyConnection.js";
+import { tool$agentTestsBenchmark } from "./tools/agentTestsBenchmark.js";
+import { tool$agentTestsGetBenchmark } from "./tools/agentTestsGetBenchmark.js";
 import { tool$agentTestsGetRun } from "./tools/agentTestsGetRun.js";
+import { tool$agentTestsLink } from "./tools/agentTestsLink.js";
+import { tool$agentTestsListForAgent } from "./tools/agentTestsListForAgent.js";
+import { tool$agentTestsListRunsForAgent } from "./tools/agentTestsListRunsForAgent.js";
 import { tool$agentTestsRun } from "./tools/agentTestsRun.js";
 import { tool$agentTestsRunBatch } from "./tools/agentTestsRunBatch.js";
+import { tool$annotationTasksAddItems } from "./tools/annotationTasksAddItems.js";
+import { tool$annotationTasksCreate } from "./tools/annotationTasksCreate.js";
+import { tool$annotationTasksCreateEvaluatorRun } from "./tools/annotationTasksCreateEvaluatorRun.js";
+import { tool$annotationTasksGet } from "./tools/annotationTasksGet.js";
+import { tool$annotationTasksGetAgreement } from "./tools/annotationTasksGetAgreement.js";
+import { tool$annotationTasksGetEvaluatorRun } from "./tools/annotationTasksGetEvaluatorRun.js";
+import { tool$annotationTasksGetSummary } from "./tools/annotationTasksGetSummary.js";
+import { tool$annotationTasksLinkEvaluator } from "./tools/annotationTasksLinkEvaluator.js";
+import { tool$annotationTasksList } from "./tools/annotationTasksList.js";
+import { tool$annotationTasksUpdateItems } from "./tools/annotationTasksUpdateItems.js";
+import { tool$evaluatorsCreate } from "./tools/evaluatorsCreate.js";
+import { tool$evaluatorsCreateVersion } from "./tools/evaluatorsCreateVersion.js";
+import { tool$evaluatorsGet } from "./tools/evaluatorsGet.js";
+import { tool$evaluatorsList } from "./tools/evaluatorsList.js";
 import { tool$testsBulkCreate } from "./tools/testsBulkCreate.js";
 import { tool$testsCreate } from "./tools/testsCreate.js";
 import { tool$testsGet } from "./tools/testsGet.js";
@@ -44,7 +64,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CalibrateMcp",
-    version: "0.0.14",
+    version: "0.0.15",
   });
 
   const getClient = deps.getSDK || (() =>
@@ -89,6 +109,7 @@ export function createMCPServer(deps: {
   const register = { tool, resource, resourceTemplate, prompt };
   void register; // suppress unused warnings
 
+  tool(tool$agentsVerifyConnection);
   tool(tool$agentsResolve);
   tool(tool$agentsCreate);
   tool(tool$agentsList);
@@ -99,9 +120,28 @@ export function createMCPServer(deps: {
   tool(tool$testsList);
   tool(tool$testsGet);
   tool(tool$testsUpdate);
+  tool(tool$agentTestsLink);
+  tool(tool$agentTestsListForAgent);
+  tool(tool$agentTestsListRunsForAgent);
   tool(tool$agentTestsRun);
   tool(tool$agentTestsRunBatch);
   tool(tool$agentTestsGetRun);
+  tool(tool$agentTestsBenchmark);
+  tool(tool$agentTestsGetBenchmark);
+  tool(tool$evaluatorsCreate);
+  tool(tool$evaluatorsList);
+  tool(tool$evaluatorsGet);
+  tool(tool$evaluatorsCreateVersion);
+  tool(tool$annotationTasksCreate);
+  tool(tool$annotationTasksList);
+  tool(tool$annotationTasksGet);
+  tool(tool$annotationTasksLinkEvaluator);
+  tool(tool$annotationTasksAddItems);
+  tool(tool$annotationTasksUpdateItems);
+  tool(tool$annotationTasksCreateEvaluatorRun);
+  tool(tool$annotationTasksGetEvaluatorRun);
+  tool(tool$annotationTasksGetAgreement);
+  tool(tool$annotationTasksGetSummary);
 
   if (deps.dynamic) {
     registerDynamicTools(deps.logger, server, getClient, toolMap, scopes);

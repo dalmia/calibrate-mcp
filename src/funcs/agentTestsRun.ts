@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Run agent tests
  *
  * @remarks
- * Run an agent's linked tests as a background job, returning a task ID to poll
+ * Run an agent's linked tests as a background job, returning a task ID to poll.
  */
 export function agentTestsRun(
   client$: CalibrateMcpCore,
@@ -101,10 +101,6 @@ async function $do(
     "Content-Type": "application/json",
     Accept: "application/json",
     "X-API-Key": encodeSimple("X-API-Key", payload$.xAPIKey, {
-      explode: false,
-      charEncoding: "none",
-    }),
-    "X-Org-UUID": encodeSimple("X-Org-UUID", payload$.xOrgUUID, {
       explode: false,
       charEncoding: "none",
     }),

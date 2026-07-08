@@ -12,10 +12,10 @@ export type ToolCallOutput = {
 
 export const ToolCallOutput$zodSchema: z.ZodType<ToolCallOutput> = z.object({
   arguments: z.record(z.string(), z.any()).nullable().optional().describe(
-    "Arguments the agent passed to the tool. Null if none",
+    "Arguments the agent passed to the tool",
   ),
   output: z.any().nullable().optional().describe(
-    "Tool execution result (any JSON value). Present only when the agent runs the tool and returns its result",
+    "Tool execution result, when the agent ran the tool and returned its result",
   ),
   tool: z.string().describe("Name of the tool the agent called"),
 });

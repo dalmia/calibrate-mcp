@@ -18,7 +18,6 @@ import {
 
 export type ResolveAgentNamesAgentsResolvePostRequest = {
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
   body: ResolveAgentNamesRequest;
 };
 
@@ -27,7 +26,6 @@ export const ResolveAgentNamesAgentsResolvePostRequest$zodSchema: z.ZodType<
 > = z.object({
   body: ResolveAgentNamesRequest$zodSchema,
   xAPIKey: z.string().nullable().optional(),
-  xOrgUUID: z.string().nullable().optional(),
 });
 
 export type ResolveAgentNamesAgentsResolvePostResponse =

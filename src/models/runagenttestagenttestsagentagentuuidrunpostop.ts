@@ -16,16 +16,14 @@ import { RunTestRequest, RunTestRequest$zodSchema } from "./runtestrequest.js";
 export type RunAgentTestAgentTestsAgentAgentUuidRunPostRequest = {
   agent_uuid: string;
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
   body: RunTestRequest;
 };
 
 export const RunAgentTestAgentTestsAgentAgentUuidRunPostRequest$zodSchema:
   z.ZodType<RunAgentTestAgentTestsAgentAgentUuidRunPostRequest> = z.object({
-    agent_uuid: z.string().describe("The agent to test."),
+    agent_uuid: z.string().describe("Agent to test"),
     body: RunTestRequest$zodSchema,
     xAPIKey: z.string().nullable().optional(),
-    xOrgUUID: z.string().nullable().optional(),
   });
 
 export type RunAgentTestAgentTestsAgentAgentUuidRunPostResponse =

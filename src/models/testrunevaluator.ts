@@ -5,13 +5,15 @@
 import * as z from "zod";
 import { ClosedEnum } from "../types/enums.js";
 
-export const OutputType = {
+export const TestRunEvaluatorOutputType = {
   Binary: "binary",
   Rating: "rating",
 } as const;
-export type OutputType = ClosedEnum<typeof OutputType>;
+export type TestRunEvaluatorOutputType = ClosedEnum<
+  typeof TestRunEvaluatorOutputType
+>;
 
-export const OutputType$zodSchema = z.enum([
+export const TestRunEvaluatorOutputType$zodSchema = z.enum([
   "binary",
   "rating",
 ]);
@@ -20,7 +22,7 @@ export type TestRunEvaluator = {
   uuid?: string | null | undefined;
   name?: string | null | undefined;
   description?: string | null | undefined;
-  output_type?: OutputType | null | undefined;
+  output_type?: TestRunEvaluatorOutputType | null | undefined;
   output_config?: { [k: string]: any } | null | undefined;
   scale_min?: number | null | undefined;
   scale_max?: number | null | undefined;
@@ -34,20 +36,21 @@ export const TestRunEvaluator$zodSchema: z.ZodType<TestRunEvaluator> = z.object(
     ),
     name: z.string().nullable().optional().describe("Name of the evaluator"),
     output_config: z.record(z.string(), z.any()).nullable().optional().describe(
-      "Rubric: the scale values, labels, and colors a verdict maps to",
+      "The rubric: the scale values, labels, and colors a verdict maps to",
     ),
-    output_type: OutputType$zodSchema.nullable().optional().describe(
-      "Verdict shape: pass/fail or a numeric rating",
-    ),
+    output_type: TestRunEvaluatorOutputType$zodSchema.nullable().optional()
+      .describe(
+        "The shape of the verdict:\n- `binary`: a pass/fail verdict\n- `rating`: a numeric score",
+      ),
     scale_max: z.number().nullable().optional().describe(
-      "Highest rating value. Set for rating evaluators",
+      "Highest value on a rating scale",
     ),
     scale_min: z.number().nullable().optional().describe(
-      "Lowest rating value. Set for rating evaluators",
+      "Lowest value on a rating scale",
     ),
     uuid: z.string().nullable().optional().describe("ID of the evaluator"),
     version_number: z.int().nullable().optional().describe(
-      "Evaluator version this run used",
+      "The evaluator version this run used",
     ),
   },
 );

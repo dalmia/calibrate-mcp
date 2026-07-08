@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Run agent tests in batch
  *
  * @remarks
- * Run agent tests for every agent, or for a selected set
+ * Run agent tests for every agent, or for a selected set.
  */
 export function agentTestsRunBatch(
   client$: CalibrateMcpCore,
@@ -90,10 +90,6 @@ async function $do(
     "Content-Type": "application/json",
     Accept: "application/json",
     "X-API-Key": encodeSimple("X-API-Key", payload$?.xAPIKey, {
-      explode: false,
-      charEncoding: "none",
-    }),
-    "X-Org-UUID": encodeSimple("X-Org-UUID", payload$?.xOrgUUID, {
       explode: false,
       charEncoding: "none",
     }),

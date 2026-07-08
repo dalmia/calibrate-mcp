@@ -15,7 +15,6 @@ import {
 export type GetTestEndpointTestsTestUuidGetRequest = {
   test_uuid: string;
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
 };
 
 export const GetTestEndpointTestsTestUuidGetRequest$zodSchema: z.ZodType<
@@ -23,7 +22,6 @@ export const GetTestEndpointTestsTestUuidGetRequest$zodSchema: z.ZodType<
 > = z.object({
   test_uuid: z.string().describe("Test to retrieve"),
   xAPIKey: z.string().nullable().optional(),
-  xOrgUUID: z.string().nullable().optional(),
 });
 
 export type GetTestEndpointTestsTestUuidGetResponse =

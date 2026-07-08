@@ -3,15 +3,45 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
+
+/**
+ * Why this agent was not run:
+ *
+ * @remarks
+ * - `no_linked_tests`: the agent has no tests linked
+ * - `connection_not_verified`: the agent's connection is not verified
+ */
+export const Reason = {
+  NoLinkedTests: "no_linked_tests",
+  ConnectionNotVerified: "connection_not_verified",
+} as const;
+/**
+ * Why this agent was not run:
+ *
+ * @remarks
+ * - `no_linked_tests`: the agent has no tests linked
+ * - `connection_not_verified`: the agent's connection is not verified
+ */
+export type Reason = ClosedEnum<typeof Reason>;
+
+export const Reason$zodSchema = z.enum([
+  "no_linked_tests",
+  "connection_not_verified",
+]).describe(
+  "Why this agent was not run:\n- `no_linked_tests`: the agent has no tests linked\n- `connection_not_verified`: the agent's connection is not verified",
+);
 
 export type BatchTestSkip = {
   agent_name: string;
   agent_uuid: string;
-  reason: string;
+  reason: Reason;
 };
 
 export const BatchTestSkip$zodSchema: z.ZodType<BatchTestSkip> = z.object({
   agent_name: z.string().describe("Name of the skipped agent"),
   agent_uuid: z.string().describe("ID of the skipped agent"),
-  reason: z.string().describe("Why this agent was not run"),
+  reason: Reason$zodSchema.describe(
+    "Why this agent was not run:\n- `no_linked_tests`: the agent has no tests linked\n- `connection_not_verified`: the agent's connection is not verified",
+  ),
 });

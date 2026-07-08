@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Get test run status
  *
  * @remarks
- * Poll a test run for its status and evaluation results
+ * Poll a test run for its status and evaluation results.
  */
 export function agentTestsGetRun(
   client$: CalibrateMcpCore,
@@ -100,10 +100,6 @@ async function $do(
   const headers$ = new Headers(compactMap({
     Accept: "application/json",
     "X-API-Key": encodeSimple("X-API-Key", payload$.xAPIKey, {
-      explode: false,
-      charEncoding: "none",
-    }),
-    "X-Org-UUID": encodeSimple("X-Org-UUID", payload$.xOrgUUID, {
       explode: false,
       charEncoding: "none",
     }),

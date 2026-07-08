@@ -6,21 +6,21 @@ import * as z from "zod";
 import { ClosedEnum } from "../types/enums.js";
 
 /**
- * Initial status of the test run
+ * Current status of the run
  */
 export const BatchTestRunStatus = {
   Queued: "queued",
   InProgress: "in_progress",
 } as const;
 /**
- * Initial status of the test run
+ * Current status of the run
  */
 export type BatchTestRunStatus = ClosedEnum<typeof BatchTestRunStatus>;
 
 export const BatchTestRunStatus$zodSchema = z.enum([
   "queued",
   "in_progress",
-]).describe("Initial status of the test run");
+]).describe("Current status of the run");
 
 export type BatchTestRun = {
   agent_name: string;
@@ -32,8 +32,8 @@ export type BatchTestRun = {
 export const BatchTestRun$zodSchema: z.ZodType<BatchTestRun> = z.object({
   agent_name: z.string().describe("Name of the agent"),
   agent_uuid: z.string().describe("ID of the agent that was run"),
-  status: BatchTestRunStatus$zodSchema.describe(
-    "Initial status of the test run",
+  status: BatchTestRunStatus$zodSchema.describe("Current status of the run"),
+  task_id: z.string().describe(
+    "Test run job ID. Poll it for status and results",
   ),
-  task_id: z.string().describe("Test run job ID. Poll for status and results"),
 });

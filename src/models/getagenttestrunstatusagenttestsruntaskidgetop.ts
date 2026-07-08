@@ -15,14 +15,12 @@ import {
 export type GetAgentTestRunStatusAgentTestsRunTaskIdGetRequest = {
   task_id: string;
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
 };
 
 export const GetAgentTestRunStatusAgentTestsRunTaskIdGetRequest$zodSchema:
   z.ZodType<GetAgentTestRunStatusAgentTestsRunTaskIdGetRequest> = z.object({
     task_id: z.string().describe("Test run to poll for status and results"),
     xAPIKey: z.string().nullable().optional(),
-    xOrgUUID: z.string().nullable().optional(),
   });
 
 export type GetAgentTestRunStatusAgentTestsRunTaskIdGetResponse =

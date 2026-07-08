@@ -12,9 +12,9 @@ export type TestOutput = {
 
 export const TestOutput$zodSchema: z.ZodType<TestOutput> = z.object({
   response: z.string().nullable().optional().describe(
-    "The agent's generated reply. Null for tool-call-only cases",
+    "The reply the agent generated",
   ),
   tool_calls: z.array(ToolCallOutput$zodSchema).nullable().optional().describe(
-    "Tool calls the agent generated. Null when it made none",
+    "Tool calls the agent generated",
   ),
 });

@@ -15,7 +15,6 @@ import {
 
 export type CreateTestEndpointTestsPostRequest = {
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
   body: TestCreate;
 };
 
@@ -24,7 +23,6 @@ export const CreateTestEndpointTestsPostRequest$zodSchema: z.ZodType<
 > = z.object({
   body: TestCreate$zodSchema,
   xAPIKey: z.string().nullable().optional(),
-  xOrgUUID: z.string().nullable().optional(),
 });
 
 export type CreateTestEndpointTestsPostResponse =

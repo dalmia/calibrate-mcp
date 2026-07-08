@@ -29,7 +29,7 @@ export type TestRunStatusResponse = {
 export const TestRunStatusResponse$zodSchema: z.ZodType<TestRunStatusResponse> =
   z.object({
     cost: z.record(z.string(), z.any()).nullable().optional().describe(
-      "Aggregated cost `{mean, min, max, count}` (USD)",
+      "Aggregated cost as `{mean, min, max, count}` (USD)",
     ),
     error: z.boolean().default(false).describe("True if the run failed"),
     evaluators: z.array(TestRunEvaluator$zodSchema).nullable().optional()
@@ -37,29 +37,29 @@ export const TestRunStatusResponse$zodSchema: z.ZodType<TestRunStatusResponse> =
         "The evaluators used in this run. Each verdict in `judge_results` links to one of these by `evaluator_uuid`",
       ),
     failed: z.int().nullable().optional().describe(
-      "Number of test cases that failed. Null until done",
+      "Number of test cases that failed",
     ),
     is_public: z.boolean().default(false).describe(
       "Whether the run is shared publicly",
     ),
     latency_ms: z.record(z.string(), z.any()).nullable().optional().describe(
-      "Aggregated response latency in milliseconds: `{p50, p95, p99, count}`",
+      "Aggregated response latency in milliseconds, as `{p50, p95, p99, count}`",
     ),
     passed: z.int().nullable().optional().describe(
-      "Number of test cases that passed. Null until done",
+      "Number of test cases that passed",
     ),
     results: z.array(TestCaseResult$zodSchema).nullable().optional().describe(
-      "Results for each test case. Null until available",
+      "Results for each test case",
     ),
     share_token: z.string().nullable().optional().describe(
-      "Public share token. Null unless the run is public",
+      "Token for building the public share URL",
     ),
     status: TaskStatus$zodSchema,
     task_id: z.string().describe("Test run job ID"),
     total_tests: z.int().nullable().optional().describe(
-      "Total number of test cases. Null until known",
+      "Total number of test cases",
     ),
     total_tokens: z.record(z.string(), z.any()).nullable().optional().describe(
-      "Aggregated token usage `{mean, min, max, count}`",
+      "Aggregated token usage as `{mean, min, max, count}`",
     ),
   });

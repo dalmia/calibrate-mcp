@@ -15,15 +15,13 @@ import {
 export type GetAgentEndpointAgentsAgentUuidGetRequest = {
   agent_uuid: string;
   xAPIKey?: string | null | undefined;
-  xOrgUUID?: string | null | undefined;
 };
 
 export const GetAgentEndpointAgentsAgentUuidGetRequest$zodSchema: z.ZodType<
   GetAgentEndpointAgentsAgentUuidGetRequest
 > = z.object({
-  agent_uuid: z.string().describe("The agent to retrieve."),
+  agent_uuid: z.string().describe("The agent to retrieve"),
   xAPIKey: z.string().nullable().optional(),
-  xOrgUUID: z.string().nullable().optional(),
 });
 
 export type GetAgentEndpointAgentsAgentUuidGetResponse =
