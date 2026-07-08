@@ -10,14 +10,12 @@ import { ClosedEnum } from "../types/enums.js";
  *
  * @remarks
  * - `stt`: judge a transcript on its own
- * - `tts`: judge synthesized speech output
  * - `llm`: judge one response with its conversation history
  * - `llm-general`: judge a standalone `input -> output` pair
  * - `conversation`: judge a full conversation
  */
 export const AnnotationTaskResponseType = {
   Stt: "stt",
-  Tts: "tts",
   Llm: "llm",
   LlmGeneral: "llm-general",
   Conversation: "conversation",
@@ -27,7 +25,6 @@ export const AnnotationTaskResponseType = {
  *
  * @remarks
  * - `stt`: judge a transcript on its own
- * - `tts`: judge synthesized speech output
  * - `llm`: judge one response with its conversation history
  * - `llm-general`: judge a standalone `input -> output` pair
  * - `conversation`: judge a full conversation
@@ -38,12 +35,11 @@ export type AnnotationTaskResponseType = ClosedEnum<
 
 export const AnnotationTaskResponseType$zodSchema = z.enum([
   "stt",
-  "tts",
   "llm",
   "llm-general",
   "conversation",
 ]).describe(
-  "Task type. Determines the shape of each item's payload.\n- `stt`: judge a transcript on its own\n- `tts`: judge synthesized speech output\n- `llm`: judge one response with its conversation history\n- `llm-general`: judge a standalone `input -> output` pair\n- `conversation`: judge a full conversation",
+  "Task type. Determines the shape of each item's payload.\n- `stt`: judge a transcript on its own\n- `llm`: judge one response with its conversation history\n- `llm-general`: judge a standalone `input -> output` pair\n- `conversation`: judge a full conversation",
 );
 
 export type AnnotationTaskResponse = {
@@ -80,7 +76,7 @@ export const AnnotationTaskResponse$zodSchema: z.ZodType<
   ),
   name: z.string().describe("Name of the task"),
   type: AnnotationTaskResponseType$zodSchema.describe(
-    "Task type. Determines the shape of each item's payload.\n- `stt`: judge a transcript on its own\n- `tts`: judge synthesized speech output\n- `llm`: judge one response with its conversation history\n- `llm-general`: judge a standalone `input -> output` pair\n- `conversation`: judge a full conversation",
+    "Task type. Determines the shape of each item's payload.\n- `stt`: judge a transcript on its own\n- `llm`: judge one response with its conversation history\n- `llm-general`: judge a standalone `input -> output` pair\n- `conversation`: judge a full conversation",
   ),
   updated_at: z.string().describe(
     "When the task was last updated (ISO 8601 UTC)",

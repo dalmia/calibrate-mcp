@@ -15,6 +15,6 @@ export const AnnotationItemPayload$zodSchema: z.ZodType<AnnotationItemPayload> =
       "Human annotations to seed, keyed by evaluator ID. Each evaluator ID must be linked to the task. Put the judgement in `value`, a bool for binary or a number for rating, with optional `reasoning`. Requires `annotator_id`",
     ),
     payload: z.any().optional().describe(
-      "The item's payload. Its shape depends on the task `type`. `payload['name']` is **required** for every type and must be unique within the task",
+      "The item's payload. `name` is required and unique within the task for every type. The other fields depend on the task `type`:\n\n- `stt`: `name`, `reference_transcript`, `predicted_transcript`\n- `llm`: `name`, `chat_history` (list of `{role, content}` turns ending at the user turn), `agent_response` (the reply to judge), optional `evaluator_variables`\n- `llm-general`: `name`, `input`, `output`, optional `evaluator_variables`\n- `conversation`: `name`, `transcript` (list of `{role, content}` turns), optional `evaluator_variables`\n\n`evaluator_variables` maps an evaluator ID to that evaluator's `{{\"{{\"}}variable}}` values for this item",
     ),
   });

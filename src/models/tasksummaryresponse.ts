@@ -12,7 +12,6 @@ import { PaginationMeta, PaginationMeta$zodSchema } from "./paginationmeta.js";
  */
 export const TaskType = {
   Stt: "stt",
-  Tts: "tts",
   Llm: "llm",
   LlmGeneral: "llm-general",
   Conversation: "conversation",
@@ -24,7 +23,6 @@ export type TaskType = ClosedEnum<typeof TaskType>;
 
 export const TaskType$zodSchema = z.enum([
   "stt",
-  "tts",
   "llm",
   "llm-general",
   "conversation",
