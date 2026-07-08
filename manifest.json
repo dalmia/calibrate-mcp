@@ -1,0 +1,97 @@
+{
+  "author": {
+    "name": "Speakeasy"
+  },
+  "description": "Run and monitor Calibrate agent tests from AI assistants. List agents, resolve names to UUIDs, launch test runs, and poll results via the Calibrate public API.",
+  "displayName": "Calibrate",
+  "display_name": "@dalmia/calibrate Mcp",
+  "keywords": [
+    "@dalmia/calibrate",
+    "mcp",
+    "calibrate",
+    "public",
+    "api",
+    "programmatic"
+  ],
+  "long_description": "Calibrate Public API: Programmatic API for CI/automation. Pass your key in the `X-API-Key` header.",
+  "manifest_version": "0.3",
+  "name": "@dalmia/calibrate-mcp",
+  "prompts": [],
+  "server": {
+    "type": "node",
+    "entry_point": "./bin/mcp-server.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/bin/mcp-server.js",
+        "start",
+        "--api-key-auth",
+        "${user_config.api_key_auth}"
+      ]
+    }
+  },
+  "user_config": {
+    "api_key_auth": {
+      "type": "string",
+      "title": "ApiKeyAuth",
+      "description": "The ApiKeyAuth to use for the request",
+      "required": true,
+      "sensitive": true
+    }
+  },
+  "version": "0.0.1",
+  "tools": [
+    {
+      "name": "resolve-agent-names",
+      "description": "Map human-friendly agent names to UUIDs within the caller's org. Each\nname resolves to at most one agent; unknown names are returned under\nnot_found. Use this before run-agent-tests when you have names instead\nof UUIDs. Does not create or modify agents.\n"
+    },
+    {
+      "name": "create-agent",
+      "description": "Create a new agent in the caller's organization. Provide the agent's\nname, type, and config. Returns the created agent including its UUID.\nRequires a Calibrate API key (CALIBRATE_API_KEY).\n"
+    },
+    {
+      "name": "list-agents",
+      "description": "List every agent in the caller's organization. Returns each agent's\nUUID, name, type, and config. Use this to discover which agents exist\nbefore resolving names or launching test runs. Requires a Calibrate\nAPI key (CALIBRATE_API_KEY).\n"
+    },
+    {
+      "name": "get-agent",
+      "description": "Fetch a single agent by UUID within the caller's org. Returns the\nagent's name, type, and config. Fails with 404 if the agent does not\nexist or belongs to another org.\n"
+    },
+    {
+      "name": "update-agent",
+      "description": "Update an existing agent by UUID within the caller's org. Supply the\nfields to change (name, type, config). Returns the updated agent.\nFails with 404 if the agent does not exist or belongs to another org.\n"
+    },
+    {
+      "name": "bulk-create-tests",
+      "description": "Create multiple tests in the caller's organization in one call. Provide\na list of test definitions (name, type, config). Returns the created\ntests including their UUIDs.\n"
+    },
+    {
+      "name": "create-test",
+      "description": "Create a new test in the caller's organization. Provide the test's\nname, type, and config. Returns the created test including its UUID.\nRequires a Calibrate API key (CALIBRATE_API_KEY).\n"
+    },
+    {
+      "name": "list-tests",
+      "description": "List every test in the caller's organization. Returns each test's\nUUID, name, type, and config. Use this to discover which tests exist\nbefore creating runs.\n"
+    },
+    {
+      "name": "get-test",
+      "description": "Fetch a single test by UUID within the caller's org. Returns the\ntest's name, type, and config. Fails with 404 if the test does not\nexist or belongs to another org.\n"
+    },
+    {
+      "name": "update-test",
+      "description": "Update an existing test by UUID within the caller's org. Supply the\nfields to change (name, config). Returns the updated test. Fails with\n404 if the test does not exist or belongs to another org.\n"
+    },
+    {
+      "name": "run-agent-tests",
+      "description": "Start a background LLM unit-test job for one agent. Runs all tests\nlinked to the agent unless test_uuids is provided. Returns a task_id\nto poll with get-agent-test-run. The agent must belong to the caller's\norg and have a verified connection; otherwise the call fails with 400\nor 404.\n"
+    },
+    {
+      "name": "run-agent-tests-batch",
+      "description": "Launch one test job per agent in the caller's org. Optionally restrict\nto agent_names; omit or pass an empty list to run every org agent.\nAgents with no linked tests or an unverified connection are skipped\n(reported under skipped) rather than failing the batch. Returns\ntask_id values to poll with get-agent-test-run.\n"
+    },
+    {
+      "name": "get-agent-test-run",
+      "description": "Poll the status and results of an agent test run by task_id. Returns\nqueued, in_progress, completed, failed, or aborted status. When\ncompleted, includes per-test-case pass/fail results and evaluator\njudgments. Use the task_id from run-agent-tests or\nrun-agent-tests-batch.\n"
+    }
+  ]
+}

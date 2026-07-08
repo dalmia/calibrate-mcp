@@ -1,0 +1,59 @@
+configVersion: 2.0.0
+generation:
+  sdkClassName: CalibrateMcp
+  maintainOpenAPIOrder: true
+  usageSnippets:
+    optionalPropertyRendering: withExample
+    sdkInitStyle: constructor
+  useClassNamesForArrayFields: true
+  fixes:
+    nameResolutionDec2023: true
+    nameResolutionFeb2025: true
+    parameterOrderingFeb2024: true
+    requestResponseComponentNamesFeb2024: true
+    securityFeb2025: true
+    sharedErrorComponentsApr2025: true
+    sharedNestedComponentsJan2026: true
+    nameOverrideFeb2026: true
+  auth:
+    oAuth2ClientCredentialsEnabled: false
+    oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
+  inferSSEOverload: true
+  sdkHooksConfigAccess: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: body
+  versioningStrategy: automatic
+  persistentEdits: {}
+  tests:
+    generateTests: false
+    generateNewTests: true
+    skipResponseBodyAssertions: false
+  repoUrl: https://github.com/dalmia/calibrate-mcp
+mcp-typescript:
+  version: 0.0.13
+  additionalDependencies:
+    dependencies: {}
+    devDependencies: {}
+    peerDependencies: {}
+  advancedFlags: []
+  author: Speakeasy
+  baseErrorName: CalibrateMcpError
+  cloudflareEnabled: false
+  envVarPrefix: CALIBRATE
+  fixEnumNameSanitization: false
+  formStringArrayEncodeMode: array
+  gramEnabled: false
+  inferUnionDiscriminators: true
+  inputModelSuffix: input
+  maxMethodParams: 0
+  mcpbManifestOverlay:
+    description: Run and monitor Calibrate agent tests from AI assistants. List agents, resolve names to UUIDs, launch test runs, and poll results via the Calibrate public API.
+    displayName: Calibrate
+    version: 0.0.1
+  multipartArrayFormat: standard
+  outputModelSuffix: output
+  packageName: '@dalmia/calibrate-mcp'
+  responseFormat: flat
+  validateResponse: false
