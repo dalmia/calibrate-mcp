@@ -64,7 +64,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CalibrateMcp",
-    version: "0.0.20",
+    version: "0.0.21",
   });
 
   const getClient = deps.getSDK || (() =>
