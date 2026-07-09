@@ -4,13 +4,15 @@
 
 import * as z from "zod";
 import { ClosedEnum } from "../types/enums.js";
-import { ModelResult, ModelResult$zodSchema } from "./modelresult.js";
-import { TaskStatus, TaskStatus$zodSchema } from "./taskstatus.js";
-import { TestCaseResult, TestCaseResult$zodSchema } from "./testcaseresult.js";
 import {
-  TestRunEvaluator,
-  TestRunEvaluator$zodSchema,
-} from "./testrunevaluator.js";
+  ModelRunSummary,
+  ModelRunSummary$zodSchema,
+} from "./modelrunsummary.js";
+import { TaskStatus, TaskStatus$zodSchema } from "./taskstatus.js";
+import {
+  TestRunCaseSummary,
+  TestRunCaseSummary$zodSchema,
+} from "./testruncasesummary.js";
 
 /**
  * What kind of run this is:
@@ -47,16 +49,14 @@ export type AgentTestRunListItem = {
   status: TaskStatus;
   type: AgentTestRunListItemType;
   updated_at: string;
-  evaluators?: Array<TestRunEvaluator> | null | undefined;
   total_tests?: number | null | undefined;
   passed?: number | null | undefined;
   failed?: number | null | undefined;
-  results?: Array<TestCaseResult> | null | undefined;
+  results?: Array<TestRunCaseSummary> | null | undefined;
   latency_ms?: { [k: string]: any } | null | undefined;
   cost?: { [k: string]: any } | null | undefined;
   total_tokens?: { [k: string]: any } | null | undefined;
-  model_results?: Array<ModelResult> | null | undefined;
-  leaderboard_summary?: Array<{ [k: string]: any }> | null | undefined;
+  model_results?: Array<ModelRunSummary> | null | undefined;
   error?: boolean | undefined;
   is_public?: boolean | undefined;
   share_token?: string | null | undefined;
@@ -68,10 +68,6 @@ export const AgentTestRunListItem$zodSchema: z.ZodType<AgentTestRunListItem> = z
       "Aggregated cost as `{mean, min, max, count}` (USD)",
     ),
     error: z.boolean().default(false).describe("True if the run failed"),
-    evaluators: z.array(TestRunEvaluator$zodSchema).nullable().optional()
-      .describe(
-        "The evaluators used in this run. Each verdict in `judge_results` links to one of these by `evaluator_uuid`",
-      ),
     failed: z.int().nullable().optional().describe(
       "Number of test cases that failed",
     ),
@@ -81,21 +77,20 @@ export const AgentTestRunListItem$zodSchema: z.ZodType<AgentTestRunListItem> = z
     latency_ms: z.record(z.string(), z.any()).nullable().optional().describe(
       "Aggregated latency in milliseconds, as `{p50, p95, p99, count}`",
     ),
-    leaderboard_summary: z.array(z.record(z.string(), z.any())).nullable()
-      .optional().describe(
-        "Leaderboard comparing the models, one row per model. Columns vary by benchmark: a `model` column plus pass/fail counts, latency, cost, and one score column per evaluator, keyed by evaluator name",
+    model_results: z.array(ModelRunSummary$zodSchema).nullable().optional()
+      .describe(
+        "Flat summary for each model in a benchmark run (fetch the benchmark detail for full results)",
       ),
-    model_results: z.array(ModelResult$zodSchema).nullable().optional()
-      .describe("Results for each model in a benchmark run"),
     name: z.string().describe(
       "Display name, such as `Run 1` for a unit test or `Benchmark 1` for a benchmark",
     ),
     passed: z.int().nullable().optional().describe(
       "Number of test cases that passed",
     ),
-    results: z.array(TestCaseResult$zodSchema).nullable().optional().describe(
-      "Results for each test case",
-    ),
+    results: z.array(TestRunCaseSummary$zodSchema).nullable().optional()
+      .describe(
+        "Flat pass/fail summary for each test case (fetch the run detail for full results)",
+      ),
     share_token: z.string().nullable().optional().describe(
       "Token for building the public share URL",
     ),

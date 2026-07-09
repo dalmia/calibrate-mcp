@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
-id: d10b5789-5c1a-4c5b-a2b3-ff09d2f651aa
+id: 1263a056-66b6-4dc3-9a7c-124696282d47
 management:
-  docChecksum: 629b4b2ec596f1c3e9fb00712a24e427
+  docChecksum: 5ce9a541e27fdbefe0953dfce0a19543
   docVersion: 0.1.0
   speakeasyVersion: 1.788.1
   generationVersion: 2.915.1
-  releaseVersion: 0.0.17
-  configChecksum: e5e9a391d22780c920f47fc2d91c5cc9
+  releaseVersion: 0.0.18
+  configChecksum: b154ca192ff7cf4e9468c26212d2152f
   repoURL: https://github.com/dalmia/calibrate-mcp
   installationURL: https://github.com/dalmia/calibrate-mcp
 persistentEdits:
-  generation_id: 7770f067-a469-4aa0-9c0c-b7ed0bade853
-  pristine_commit_hash: 84d13373a5612be494dd6f815a18cc2a13b581ff
-  pristine_tree_hash: 7efc03b61cac90e2ca09727698abd0869649fabc
+  generation_id: c8544f9e-e191-4138-90ec-aa064c0b2fd7
+  pristine_commit_hash: 07a38b0de3b059ca0dd1329d88a68773d35af945
+  pristine_tree_hash: ea11ec58ceb7c50063e63f08baaa282369ce76b0
 features:
   mcp-typescript:
     additionalDependencies: 0.1.0
@@ -53,8 +53,8 @@ trackedFiles:
     pristine_git_object: 4e72b756ab3d1e8449eed74b5e43f69d19b42a6e
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:b682894d1d0575483ae15f1ca83bbd0673888032
-    pristine_git_object: 3df9c31579702e96b6e60df8245cc493906961be
+    last_write_checksum: sha1:ba4d1545c5717f9b4ffcb6c03352cf8ca4549935
+    pristine_git_object: f3e9a4577460af4b5e8dd19358ba704e20ea85af
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:ba4cbfb98a88ee288942d4e0e7a792171569b0f8
@@ -201,16 +201,16 @@ trackedFiles:
     pristine_git_object: 9c36bf01332084f735909a71036c3544cc4c7e3a
   src/landing-page.ts:
     id: ef64a6ee46d7
-    last_write_checksum: sha1:16340caa3c4ced641f1af78be23cc8dccdd12ceb
-    pristine_git_object: 82b63ba19b1ce1d66198246ccfb74a7ee2ea51fe
+    last_write_checksum: sha1:96539b361b01e8a91f852ee23cc29d476ce21d0b
+    pristine_git_object: 81a8c1ed382daabd1b4be115f7e2e42346be120c
   src/lib/base64.ts:
     id: "598522066688"
     last_write_checksum: sha1:e9f04a037018040361043104960982f7c22db52d
     pristine_git_object: d4bd8b341290e7a828a171d840bd0b0fff7c7cd7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:7bdf2a90351f7068753d2932235d137a3b77eafd
-    pristine_git_object: 27d4949199ee7bbf818e70b65012244d7fb3b148
+    last_write_checksum: sha1:d8a7a07fff937a87a3bc9d10ba91f1737463c5d6
+    pristine_git_object: dab429ceb841838f99c3bf300bd69c0f177e4220
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:3ff4ad6809b749125820fd39c01427b84d3fe0d6
@@ -297,8 +297,8 @@ trackedFiles:
     pristine_git_object: b42d7cda985b8199f2245063f22bb68efb5ecdd0
   src/mcp-server/mcp-server.ts:
     id: aabbc4ab07c1
-    last_write_checksum: sha1:762520d46f54ffa6b1e0087a490747409b98233c
-    pristine_git_object: ced6981baaa0e60e3a2a7c171cc27e7c99716235
+    last_write_checksum: sha1:ba15f24e44b394a05468aa2eaec51ab4c8a7ff03
+    pristine_git_object: 4a704367f3ef89d993ddc7ea1ba737521c84fac6
   src/mcp-server/prompts.ts:
     id: 26f3d73cbf31
     last_write_checksum: sha1:dde03ff7d9c2659a0c3a4e2aa21d615a0b4f2b0b
@@ -313,8 +313,8 @@ trackedFiles:
     pristine_git_object: cb8330e4ae705d283de6ab337eefd3b4b8191fca
   src/mcp-server/server.ts:
     id: 2784dd48e82a
-    last_write_checksum: sha1:d52a778f34dedd23cc2028e40144812bd83cda1e
-    pristine_git_object: eeeb69d8736b15e382a2f318217f61de3ca813a7
+    last_write_checksum: sha1:ea5e668fbcb8b648831dd96c41e82e40bb646330
+    pristine_git_object: ff5a9cfe1b08ffdb8906f2e33f3e44db6b622b75
   src/mcp-server/shared.ts:
     id: 074e80d4be1e
     last_write_checksum: sha1:19c9034032819a14f15c430de4350c8aba99d725
@@ -469,8 +469,8 @@ trackedFiles:
     pristine_git_object: 99cb786aa7b389ffccfb589605ca9f97b54bb208
   src/models/agenttestrunlistitem.ts:
     id: 018b52ac8a78
-    last_write_checksum: sha1:484b4d31b5c19209fd204bd1a27ca95178021e67
-    pristine_git_object: 937b09a50709c366cbfe315b23f8dd183e596325
+    last_write_checksum: sha1:8782938eb982d07fed855d3d32835c9fbcbe911d
+    pristine_git_object: 37128d390b9348b74a562ca38aea31609828a0fd
   src/models/agenttestrunsresponse.ts:
     id: 3528dd4e830e
     last_write_checksum: sha1:ec3e74c6b6071fae502086d4d98878d5767cab26
@@ -739,6 +739,10 @@ trackedFiles:
     id: b19c31f33198
     last_write_checksum: sha1:d1e80482877466b7a6b9d13b2a4d0f667eba90d4
     pristine_git_object: e4ebce66788205fd33018ba4ab10977ff2250f53
+  src/models/modelrunsummary.ts:
+    id: 2e83a1517de0
+    last_write_checksum: sha1:731bce95d10eef07d0ccfe9a1dbd12d4f38e23f2
+    pristine_git_object: 2ede9fff7a5c11f5984b1d583e419d70d8c8f3e4
   src/models/outputconfig.ts:
     id: 144ffe5eea58
     last_write_checksum: sha1:b06b5394e142c794b9b239a545522a1f46bfceb8
@@ -843,6 +847,10 @@ trackedFiles:
     id: b55d92dc6157
     last_write_checksum: sha1:824ed669617bcaf2573f78aeb3b9dea83b47282e
     pristine_git_object: a89bf0366ed7208d358b03f5f8b571575fc58478
+  src/models/testruncasesummary.ts:
+    id: 297bfed24696
+    last_write_checksum: sha1:b9b7931fdf41d2d9b382fec65ea0af45a4211629
+    pristine_git_object: a2daecc7f5d6561c669fafd208b27af6785d08bd
   src/models/testrunevaluator.ts:
     id: 272f9afd12c7
     last_write_checksum: sha1:197e9764079f837adf54f8a579d4a626af215df6
@@ -1056,7 +1064,7 @@ examples:
           agent_uuid: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
       responses:
         "200":
-          application/json: {"runs": [{"uuid": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "done", "type": "llm-unit-test", "updated_at": "1735641502230", "evaluators": null, "results": [{"output": {"tool_calls": [{"tool": "<value>", "arguments": {"city": "Paris"}}]}, "judge_results": null}], "model_results": [{"model": "openai/gpt-4.1", "message": "<value>", "test_results": null}], "leaderboard_summary": [{"cost": 0.0021, "failed": 2, "helpfulness": 0.92, "latency_p50": 480, "model": "openai/gpt-4.1", "passed": 8, "safety": 1}, {"cost": 0.0034, "failed": 1, "helpfulness": 0.95, "latency_p50": 520, "model": "anthropic/claude-sonnet-4", "passed": 9, "safety": 1}], "error": false, "is_public": false}]}
+          application/json: {"runs": [{"uuid": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "done", "type": "llm-unit-test", "updated_at": "1735641502230", "model_results": null, "error": false, "is_public": false}]}
         "422":
           application/json: {}
   run_agent_test_agent_tests_agent__agent_uuid__run_post:
