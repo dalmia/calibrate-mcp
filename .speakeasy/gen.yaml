@@ -32,7 +32,7 @@ generation:
     skipResponseBodyAssertions: false
   repoUrl: https://github.com/dalmia/calibrate-mcp
 mcp-typescript:
-  version: 0.0.18
+  version: 0.0.20
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -50,7 +50,7 @@ mcp-typescript:
   maxMethodParams: 0
   mcpbManifestOverlay:
     description: Run and monitor Calibrate agent tests from AI assistants. List agents, resolve names to UUIDs, launch test runs, and poll results via the Calibrate public API.
-    displayName: Calibrate
+    display_name: Calibrate
     version: 0.0.1
   multipartArrayFormat: standard
   outputModelSuffix: output
