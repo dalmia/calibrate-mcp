@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
-id: a7b71e0f-d915-4e20-85e4-688f26f83118
+id: d10b5789-5c1a-4c5b-a2b3-ff09d2f651aa
 management:
-  docChecksum: 0f1fd903e0dc73aaec29afc7e81848a2
+  docChecksum: 629b4b2ec596f1c3e9fb00712a24e427
   docVersion: 0.1.0
   speakeasyVersion: 1.788.1
   generationVersion: 2.915.1
-  releaseVersion: 0.0.15
-  configChecksum: 36bfef05e6cba680358cbae05f4ee390
+  releaseVersion: 0.0.17
+  configChecksum: e5e9a391d22780c920f47fc2d91c5cc9
   repoURL: https://github.com/dalmia/calibrate-mcp
   installationURL: https://github.com/dalmia/calibrate-mcp
 persistentEdits:
-  generation_id: e6060198-5b32-4770-846c-db78dd541635
-  pristine_commit_hash: 1f075791284b3523389405948a1c5087bc00017c
-  pristine_tree_hash: 3ec835f2b5b6a617b1fc6ed301fd651a1bbcafab
+  generation_id: 7770f067-a469-4aa0-9c0c-b7ed0bade853
+  pristine_commit_hash: 84d13373a5612be494dd6f815a18cc2a13b581ff
+  pristine_tree_hash: 7efc03b61cac90e2ca09727698abd0869649fabc
 features:
   mcp-typescript:
     additionalDependencies: 0.1.0
@@ -53,8 +53,8 @@ trackedFiles:
     pristine_git_object: 4e72b756ab3d1e8449eed74b5e43f69d19b42a6e
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:2b90228f60143e5335952f0d1cf337a36e53ba71
-    pristine_git_object: e098cc2d0f94c1977353d454c780539908c1f126
+    last_write_checksum: sha1:b682894d1d0575483ae15f1ca83bbd0673888032
+    pristine_git_object: 3df9c31579702e96b6e60df8245cc493906961be
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:ba4cbfb98a88ee288942d4e0e7a792171569b0f8
@@ -201,16 +201,16 @@ trackedFiles:
     pristine_git_object: 9c36bf01332084f735909a71036c3544cc4c7e3a
   src/landing-page.ts:
     id: ef64a6ee46d7
-    last_write_checksum: sha1:56509db822e11b72d182b8e6aeb6f0962ea49714
-    pristine_git_object: 85639fa82fd823352f4f28c3d0b11638fa10efb5
+    last_write_checksum: sha1:16340caa3c4ced641f1af78be23cc8dccdd12ceb
+    pristine_git_object: 82b63ba19b1ce1d66198246ccfb74a7ee2ea51fe
   src/lib/base64.ts:
     id: "598522066688"
     last_write_checksum: sha1:e9f04a037018040361043104960982f7c22db52d
     pristine_git_object: d4bd8b341290e7a828a171d840bd0b0fff7c7cd7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:d3b29486d1fca56470e95eb86d3a5026c9f48189
-    pristine_git_object: 7f58767ec30aa319191ce53e8fd4f1166a9f3e7d
+    last_write_checksum: sha1:7bdf2a90351f7068753d2932235d137a3b77eafd
+    pristine_git_object: 27d4949199ee7bbf818e70b65012244d7fb3b148
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:3ff4ad6809b749125820fd39c01427b84d3fe0d6
@@ -297,8 +297,8 @@ trackedFiles:
     pristine_git_object: b42d7cda985b8199f2245063f22bb68efb5ecdd0
   src/mcp-server/mcp-server.ts:
     id: aabbc4ab07c1
-    last_write_checksum: sha1:bcda615cf4c6af8234af96482f467e63d047fc81
-    pristine_git_object: 28c2d90391011f17f323127e6b8a524555a769fe
+    last_write_checksum: sha1:762520d46f54ffa6b1e0087a490747409b98233c
+    pristine_git_object: ced6981baaa0e60e3a2a7c171cc27e7c99716235
   src/mcp-server/prompts.ts:
     id: 26f3d73cbf31
     last_write_checksum: sha1:dde03ff7d9c2659a0c3a4e2aa21d615a0b4f2b0b
@@ -313,8 +313,8 @@ trackedFiles:
     pristine_git_object: cb8330e4ae705d283de6ab337eefd3b4b8191fca
   src/mcp-server/server.ts:
     id: 2784dd48e82a
-    last_write_checksum: sha1:8f4aa0840daeb4d95a23a4f1311d9d70cb776aa5
-    pristine_git_object: 3c855eff885b51513487ac8c36f6f6fc0e0338f5
+    last_write_checksum: sha1:d52a778f34dedd23cc2028e40144812bd83cda1e
+    pristine_git_object: eeeb69d8736b15e382a2f318217f61de3ca813a7
   src/mcp-server/shared.ts:
     id: 074e80d4be1e
     last_write_checksum: sha1:19c9034032819a14f15c430de4350c8aba99d725
@@ -493,20 +493,20 @@ trackedFiles:
     pristine_git_object: 1b732cb79755d27489472640f53df35132d7a278
   src/models/annotationitempayload.ts:
     id: a5279e6014a8
-    last_write_checksum: sha1:3915f293ff22e7514057371dc7913dd6405297f5
-    pristine_git_object: cc93d05ceccc8d39fff13df788377b099644bf82
+    last_write_checksum: sha1:527dfd2bd2c1f9658b1f5ad0894a922955db6554
+    pristine_git_object: 4ea2dfdeaa3aba6a854d33ac58f661af66dd47dc
   src/models/annotationtaskcreate.ts:
     id: feec7473a9aa
-    last_write_checksum: sha1:428f078ce1a57e8f05daf8c78a296d4a3d172f14
-    pristine_git_object: 89417b5cd4f93e3e8feffbeaf6ca77fbd2d15301
+    last_write_checksum: sha1:8c42790e54a7ffc41a1bad4559f8c3e325aebf50
+    pristine_git_object: b92c20860615345710408d9be4f03ef7ce8dde02
   src/models/annotationtaskcreateresponse.ts:
     id: 06d103c73182
     last_write_checksum: sha1:f1aecbd01c0ed7f80e1b98fe0b6f8371c0502dd7
     pristine_git_object: fa5fea9c0b698f008e853783f6f465cbf2f3b5bf
   src/models/annotationtaskresponse.ts:
     id: 6b8614ab5b42
-    last_write_checksum: sha1:afea35dc669c8705d405dba5c3971171a7c5674f
-    pristine_git_object: 237226167c3efe51435e78b805afbd8a5c895128
+    last_write_checksum: sha1:9d0e12a22b588e01331a07c743e6bfa7d089a66d
+    pristine_git_object: 850340fbe29ee6eef7198ad516b33cf06b12f996
   src/models/batchrunrequest.ts:
     id: 7d23dd0bc47c
     last_write_checksum: sha1:95c56233377e42c5387a78e0af6a96503dd2eac6
@@ -825,8 +825,8 @@ trackedFiles:
     pristine_git_object: 12a0df393d9d321cd91cf05b56d3c67c3b8b3c4b
   src/models/tasksummaryresponse.ts:
     id: 4983115c1272
-    last_write_checksum: sha1:ead47bf7b55569e035ab2381ac006983ade5ae96
-    pristine_git_object: bdfd3c76e7684ec011f257abd68ae397b5c3d180
+    last_write_checksum: sha1:f6724ee2ba743d2817baf4820f109d8dae6499a9
+    pristine_git_object: 56213c02d08e823b1a94cc283cd99b87f25d5bd3
   src/models/testcaseresult.ts:
     id: a1e300dd1880
     last_write_checksum: sha1:f4fafee322251424ad54551ccd4131e50e593bef
@@ -1166,7 +1166,7 @@ examples:
     speakeasy-default-list-annotation-tasks-annotation-tasks-get:
       responses:
         "200":
-          application/json: [{"uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "name": "<value>", "type": "tts", "created_at": "1721181753106", "updated_at": "1735638976273"}]
+          application/json: [{"uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "name": "<value>", "type": "llm", "created_at": "1721181753106", "updated_at": "1735638976273"}]
         "422":
           application/json: {}
   get_annotation_task_endpoint_annotation_tasks__task_uuid__get:
