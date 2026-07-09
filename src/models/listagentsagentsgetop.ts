@@ -3,14 +3,11 @@
  */
 
 import * as z from "zod";
+import { AgentSummary, AgentSummary$zodSchema } from "./agentsummary.js";
 import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
-import {
-  RoutersAgentsAgentResponse,
-  RoutersAgentsAgentResponse$zodSchema,
-} from "./routersagentsagentresponse.js";
 
 export type ListAgentsAgentsGetRequest = {
   xAPIKey?: string | null | undefined;
@@ -23,12 +20,12 @@ export const ListAgentsAgentsGetRequest$zodSchema: z.ZodType<
 });
 
 export type ListAgentsAgentsGetResponse =
-  | Array<RoutersAgentsAgentResponse>
+  | Array<AgentSummary>
   | HTTPValidationError;
 
 export const ListAgentsAgentsGetResponse$zodSchema: z.ZodType<
   ListAgentsAgentsGetResponse
 > = z.union([
-  z.array(RoutersAgentsAgentResponse$zodSchema).describe("Successful Response"),
+  z.array(AgentSummary$zodSchema).describe("Successful Response"),
   HTTPValidationError$zodSchema,
 ]);

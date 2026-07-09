@@ -7,10 +7,7 @@ import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
-import {
-  RoutersTestsTestResponse,
-  RoutersTestsTestResponse$zodSchema,
-} from "./routersteststestresponse.js";
+import { TestResponse, TestResponse$zodSchema } from "./testresponse.js";
 import { TestUpdate, TestUpdate$zodSchema } from "./testupdate.js";
 
 export type UpdateTestEndpointTestsTestUuidPutRequest = {
@@ -28,12 +25,12 @@ export const UpdateTestEndpointTestsTestUuidPutRequest$zodSchema: z.ZodType<
 });
 
 export type UpdateTestEndpointTestsTestUuidPutResponse =
-  | RoutersTestsTestResponse
+  | TestResponse
   | HTTPValidationError;
 
 export const UpdateTestEndpointTestsTestUuidPutResponse$zodSchema: z.ZodType<
   UpdateTestEndpointTestsTestUuidPutResponse
 > = z.union([
-  RoutersTestsTestResponse$zodSchema,
+  TestResponse$zodSchema,
   HTTPValidationError$zodSchema,
 ]);

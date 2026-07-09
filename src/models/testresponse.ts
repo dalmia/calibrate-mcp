@@ -14,7 +14,7 @@ import { ClosedEnum } from "../types/enums.js";
  * - `tool_call`: diffs the generated tool calls
  * - `conversation`: judges the full conversation
  */
-export const RoutersTestsTestResponseType = {
+export const TestResponseType = {
   Response: "response",
   ToolCall: "tool_call",
   Conversation: "conversation",
@@ -28,11 +28,9 @@ export const RoutersTestsTestResponseType = {
  * - `tool_call`: diffs the generated tool calls
  * - `conversation`: judges the full conversation
  */
-export type RoutersTestsTestResponseType = ClosedEnum<
-  typeof RoutersTestsTestResponseType
->;
+export type TestResponseType = ClosedEnum<typeof TestResponseType>;
 
-export const RoutersTestsTestResponseType$zodSchema = z.enum([
+export const TestResponseType$zodSchema = z.enum([
   "response",
   "tool_call",
   "conversation",
@@ -40,19 +38,17 @@ export const RoutersTestsTestResponseType$zodSchema = z.enum([
   "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n",
 );
 
-export type RoutersTestsTestResponse = {
+export type TestResponse = {
   uuid: string;
   name: string;
-  type: RoutersTestsTestResponseType;
+  type: TestResponseType;
   config?: { [k: string]: any } | null | undefined;
   created_at: string;
   updated_at: string;
   evaluators?: Array<{ [k: string]: any }> | undefined;
 };
 
-export const RoutersTestsTestResponse$zodSchema: z.ZodType<
-  RoutersTestsTestResponse
-> = z.object({
+export const TestResponse$zodSchema: z.ZodType<TestResponse> = z.object({
   config: z.record(z.string(), z.any()).nullable().optional().describe(
     "The stored config: `history`, `evaluation`, and an optional `settings`",
   ),
@@ -61,7 +57,7 @@ export const RoutersTestsTestResponse$zodSchema: z.ZodType<
     "Linked evaluators, resolved to their current live version at read time",
   ),
   name: z.string().describe("Name of the test"),
-  type: RoutersTestsTestResponseType$zodSchema.describe(
+  type: TestResponseType$zodSchema.describe(
     "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n",
   ),
   updated_at: z.string().describe(

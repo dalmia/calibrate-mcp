@@ -5,9 +5,9 @@
 import * as z from "zod";
 import { ClosedEnum } from "../types/enums.js";
 import {
-  EvaluatorVersionResponse,
-  EvaluatorVersionResponse$zodSchema,
-} from "./evaluatorversionresponse.js";
+  EvaluatorLiveVersionSummary,
+  EvaluatorLiveVersionSummary$zodSchema,
+} from "./evaluatorliveversionsummary.js";
 
 /**
  * What the evaluator judges:
@@ -126,7 +126,7 @@ export type RoutersEvaluatorsEvaluatorResponse = {
   live_version_id?: string | null | undefined;
   created_at: string;
   updated_at: string;
-  live_version?: EvaluatorVersionResponse | null | undefined;
+  live_version?: EvaluatorLiveVersionSummary | null | undefined;
 };
 
 export const RoutersEvaluatorsEvaluatorResponse$zodSchema: z.ZodType<
@@ -148,7 +148,7 @@ export const RoutersEvaluatorsEvaluatorResponse$zodSchema: z.ZodType<
   is_default: z.boolean().describe(
     "True for a built-in default evaluator, which you can't edit. False for an evaluator you created, which you can edit and add versions to",
   ),
-  live_version: EvaluatorVersionResponse$zodSchema.nullable().optional()
+  live_version: EvaluatorLiveVersionSummary$zodSchema.nullable().optional()
     .describe("The version that is currently live"),
   live_version_id: z.string().nullable().optional().describe(
     "ID of the version that is currently live",

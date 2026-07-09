@@ -8,9 +8,9 @@ import {
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
 import {
-  RoutersTestsTestResponse,
-  RoutersTestsTestResponse$zodSchema,
-} from "./routersteststestresponse.js";
+  TestListResponse,
+  TestListResponse$zodSchema,
+} from "./testlistresponse.js";
 
 export type ListTestsTestsGetRequest = { xAPIKey?: string | null | undefined };
 
@@ -21,12 +21,12 @@ export const ListTestsTestsGetRequest$zodSchema: z.ZodType<
 });
 
 export type ListTestsTestsGetResponse =
-  | Array<RoutersTestsTestResponse>
+  | Array<TestListResponse>
   | HTTPValidationError;
 
 export const ListTestsTestsGetResponse$zodSchema: z.ZodType<
   ListTestsTestsGetResponse
 > = z.union([
-  z.array(RoutersTestsTestResponse$zodSchema).describe("Successful Response"),
+  z.array(TestListResponse$zodSchema).describe("Successful Response"),
   HTTPValidationError$zodSchema,
 ]);

@@ -63,7 +63,7 @@ export const AnnotationTaskResponse$zodSchema: z.ZodType<
     "The task's description",
   ),
   evaluators: z.array(z.record(z.string(), z.any())).optional().describe(
-    "The evaluators linked to this task, in display order, each with its live version's rubric",
+    "The evaluators linked to this task, in display order. Fetching one task by ID enriches each with its live version's rubric. Listing tasks returns lightweight metadata (uuid, name, type, position) only",
   ),
   item_count: z.int().nullable().optional().describe(
     "Number of items in the task",
