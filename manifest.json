@@ -3,8 +3,7 @@
     "name": "Speakeasy"
   },
   "description": "Run and monitor Calibrate agent tests from AI assistants. List agents, resolve names to UUIDs, launch test runs, and poll results via the Calibrate public API.",
-  "displayName": "Calibrate",
-  "display_name": "@dalmia/calibrate Mcp",
+  "display_name": "Calibrate",
   "keywords": [
     "@dalmia/calibrate",
     "mcp",
