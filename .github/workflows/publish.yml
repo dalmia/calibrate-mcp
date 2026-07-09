@@ -44,7 +44,7 @@ jobs:
 
       # Trusted Publishing (OIDC) needs npm >= 11.5.1; Node 22 ships an older npm.
       - name: Update npm for OIDC support
-        run: npm install -g npm@latest
+        run: npm install -g npm@11
 
       # prepublishOnly runs the bun + tsc build. --access public keeps the scoped
       # package public. No token: OIDC handles auth, provenance is automatic.
