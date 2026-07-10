@@ -8,25 +8,39 @@ import {
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
 import {
-  TestListResponse,
-  TestListResponse$zodSchema,
-} from "./testlistresponse.js";
+  PaginatedResponseTestListResponse,
+  PaginatedResponseTestListResponse$zodSchema,
+} from "./paginatedresponsetestlistresponse.js";
 
-export type ListTestsTestsGetRequest = { xAPIKey?: string | null | undefined };
+export type ListTestsTestsGetRequest = {
+  q?: string | null | undefined;
+  limit?: number | null | undefined;
+  offset?: number | undefined;
+  xAPIKey?: string | null | undefined;
+};
 
 export const ListTestsTestsGetRequest$zodSchema: z.ZodType<
   ListTestsTestsGetRequest
 > = z.object({
+  limit: z.int().describe(
+    "Maximum number of items to return. Omit for no limit (all items)",
+  ).nullable().optional(),
+  offset: z.int().default(0).describe(
+    "Number of items to skip before returning results",
+  ),
+  q: z.string().describe(
+    "Case-insensitive substring search on `name`. Blank is a no-op",
+  ).nullable().optional(),
   xAPIKey: z.string().nullable().optional(),
 });
 
 export type ListTestsTestsGetResponse =
-  | Array<TestListResponse>
+  | PaginatedResponseTestListResponse
   | HTTPValidationError;
 
 export const ListTestsTestsGetResponse$zodSchema: z.ZodType<
   ListTestsTestsGetResponse
 > = z.union([
-  z.array(TestListResponse$zodSchema).describe("Successful Response"),
+  PaginatedResponseTestListResponse$zodSchema,
   HTTPValidationError$zodSchema,
 ]);

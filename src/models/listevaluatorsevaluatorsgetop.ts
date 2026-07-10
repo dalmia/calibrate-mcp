@@ -9,9 +9,9 @@ import {
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
 import {
-  RoutersEvaluatorsEvaluatorResponse,
-  RoutersEvaluatorsEvaluatorResponse$zodSchema,
-} from "./routersevaluatorsevaluatorresponse.js";
+  PaginatedResponseEvaluatorResponse,
+  PaginatedResponseEvaluatorResponse$zodSchema,
+} from "./paginatedresponseevaluatorresponse.js";
 
 /**
  * Filter by what the evaluator judges. Omit for all types
@@ -61,6 +61,9 @@ export type ListEvaluatorsEvaluatorsGetRequest = {
   evaluator_type?: ListEvaluatorsEvaluatorsGetEvaluatorType | null | undefined;
   data_type?: ListEvaluatorsEvaluatorsGetDataType | null | undefined;
   include_defaults?: boolean | undefined;
+  q?: string | null | undefined;
+  limit?: number | null | undefined;
+  offset?: number | undefined;
   xAPIKey?: string | null | undefined;
 };
 
@@ -76,18 +79,25 @@ export const ListEvaluatorsEvaluatorsGetRequest$zodSchema: z.ZodType<
   include_defaults: z.boolean().default(true).describe(
     "When `true`, include the built-in default evaluators alongside the ones you created",
   ),
+  limit: z.int().describe(
+    "Maximum number of items to return. Omit for no limit (all items)",
+  ).nullable().optional(),
+  offset: z.int().default(0).describe(
+    "Number of items to skip before returning results",
+  ),
+  q: z.string().describe(
+    "Case-insensitive substring search on `name`. Blank is a no-op",
+  ).nullable().optional(),
   xAPIKey: z.string().nullable().optional(),
 });
 
 export type ListEvaluatorsEvaluatorsGetResponse =
-  | Array<RoutersEvaluatorsEvaluatorResponse>
+  | PaginatedResponseEvaluatorResponse
   | HTTPValidationError;
 
 export const ListEvaluatorsEvaluatorsGetResponse$zodSchema: z.ZodType<
   ListEvaluatorsEvaluatorsGetResponse
 > = z.union([
-  z.array(RoutersEvaluatorsEvaluatorResponse$zodSchema).describe(
-    "Successful Response",
-  ),
+  PaginatedResponseEvaluatorResponse$zodSchema,
   HTTPValidationError$zodSchema,
 ]);

@@ -89,6 +89,9 @@ async function $do(
     "data_type": payload$?.data_type,
     "evaluator_type": payload$?.evaluator_type,
     "include_defaults": payload$?.include_defaults,
+    "limit": payload$?.limit,
+    "offset": payload$?.offset,
+    "q": payload$?.q,
   });
 
   const headers$ = new Headers(compactMap({

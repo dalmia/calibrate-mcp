@@ -4,31 +4,43 @@
 
 import * as z from "zod";
 import {
-  AnnotationTaskResponse,
-  AnnotationTaskResponse$zodSchema,
-} from "./annotationtaskresponse.js";
-import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
+import {
+  PaginatedResponseAnnotationTaskResponse,
+  PaginatedResponseAnnotationTaskResponse$zodSchema,
+} from "./paginatedresponseannotationtaskresponse.js";
 
 export type ListAnnotationTasksAnnotationTasksGetRequest = {
+  q?: string | null | undefined;
+  limit?: number | null | undefined;
+  offset?: number | undefined;
   xAPIKey?: string | null | undefined;
 };
 
 export const ListAnnotationTasksAnnotationTasksGetRequest$zodSchema: z.ZodType<
   ListAnnotationTasksAnnotationTasksGetRequest
 > = z.object({
+  limit: z.int().describe(
+    "Maximum number of items to return. Omit for no limit (all items)",
+  ).nullable().optional(),
+  offset: z.int().default(0).describe(
+    "Number of items to skip before returning results",
+  ),
+  q: z.string().describe(
+    "Case-insensitive substring search on `name`. Blank is a no-op",
+  ).nullable().optional(),
   xAPIKey: z.string().nullable().optional(),
 });
 
 export type ListAnnotationTasksAnnotationTasksGetResponse =
-  | Array<AnnotationTaskResponse>
+  | PaginatedResponseAnnotationTaskResponse
   | HTTPValidationError;
 
 export const ListAnnotationTasksAnnotationTasksGetResponse$zodSchema: z.ZodType<
   ListAnnotationTasksAnnotationTasksGetResponse
 > = z.union([
-  z.array(AnnotationTaskResponse$zodSchema).describe("Successful Response"),
+  PaginatedResponseAnnotationTaskResponse$zodSchema,
   HTTPValidationError$zodSchema,
 ]);

@@ -3,29 +3,44 @@
  */
 
 import * as z from "zod";
-import { AgentSummary, AgentSummary$zodSchema } from "./agentsummary.js";
 import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
+import {
+  PaginatedResponseAgentSummary,
+  PaginatedResponseAgentSummary$zodSchema,
+} from "./paginatedresponseagentsummary.js";
 
 export type ListAgentsAgentsGetRequest = {
+  q?: string | null | undefined;
+  limit?: number | null | undefined;
+  offset?: number | undefined;
   xAPIKey?: string | null | undefined;
 };
 
 export const ListAgentsAgentsGetRequest$zodSchema: z.ZodType<
   ListAgentsAgentsGetRequest
 > = z.object({
+  limit: z.int().describe(
+    "Maximum number of items to return. Omit for no limit (all items)",
+  ).nullable().optional(),
+  offset: z.int().default(0).describe(
+    "Number of items to skip before returning results",
+  ),
+  q: z.string().describe(
+    "Case-insensitive substring search on `name`. Blank is a no-op",
+  ).nullable().optional(),
   xAPIKey: z.string().nullable().optional(),
 });
 
 export type ListAgentsAgentsGetResponse =
-  | Array<AgentSummary>
+  | PaginatedResponseAgentSummary
   | HTTPValidationError;
 
 export const ListAgentsAgentsGetResponse$zodSchema: z.ZodType<
   ListAgentsAgentsGetResponse
 > = z.union([
-  z.array(AgentSummary$zodSchema).describe("Successful Response"),
+  PaginatedResponseAgentSummary$zodSchema,
   HTTPValidationError$zodSchema,
 ]);

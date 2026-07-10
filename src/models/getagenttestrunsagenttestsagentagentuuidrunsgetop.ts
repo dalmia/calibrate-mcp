@@ -3,32 +3,85 @@
  */
 
 import * as z from "zod";
-import {
-  AgentTestRunsResponse,
-  AgentTestRunsResponse$zodSchema,
-} from "./agenttestrunsresponse.js";
+import { ClosedEnum } from "../types/enums.js";
 import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
+import {
+  PaginatedResponseAgentTestRunListItem,
+  PaginatedResponseAgentTestRunListItem$zodSchema,
+} from "./paginatedresponseagenttestrunlistitem.js";
+import { TaskStatus, TaskStatus$zodSchema } from "./taskstatus.js";
+
+/**
+ * Filter by run type. Omit to return both:
+ *
+ * @remarks
+ * - `llm-unit-test`: single runs of an agent's tests
+ * - `llm-benchmark`: multi-model comparisons
+ */
+export const GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetType = {
+  LlmUnitTest: "llm-unit-test",
+  LlmBenchmark: "llm-benchmark",
+} as const;
+/**
+ * Filter by run type. Omit to return both:
+ *
+ * @remarks
+ * - `llm-unit-test`: single runs of an agent's tests
+ * - `llm-benchmark`: multi-model comparisons
+ */
+export type GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetType = ClosedEnum<
+  typeof GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetType
+>;
+
+export const GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetType$zodSchema = z
+  .enum([
+    "llm-unit-test",
+    "llm-benchmark",
+  ]).describe(
+    "Filter by run type. Omit to return both:\n- `llm-unit-test`: single runs of an agent's tests\n- `llm-benchmark`: multi-model comparisons",
+  );
 
 export type GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetRequest = {
   agent_uuid: string;
+  type?: GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetType | null | undefined;
+  status?: TaskStatus | null | undefined;
+  has_failures?: boolean | null | undefined;
+  limit?: number | null | undefined;
+  offset?: number | undefined;
   xAPIKey?: string | null | undefined;
 };
 
 export const GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetRequest$zodSchema:
   z.ZodType<GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetRequest> = z.object({
     agent_uuid: z.string().describe("Agent whose test runs to list"),
+    has_failures: z.boolean().describe(
+      "Filter by whether the run has any failing test case or model. `true` returns only runs with failures (or errors), `false` only clean runs. Omit for both",
+    ).nullable().optional(),
+    limit: z.int().describe(
+      "Maximum number of items to return. Omit for no limit (all items)",
+    ).nullable().optional(),
+    offset: z.int().default(0).describe(
+      "Number of items to skip before returning results",
+    ),
+    status: TaskStatus$zodSchema.nullable().optional().describe(
+      "Filter by run status. Omit for all statuses",
+    ),
+    type: GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetType$zodSchema
+      .nullable().optional().describe(
+        "Filter by run type. Omit to return both:\n- `llm-unit-test`: single runs of an agent's tests\n- `llm-benchmark`: multi-model comparisons",
+      ),
     xAPIKey: z.string().nullable().optional(),
   });
 
 export type GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetResponse =
-  | AgentTestRunsResponse
+  | PaginatedResponseAgentTestRunListItem
   | HTTPValidationError;
 
 export const GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetResponse$zodSchema:
   z.ZodType<GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetResponse> = z.union([
-    AgentTestRunsResponse$zodSchema,
+    PaginatedResponseAgentTestRunListItem$zodSchema,
     HTTPValidationError$zodSchema,
   ]);

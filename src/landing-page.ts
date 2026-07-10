@@ -930,7 +930,7 @@ http_headers = { "api-key-auth" = "YOUR_API_KEY_AUTH" }`;
         <h1>Instructions</h1>
         <p>One-click installation for Claude Desktop users</p>
         <div class="instruction-item">
-          <a href="https://github.com/dalmia/calibrate-mcp/releases/download/v0.0.22/mcp-server.mcpb" download="mcp-server.mcpb" class="action-button header-action" style="display: inline-flex; margin-bottom: 16px;">
+          <a href="https://github.com/dalmia/calibrate-mcp/releases/download/v0.0.23/mcp-server.mcpb" download="mcp-server.mcpb" class="action-button header-action" style="display: inline-flex; margin-bottom: 16px;">
             📥 Download MCP Bundle
           </a>
         </div>

@@ -3,7 +3,7 @@
  */
 
 import { CalibrateMcpCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -84,6 +84,11 @@ async function $do(
   const payload$ = parsed$.value;
   const body$ = null;
   const path$ = pathToFunc("/tests")();
+  const query$ = encodeFormQuery({
+    "limit": payload$?.limit,
+    "offset": payload$?.offset,
+    "q": payload$?.q,
+  });
 
   const headers$ = new Headers(compactMap({
     Accept: "application/json",
@@ -120,6 +125,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path$,
     headers: headers$,
+    query: query$,
     body: body$,
     userAgent: client$._options.userAgent,
     timeoutMs: options?.timeoutMs || client$._options.timeoutMs

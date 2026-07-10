@@ -8,12 +8,15 @@ import {
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
 import {
-  TestListResponse,
-  TestListResponse$zodSchema,
-} from "./testlistresponse.js";
+  PaginatedResponseTestListResponse,
+  PaginatedResponseTestListResponse$zodSchema,
+} from "./paginatedresponsetestlistresponse.js";
 
 export type GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetRequest = {
   agent_uuid: string;
+  q?: string | null | undefined;
+  limit?: number | null | undefined;
+  offset?: number | undefined;
   xAPIKey?: string | null | undefined;
 };
 
@@ -21,16 +24,25 @@ export const GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetRequest$zodSch
   z.ZodType<GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetRequest> = z
     .object({
       agent_uuid: z.string().describe("Agent whose linked tests to list"),
+      limit: z.int().describe(
+        "Maximum number of items to return. Omit for no limit (all items)",
+      ).nullable().optional(),
+      offset: z.int().default(0).describe(
+        "Number of items to skip before returning results",
+      ),
+      q: z.string().describe(
+        "Case-insensitive substring search on `name`. Blank is a no-op",
+      ).nullable().optional(),
       xAPIKey: z.string().nullable().optional(),
     });
 
 export type GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetResponse =
-  | Array<TestListResponse>
+  | PaginatedResponseTestListResponse
   | HTTPValidationError;
 
 export const GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetResponse$zodSchema:
   z.ZodType<GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetResponse> = z
     .union([
-      z.array(TestListResponse$zodSchema).describe("Successful Response"),
+      PaginatedResponseTestListResponse$zodSchema,
       HTTPValidationError$zodSchema,
     ]);
