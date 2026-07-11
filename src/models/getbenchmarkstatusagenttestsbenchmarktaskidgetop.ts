@@ -14,11 +14,19 @@ import {
 
 export type GetBenchmarkStatusAgentTestsBenchmarkTaskIdGetRequest = {
   task_id: string;
+  only_failed?: boolean | undefined;
+  compact?: boolean | undefined;
   xAPIKey?: string | null | undefined;
 };
 
 export const GetBenchmarkStatusAgentTestsBenchmarkTaskIdGetRequest$zodSchema:
   z.ZodType<GetBenchmarkStatusAgentTestsBenchmarkTaskIdGetRequest> = z.object({
+    compact: z.boolean().default(false).describe(
+      "Return a compact response that omits heavy detail fields (`model_results.test_results`, `evaluators.output_config`), keeping only the lightweight decision fields. Omit for full detail",
+    ),
+    only_failed: z.boolean().default(false).describe(
+      "Return only failing test cases for each model. Omit to return every case",
+    ),
     task_id: z.string().describe(
       "Benchmark run to poll for status and results",
     ),

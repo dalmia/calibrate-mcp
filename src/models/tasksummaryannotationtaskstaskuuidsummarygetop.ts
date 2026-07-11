@@ -34,16 +34,24 @@ export type TaskSummaryAnnotationTasksTaskUuidSummaryGetRequest = {
   task_uuid: string;
   item_id?: string | null | undefined;
   live_only?: boolean | undefined;
+  disagreement_only?: boolean | undefined;
   q?: string | null | undefined;
   sort_by?: string | undefined;
   order?: Order | undefined;
   limit?: number | undefined;
   offset?: number | undefined;
+  compact?: boolean | undefined;
   xAPIKey?: string | null | undefined;
 };
 
 export const TaskSummaryAnnotationTasksTaskUuidSummaryGetRequest$zodSchema:
   z.ZodType<TaskSummaryAnnotationTasksTaskUuidSummaryGetRequest> = z.object({
+    compact: z.boolean().default(false).describe(
+      "Return a compact response that omits heavy detail fields (`rows.payload`, `rows.evaluator_reasoning`, `rows.annotations.reasoning`, `evaluators.versions.system_prompt`, `evaluators.versions.output_config`, `evaluators.versions.variables`, `item_comments`), keeping only the lightweight decision fields. Omit for full detail",
+    ),
+    disagreement_only: z.boolean().default(false).describe(
+      "When true, keep only rows where the evaluator disagreed with at least one annotator",
+    ),
     item_id: z.string().describe(
       "Filter rows to a single item. The full task-wide annotator union is still returned in `annotators`",
     ).nullable().optional(),

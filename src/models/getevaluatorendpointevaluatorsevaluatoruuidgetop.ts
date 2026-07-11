@@ -4,9 +4,9 @@
 
 import * as z from "zod";
 import {
-  EvaluatorDetailResponse,
-  EvaluatorDetailResponse$zodSchema,
-} from "./evaluatordetailresponse.js";
+  EvaluatorDetailResponseCompact,
+  EvaluatorDetailResponseCompact$zodSchema,
+} from "./evaluatordetailresponsecompact.js";
 import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
@@ -14,21 +14,25 @@ import {
 
 export type GetEvaluatorEndpointEvaluatorsEvaluatorUuidGetRequest = {
   evaluator_uuid: string;
+  compact?: boolean | undefined;
   xAPIKey?: string | null | undefined;
 };
 
 export const GetEvaluatorEndpointEvaluatorsEvaluatorUuidGetRequest$zodSchema:
   z.ZodType<GetEvaluatorEndpointEvaluatorsEvaluatorUuidGetRequest> = z.object({
+    compact: z.boolean().default(false).describe(
+      "Return a compact response that omits heavy detail fields (`versions.system_prompt`, `versions.output_config`, `versions.variables`), keeping only the lightweight decision fields. Omit for full detail",
+    ),
     evaluator_uuid: z.string().describe("Evaluator to retrieve"),
     xAPIKey: z.string().nullable().optional(),
   });
 
 export type GetEvaluatorEndpointEvaluatorsEvaluatorUuidGetResponse =
-  | EvaluatorDetailResponse
+  | EvaluatorDetailResponseCompact
   | HTTPValidationError;
 
 export const GetEvaluatorEndpointEvaluatorsEvaluatorUuidGetResponse$zodSchema:
   z.ZodType<GetEvaluatorEndpointEvaluatorsEvaluatorUuidGetResponse> = z.union([
-    EvaluatorDetailResponse$zodSchema,
+    EvaluatorDetailResponseCompact$zodSchema,
     HTTPValidationError$zodSchema,
   ]);

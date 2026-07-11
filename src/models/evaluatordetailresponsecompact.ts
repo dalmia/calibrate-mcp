@@ -5,9 +5,9 @@
 import * as z from "zod";
 import { ClosedEnum } from "../types/enums.js";
 import {
-  EvaluatorVersionResponse,
-  EvaluatorVersionResponse$zodSchema,
-} from "./evaluatorversionresponse.js";
+  EvaluatorVersionCompact,
+  EvaluatorVersionCompact$zodSchema,
+} from "./evaluatorversioncompact.js";
 
 /**
  * What the evaluator judges:
@@ -20,7 +20,7 @@ import {
  * - `llm-general`: a standalone input and output pair
  * - `conversation`: a full conversation
  */
-export const EvaluatorDetailResponseEvaluatorType = {
+export const EvaluatorDetailResponseCompactEvaluatorType = {
   Tts: "tts",
   Stt: "stt",
   Llm: "llm",
@@ -38,11 +38,11 @@ export const EvaluatorDetailResponseEvaluatorType = {
  * - `llm-general`: a standalone input and output pair
  * - `conversation`: a full conversation
  */
-export type EvaluatorDetailResponseEvaluatorType = ClosedEnum<
-  typeof EvaluatorDetailResponseEvaluatorType
+export type EvaluatorDetailResponseCompactEvaluatorType = ClosedEnum<
+  typeof EvaluatorDetailResponseCompactEvaluatorType
 >;
 
-export const EvaluatorDetailResponseEvaluatorType$zodSchema = z.enum([
+export const EvaluatorDetailResponseCompactEvaluatorType$zodSchema = z.enum([
   "tts",
   "stt",
   "llm",
@@ -60,7 +60,7 @@ export const EvaluatorDetailResponseEvaluatorType$zodSchema = z.enum([
  * - `text`
  * - `audio`
  */
-export const EvaluatorDetailResponseDataType = {
+export const EvaluatorDetailResponseCompactDataType = {
   Text: "text",
   Audio: "audio",
 } as const;
@@ -72,11 +72,11 @@ export const EvaluatorDetailResponseDataType = {
  * - `text`
  * - `audio`
  */
-export type EvaluatorDetailResponseDataType = ClosedEnum<
-  typeof EvaluatorDetailResponseDataType
+export type EvaluatorDetailResponseCompactDataType = ClosedEnum<
+  typeof EvaluatorDetailResponseCompactDataType
 >;
 
-export const EvaluatorDetailResponseDataType$zodSchema = z.enum([
+export const EvaluatorDetailResponseCompactDataType$zodSchema = z.enum([
   "text",
   "audio",
 ]).describe("The modality the judge reads:\n\n- `text`\n- `audio`\n");
@@ -89,7 +89,7 @@ export const EvaluatorDetailResponseDataType$zodSchema = z.enum([
  * - `binary`: pass or fail
  * - `rating`: a numeric score, using the scale in `output_config`
  */
-export const EvaluatorDetailResponseOutputType = {
+export const EvaluatorDetailResponseCompactOutputType = {
   Binary: "binary",
   Rating: "rating",
 } as const;
@@ -101,47 +101,48 @@ export const EvaluatorDetailResponseOutputType = {
  * - `binary`: pass or fail
  * - `rating`: a numeric score, using the scale in `output_config`
  */
-export type EvaluatorDetailResponseOutputType = ClosedEnum<
-  typeof EvaluatorDetailResponseOutputType
+export type EvaluatorDetailResponseCompactOutputType = ClosedEnum<
+  typeof EvaluatorDetailResponseCompactOutputType
 >;
 
-export const EvaluatorDetailResponseOutputType$zodSchema = z.enum([
+export const EvaluatorDetailResponseCompactOutputType$zodSchema = z.enum([
   "binary",
   "rating",
 ]).describe(
   "How the evaluator scores:\n\n- `binary`: pass or fail\n- `rating`: a numeric score, using the scale in `output_config`\n",
 );
 
-export type EvaluatorDetailResponse = {
+export type EvaluatorDetailResponseCompact = {
   uuid: string;
   name: string;
   description?: string | null | undefined;
-  evaluator_type: EvaluatorDetailResponseEvaluatorType;
-  data_type: EvaluatorDetailResponseDataType;
-  output_type: EvaluatorDetailResponseOutputType;
+  evaluator_type: EvaluatorDetailResponseCompactEvaluatorType;
+  data_type: EvaluatorDetailResponseCompactDataType;
+  output_type: EvaluatorDetailResponseCompactOutputType;
   is_default: boolean;
   slug?: string | null | undefined;
   live_version_id?: string | null | undefined;
   created_at: string;
   updated_at: string;
-  versions: Array<EvaluatorVersionResponse>;
+  versions: Array<EvaluatorVersionCompact>;
 };
 
-export const EvaluatorDetailResponse$zodSchema: z.ZodType<
-  EvaluatorDetailResponse
+export const EvaluatorDetailResponseCompact$zodSchema: z.ZodType<
+  EvaluatorDetailResponseCompact
 > = z.object({
   created_at: z.string().describe(
     "When the evaluator was created (ISO 8601 UTC)",
   ),
-  data_type: EvaluatorDetailResponseDataType$zodSchema.describe(
+  data_type: EvaluatorDetailResponseCompactDataType$zodSchema.describe(
     "The modality the judge reads:\n\n- `text`\n- `audio`\n",
   ),
   description: z.string().nullable().optional().describe(
     "What the evaluator checks",
   ),
-  evaluator_type: EvaluatorDetailResponseEvaluatorType$zodSchema.describe(
-    "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n",
-  ),
+  evaluator_type: EvaluatorDetailResponseCompactEvaluatorType$zodSchema
+    .describe(
+      "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n",
+    ),
   is_default: z.boolean().describe(
     "True for a built-in default evaluator, which you can't edit. False for an evaluator you created, which you can edit and add versions to",
   ),
@@ -149,7 +150,7 @@ export const EvaluatorDetailResponse$zodSchema: z.ZodType<
     "ID of the version that is currently live",
   ),
   name: z.string().describe("Evaluator name"),
-  output_type: EvaluatorDetailResponseOutputType$zodSchema.describe(
+  output_type: EvaluatorDetailResponseCompactOutputType$zodSchema.describe(
     "How the evaluator scores:\n\n- `binary`: pass or fail\n- `rating`: a numeric score, using the scale in `output_config`\n",
   ),
   slug: z.string().nullable().optional().describe(
@@ -159,7 +160,7 @@ export const EvaluatorDetailResponse$zodSchema: z.ZodType<
     "When the evaluator was last updated (ISO 8601 UTC)",
   ),
   uuid: z.string().describe("Evaluator ID"),
-  versions: z.array(EvaluatorVersionResponse$zodSchema).describe(
+  versions: z.array(EvaluatorVersionCompact$zodSchema).describe(
     "Full version history, oldest first",
   ),
 });

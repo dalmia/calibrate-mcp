@@ -97,6 +97,8 @@ async function $do(
     pathParams$,
   );
   const query$ = encodeFormQuery({
+    "compact": payload$.compact,
+    "disagreement_only": payload$.disagreement_only,
     "item_id": payload$.item_id,
     "limit": payload$.limit,
     "live_only": payload$.live_only,

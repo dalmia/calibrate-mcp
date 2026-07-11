@@ -14,11 +14,19 @@ import {
 
 export type GetAgentTestRunStatusAgentTestsRunTaskIdGetRequest = {
   task_id: string;
+  only_failed?: boolean | undefined;
+  compact?: boolean | undefined;
   xAPIKey?: string | null | undefined;
 };
 
 export const GetAgentTestRunStatusAgentTestsRunTaskIdGetRequest$zodSchema:
   z.ZodType<GetAgentTestRunStatusAgentTestsRunTaskIdGetRequest> = z.object({
+    compact: z.boolean().default(false).describe(
+      "Return a compact response that omits heavy detail fields (`results.output`, `results.test_case`, `results.judge_results`, `results.reasoning`, `evaluators.output_config`), keeping only the lightweight decision fields. Omit for full detail",
+    ),
+    only_failed: z.boolean().default(false).describe(
+      "Return only failing test cases. Omit to return every case",
+    ),
     task_id: z.string().describe("Test run to poll for status and results"),
     xAPIKey: z.string().nullable().optional(),
   });

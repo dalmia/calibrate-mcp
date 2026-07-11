@@ -34,7 +34,7 @@ export type TaskSummaryResponse = {
   evaluators: Array<{ [k: string]: any }>;
   annotators: Array<{ [k: string]: any }>;
   rows: Array<{ [k: string]: any }>;
-  item_comments: { [k: string]: any };
+  item_comments?: { [k: string]: any } | null | undefined;
   pagination: PaginationMeta;
   AdditionalProperties?: { [k: string]: any };
 };
@@ -48,9 +48,8 @@ export const TaskSummaryResponse$zodSchema: z.ZodType<TaskSummaryResponse> =
       evaluators: z.array(z.record(z.string(), z.any())).describe(
         "The task's evaluators, stable across pages, each with its live rubric",
       ),
-      item_comments: z.record(z.string(), z.any()).describe(
-        "Annotator comments, keyed by item ID",
-      ),
+      item_comments: z.record(z.string(), z.any()).nullable().optional()
+        .describe("Annotator comments, keyed by item ID"),
       pagination: PaginationMeta$zodSchema,
       rows: z.array(z.record(z.string(), z.any())).describe(
         "One row per item, evaluator, and version on this page, with the evaluator's value and each annotator's label",
@@ -66,7 +65,7 @@ export const TaskSummaryResponse$zodSchemaOutbound: z.ZodType<any> = z.object({
   AdditionalProperties: z.record(z.string(), z.any()).optional(),
   annotators: z.array(z.record(z.string(), z.any())),
   evaluators: z.array(z.record(z.string(), z.any())),
-  item_comments: z.record(z.string(), z.any()),
+  item_comments: z.nullable(z.record(z.string(), z.any())).optional(),
   pagination: PaginationMeta$zodSchema,
   rows: z.array(z.record(z.string(), z.any())),
   task_id: z.string(),

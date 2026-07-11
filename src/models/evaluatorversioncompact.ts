@@ -6,18 +6,18 @@ import * as z from "zod";
 import { OutputConfig, OutputConfig$zodSchema } from "./outputconfig.js";
 import { VariableSpec, VariableSpec$zodSchema } from "./variablespec.js";
 
-export type EvaluatorVersionResponse = {
+export type EvaluatorVersionCompact = {
   uuid: string;
   version_number: number;
   judge_model: string;
-  system_prompt: string;
+  system_prompt?: string | null | undefined;
   output_config?: OutputConfig | null | undefined;
   variables?: Array<VariableSpec> | null | undefined;
   created_at: string;
 };
 
-export const EvaluatorVersionResponse$zodSchema: z.ZodType<
-  EvaluatorVersionResponse
+export const EvaluatorVersionCompact$zodSchema: z.ZodType<
+  EvaluatorVersionCompact
 > = z.object({
   created_at: z.string().describe(
     "When the version was created (ISO 8601 UTC)",
@@ -28,7 +28,7 @@ export const EvaluatorVersionResponse$zodSchema: z.ZodType<
   output_config: OutputConfig$zodSchema.nullable().optional().describe(
     "The scale points and their labels. Required for a `rating` evaluator. A `binary` evaluator uses the default Correct/Wrong labels unless you set your own",
   ),
-  system_prompt: z.string().describe(
+  system_prompt: z.string().nullable().optional().describe(
     "Judge system prompt, with `{{\"{{\"}}variable}}` placeholders unrendered",
   ),
   uuid: z.string().describe("Version ID"),
