@@ -145,8 +145,8 @@
       "description": "Get one annotation task with its evaluators, items, and labelling jobs.\n"
     },
     {
-      "name": "link-evaluator-to-task",
-      "description": "Link an evaluator to an annotation task, appending it to the display order.\n"
+      "name": "set-task-evaluators",
+      "description": "Replace the task's linked evaluators with exactly the given ordered\nset: new ids are linked, omitted ids are unlinked, and the list order\nsets their display position. Send an empty list to unlink all. Each\nevaluator must be one you created or a built-in default, and the task\nmust be in your workspace.\n"
     },
     {
       "name": "add-annotation-items",

@@ -19,21 +19,21 @@ import {
 } from "../models/errors/httpclienterrors.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import {
-  LinkEvaluatorToTaskAnnotationTasksTaskUuidEvaluatorsPostRequest,
-  LinkEvaluatorToTaskAnnotationTasksTaskUuidEvaluatorsPostRequest$zodSchema,
-} from "../models/linkevaluatortotaskannotationtaskstaskuuidevaluatorspostop.js";
+  SetTaskEvaluatorsAnnotationTasksTaskUuidEvaluatorsPutRequest,
+  SetTaskEvaluatorsAnnotationTasksTaskUuidEvaluatorsPutRequest$zodSchema,
+} from "../models/settaskevaluatorsannotationtaskstaskuuidevaluatorsputop.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Link evaluator to task
+ * Update task evaluators
  *
  * @remarks
- * Link an evaluator to a task, appending it to the display order
+ * Replace a task's linked evaluators with the given ordered set, linking, unlinking, and reordering as needed
  */
-export function annotationTasksLinkEvaluator(
+export function annotationTasksSetEvaluators(
   client$: CalibrateMcpCore,
-  request: LinkEvaluatorToTaskAnnotationTasksTaskUuidEvaluatorsPostRequest,
+  request: SetTaskEvaluatorsAnnotationTasksTaskUuidEvaluatorsPutRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -56,7 +56,7 @@ export function annotationTasksLinkEvaluator(
 
 async function $do(
   client$: CalibrateMcpCore,
-  request: LinkEvaluatorToTaskAnnotationTasksTaskUuidEvaluatorsPostRequest,
+  request: SetTaskEvaluatorsAnnotationTasksTaskUuidEvaluatorsPutRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -76,7 +76,7 @@ async function $do(
   const parsed$ = safeParse(
     request,
     (value$) =>
-      LinkEvaluatorToTaskAnnotationTasksTaskUuidEvaluatorsPostRequest$zodSchema
+      SetTaskEvaluatorsAnnotationTasksTaskUuidEvaluatorsPutRequest$zodSchema
         .parse(value$),
     "Input validation failed",
   );
@@ -111,7 +111,7 @@ async function $do(
     options: client$._options,
     baseURL: options?.serverURL ?? client$._baseURL ?? "",
     operationID:
-      "link_evaluator_to_task_annotation_tasks__task_uuid__evaluators_post",
+      "set_task_evaluators_annotation_tasks__task_uuid__evaluators_put",
     oAuth2Scopes: null,
     resolvedSecurity: requestSecurity,
     securitySource: client$._options.security,
@@ -129,7 +129,7 @@ async function $do(
 
   const requestRes = client$._createRequest(context, {
     security: requestSecurity,
-    method: "POST",
+    method: "PUT",
     baseURL: options?.serverURL,
     path: path$,
     headers: headers$,

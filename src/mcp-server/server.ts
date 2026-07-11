@@ -38,8 +38,8 @@ import { tool$annotationTasksGet } from "./tools/annotationTasksGet.js";
 import { tool$annotationTasksGetAgreement } from "./tools/annotationTasksGetAgreement.js";
 import { tool$annotationTasksGetEvaluatorRun } from "./tools/annotationTasksGetEvaluatorRun.js";
 import { tool$annotationTasksGetSummary } from "./tools/annotationTasksGetSummary.js";
-import { tool$annotationTasksLinkEvaluator } from "./tools/annotationTasksLinkEvaluator.js";
 import { tool$annotationTasksList } from "./tools/annotationTasksList.js";
+import { tool$annotationTasksSetEvaluators } from "./tools/annotationTasksSetEvaluators.js";
 import { tool$annotationTasksUpdateItems } from "./tools/annotationTasksUpdateItems.js";
 import { tool$evaluatorsCreate } from "./tools/evaluatorsCreate.js";
 import { tool$evaluatorsCreateVersion } from "./tools/evaluatorsCreateVersion.js";
@@ -64,7 +64,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CalibrateMcp",
-    version: "0.0.25",
+    version: "0.0.26",
   });
 
   const getClient = deps.getSDK || (() =>
@@ -135,7 +135,7 @@ export function createMCPServer(deps: {
   tool(tool$annotationTasksCreate);
   tool(tool$annotationTasksList);
   tool(tool$annotationTasksGet);
-  tool(tool$annotationTasksLinkEvaluator);
+  tool(tool$annotationTasksSetEvaluators);
   tool(tool$annotationTasksAddItems);
   tool(tool$annotationTasksUpdateItems);
   tool(tool$annotationTasksCreateEvaluatorRun);
