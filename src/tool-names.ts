@@ -25,6 +25,14 @@ export const toolNames: Array<{ name: string; description: string }>= [
     "description": "Update an existing agent by UUID within the caller's org. Supply the\nfields to change (name, type, config). Returns the updated agent.\nFails with 404 if the agent does not exist or belongs to another org.\n"
   },
   {
+    "name": "list-agent-evaluators",
+    "description": "List the evaluators linked to an agent, most recently linked first.\nReturns each evaluator's UUID, name, type, and live version summary.\n"
+  },
+  {
+    "name": "link-evaluators-to-agent",
+    "description": "Link one or more evaluators to an agent, skipping any already linked.\nEach evaluator must be one you created or a built-in default, and the\nagent must be in your workspace.\n"
+  },
+  {
     "name": "bulk-create-tests",
     "description": "Create multiple tests in the caller's organization in one call. Provide\na list of test definitions (name, type, config). Returns the created\ntests including their UUIDs.\n"
   },
