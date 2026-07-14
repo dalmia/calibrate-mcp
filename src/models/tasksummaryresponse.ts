@@ -15,6 +15,7 @@ export const TaskType = {
   Llm: "llm",
   LlmGeneral: "llm-general",
   Conversation: "conversation",
+  Tts: "tts",
 } as const;
 /**
  * Type of the task
@@ -26,6 +27,7 @@ export const TaskType$zodSchema = z.enum([
   "llm",
   "llm-general",
   "conversation",
+  "tts",
 ]).describe("Type of the task");
 
 export type TaskSummaryResponse = {

@@ -19,6 +19,7 @@ export const AnnotationTaskCreateType = {
   Llm: "llm",
   LlmGeneral: "llm-general",
   Conversation: "conversation",
+  Tts: "tts",
 } as const;
 /**
  * Task type. Determines the shape of each item's payload.
@@ -38,6 +39,7 @@ export const AnnotationTaskCreateType$zodSchema = z.enum([
   "llm",
   "llm-general",
   "conversation",
+  "tts",
 ]).describe(
   "Task type. Determines the shape of each item's payload.\n- `stt`: judge a transcript on its own\n- `llm`: judge one response with its conversation history\n- `llm-general`: judge a standalone `input -> output` pair\n- `conversation`: judge a full conversation",
 );
