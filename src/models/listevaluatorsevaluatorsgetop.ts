@@ -77,7 +77,7 @@ export const ListEvaluatorsEvaluatorsGetRequest$zodSchema: z.ZodType<
       "Filter by what the evaluator judges. Omit for all types",
     ),
   include_defaults: z.boolean().default(true).describe(
-    "When `true`, include the built-in default evaluators alongside the ones you created",
+    "Retained for backward compatibility and no longer filters. Your evaluators, including your editable copies of the defaults, are always returned",
   ),
   limit: z.int().describe(
     "Maximum number of items to return. Omit for no limit (all items)",

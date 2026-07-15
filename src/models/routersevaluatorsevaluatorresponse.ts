@@ -123,6 +123,7 @@ export type RoutersEvaluatorsEvaluatorResponse = {
   output_type: RoutersEvaluatorsEvaluatorResponseOutputType;
   is_default: boolean;
   slug?: string | null | undefined;
+  source_default_slug?: string | null | undefined;
   live_version_id?: string | null | undefined;
   created_at: string;
   updated_at: string;
@@ -146,7 +147,7 @@ export const RoutersEvaluatorsEvaluatorResponse$zodSchema: z.ZodType<
       "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n",
     ),
   is_default: z.boolean().describe(
-    "True for a built-in default evaluator, which you can't edit. False for an evaluator you created, which you can edit and add versions to",
+    "True when the evaluator is a built-in default or your workspace's editable copy of one. False for an evaluator you created yourself",
   ),
   live_version: EvaluatorLiveVersionSummary$zodSchema.nullable().optional()
     .describe("The version that is currently live"),
@@ -159,6 +160,9 @@ export const RoutersEvaluatorsEvaluatorResponse$zodSchema: z.ZodType<
   ),
   slug: z.string().nullable().optional().describe(
     "Stable slug for a built-in default evaluator",
+  ),
+  source_default_slug: z.string().nullable().optional().describe(
+    "Stable slug of the built-in default this evaluator is your editable copy of. Set on your default forks so you can identify a specific default by it",
   ),
   updated_at: z.string().describe(
     "When the evaluator was last updated (ISO 8601 UTC)",
