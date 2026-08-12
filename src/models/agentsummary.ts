@@ -34,6 +34,7 @@ export type AgentSummary = {
   uuid: string;
   name: string;
   type: AgentSummaryType;
+  created_at: string;
   updated_at: string;
   connection_verified?: boolean | null | undefined;
   has_default_inputs: boolean;
@@ -43,6 +44,7 @@ export const AgentSummary$zodSchema: z.ZodType<AgentSummary> = z.object({
   connection_verified: z.boolean().nullable().optional().describe(
     "Whether the agent's connection has been verified, for a `type=connection` agent",
   ),
+  created_at: z.string().describe("When the agent was created (ISO 8601 UTC)"),
   has_default_inputs: z.boolean().describe(
     "Whether the agent has custom request fields configured",
   ),

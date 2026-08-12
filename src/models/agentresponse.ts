@@ -11,7 +11,7 @@ import { ClosedEnum } from "../types/enums.js";
  * @remarks
  * - `connection`: your existing agent connected to Calibrate
  */
-export const RoutersAgentsAgentResponseType = {
+export const AgentResponseType = {
   Agent: "agent",
   Connection: "connection",
 } as const;
@@ -21,35 +21,31 @@ export const RoutersAgentsAgentResponseType = {
  * @remarks
  * - `connection`: your existing agent connected to Calibrate
  */
-export type RoutersAgentsAgentResponseType = ClosedEnum<
-  typeof RoutersAgentsAgentResponseType
->;
+export type AgentResponseType = ClosedEnum<typeof AgentResponseType>;
 
-export const RoutersAgentsAgentResponseType$zodSchema = z.enum([
+export const AgentResponseType$zodSchema = z.enum([
   "agent",
   "connection",
 ]).describe(
   "- `agent`: built inside Calibrate\n- `connection`: your existing agent connected to Calibrate",
 );
 
-export type RoutersAgentsAgentResponse = {
+export type AgentResponse = {
   uuid: string;
   name: string;
-  type: RoutersAgentsAgentResponseType;
+  type: AgentResponseType;
   config?: { [k: string]: any } | null | undefined;
   created_at: string;
   updated_at: string;
 };
 
-export const RoutersAgentsAgentResponse$zodSchema: z.ZodType<
-  RoutersAgentsAgentResponse
-> = z.object({
+export const AgentResponse$zodSchema: z.ZodType<AgentResponse> = z.object({
   config: z.record(z.string(), z.any()).nullable().optional().describe(
     "Agent configuration",
   ),
   created_at: z.string().describe("When the agent was created (ISO 8601 UTC)"),
   name: z.string().describe("Name of the agent"),
-  type: RoutersAgentsAgentResponseType$zodSchema.describe(
+  type: AgentResponseType$zodSchema.describe(
     "- `agent`: built inside Calibrate\n- `connection`: your existing agent connected to Calibrate",
   ),
   updated_at: z.string().describe(

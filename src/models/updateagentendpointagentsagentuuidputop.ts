@@ -3,15 +3,12 @@
  */
 
 import * as z from "zod";
+import { AgentResponse, AgentResponse$zodSchema } from "./agentresponse.js";
 import { AgentUpdate, AgentUpdate$zodSchema } from "./agentupdate.js";
 import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
-import {
-  RoutersAgentsAgentResponse,
-  RoutersAgentsAgentResponse$zodSchema,
-} from "./routersagentsagentresponse.js";
 
 export type UpdateAgentEndpointAgentsAgentUuidPutRequest = {
   agent_uuid: string;
@@ -28,12 +25,12 @@ export const UpdateAgentEndpointAgentsAgentUuidPutRequest$zodSchema: z.ZodType<
 });
 
 export type UpdateAgentEndpointAgentsAgentUuidPutResponse =
-  | RoutersAgentsAgentResponse
+  | AgentResponse
   | HTTPValidationError;
 
 export const UpdateAgentEndpointAgentsAgentUuidPutResponse$zodSchema: z.ZodType<
   UpdateAgentEndpointAgentsAgentUuidPutResponse
 > = z.union([
-  RoutersAgentsAgentResponse$zodSchema,
+  AgentResponse$zodSchema,
   HTTPValidationError$zodSchema,
 ]);
