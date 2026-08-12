@@ -36,11 +36,15 @@ export type AgentSummary = {
   type: AgentSummaryType;
   updated_at: string;
   connection_verified?: boolean | null | undefined;
+  has_default_inputs: boolean;
 };
 
 export const AgentSummary$zodSchema: z.ZodType<AgentSummary> = z.object({
   connection_verified: z.boolean().nullable().optional().describe(
     "Whether the agent's connection has been verified, for a `type=connection` agent",
+  ),
+  has_default_inputs: z.boolean().describe(
+    "Whether the agent has custom request fields configured",
   ),
   name: z.string().describe("Name of the agent"),
   type: AgentSummaryType$zodSchema.describe(

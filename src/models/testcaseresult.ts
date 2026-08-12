@@ -13,6 +13,7 @@ export type TestCaseResult = {
   reasoning?: string | null | undefined;
   output?: TestOutput | null | undefined;
   test_case?: { [k: string]: any } | null | undefined;
+  inputs?: { [k: string]: any } | null | undefined;
   judge_results?: Array<JudgeResult> | null | undefined;
   latency_ms?: number | null | undefined;
   cost?: number | null | undefined;
@@ -20,6 +21,9 @@ export type TestCaseResult = {
 
 export const TestCaseResult$zodSchema: z.ZodType<TestCaseResult> = z.object({
   cost: z.number().nullable().optional().describe("Cost of this case (USD)"),
+  inputs: z.record(z.string(), z.any()).nullable().optional().describe(
+    "Extra request fields sent to the agent for this case, the agent's `default_inputs` with this case's overrides applied",
+  ),
   judge_results: z.array(JudgeResult$zodSchema).nullable().optional().describe(
     "One verdict for each evaluator",
   ),

@@ -18,6 +18,7 @@ export type BulkTestItem = {
   conversation_history: Array<ChatMessage>;
   evaluators?: Array<RoutersTestsEvaluatorRef> | null | undefined;
   tool_calls?: Array<ExpectedToolCall> | null | undefined;
+  inputs?: { [k: string]: any } | null | undefined;
 };
 
 export const BulkTestItem$zodSchema: z.ZodType<BulkTestItem> = z.object({
@@ -28,6 +29,9 @@ export const BulkTestItem$zodSchema: z.ZodType<BulkTestItem> = z.object({
     .describe(
       "Evaluators to link. Used by `response` and `conversation` tests",
     ),
+  inputs: z.record(z.string(), z.any()).nullable().optional().describe(
+    "Extra request fields for this test, overriding the agent's `default_inputs` per key",
+  ),
   name: z.string().describe(
     "Name of the test, unique within the workspace and within the batch",
   ),

@@ -53,6 +53,7 @@ export type AnnotationTaskResponse = {
   updated_at: string;
   evaluators?: Array<{ [k: string]: any }> | undefined;
   item_count?: number | null | undefined;
+  has_agreement?: boolean | undefined;
   items?: Array<{ [k: string]: any }> | undefined;
   jobs?: Array<{ [k: string]: any }> | undefined;
 };
@@ -66,6 +67,9 @@ export const AnnotationTaskResponse$zodSchema: z.ZodType<
   ),
   evaluators: z.array(z.record(z.string(), z.any())).optional().describe(
     "The evaluators linked to this task, in display order. Fetching one task by ID enriches each with its live version's rubric. Listing tasks returns lightweight metadata (uuid, name, type, position) only",
+  ),
+  has_agreement: z.boolean().default(false).describe(
+    "Whether the task has at least one comparable human-vs-human or human-vs-evaluator pair, computed over all time",
   ),
   item_count: z.int().nullable().optional().describe(
     "Number of items in the task",

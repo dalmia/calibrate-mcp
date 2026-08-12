@@ -13,6 +13,7 @@ import {
 export type TestRunStatusResponse = {
   task_id: string;
   status: TaskStatus;
+  test_uuids?: Array<string> | null | undefined;
   total_tests?: number | null | undefined;
   passed?: number | null | undefined;
   failed?: number | null | undefined;
@@ -56,6 +57,9 @@ export const TestRunStatusResponse$zodSchema: z.ZodType<TestRunStatusResponse> =
     ),
     status: TaskStatus$zodSchema,
     task_id: z.string().describe("Test run job ID"),
+    test_uuids: z.array(z.string()).nullable().optional().describe(
+      "IDs of the tests this run executed, in run order",
+    ),
     total_tests: z.int().nullable().optional().describe(
       "Total number of test cases",
     ),

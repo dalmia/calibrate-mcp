@@ -13,6 +13,7 @@ import {
 export type BenchmarkStatusResponse = {
   task_id: string;
   status: TaskStatus;
+  test_uuids?: Array<string> | null | undefined;
   evaluators?: Array<TestRunEvaluator> | null | undefined;
   model_results?: Array<ModelResult> | null | undefined;
   leaderboard_summary?: Array<{ [k: string]: any }> | null | undefined;
@@ -44,4 +45,7 @@ export const BenchmarkStatusResponse$zodSchema: z.ZodType<
   ),
   status: TaskStatus$zodSchema,
   task_id: z.string().describe("Benchmark run job ID"),
+  test_uuids: z.array(z.string()).nullable().optional().describe(
+    "IDs of the tests this benchmark executed, in run order",
+  ),
 });
