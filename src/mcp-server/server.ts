@@ -43,6 +43,9 @@ import { tool$annotationTasksGetSummary } from "./tools/annotationTasksGetSummar
 import { tool$annotationTasksList } from "./tools/annotationTasksList.js";
 import { tool$annotationTasksSetEvaluators } from "./tools/annotationTasksSetEvaluators.js";
 import { tool$annotationTasksUpdateItems } from "./tools/annotationTasksUpdateItems.js";
+import { tool$annotatorsCreate } from "./tools/annotatorsCreate.js";
+import { tool$annotatorsList } from "./tools/annotatorsList.js";
+import { tool$annotatorsUpdate } from "./tools/annotatorsUpdate.js";
 import { tool$evaluatorsCreate } from "./tools/evaluatorsCreate.js";
 import { tool$evaluatorsCreateVersion } from "./tools/evaluatorsCreateVersion.js";
 import { tool$evaluatorsGet } from "./tools/evaluatorsGet.js";
@@ -66,7 +69,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CalibrateMcp",
-    version: "0.0.33",
+    version: "0.0.34",
   });
 
   const getClient = deps.getSDK || (() =>
@@ -146,6 +149,9 @@ export function createMCPServer(deps: {
   tool(tool$annotationTasksGetEvaluatorRun);
   tool(tool$annotationTasksGetAgreement);
   tool(tool$annotationTasksGetSummary);
+  tool(tool$annotatorsCreate);
+  tool(tool$annotatorsList);
+  tool(tool$annotatorsUpdate);
 
   if (deps.dynamic) {
     registerDynamicTools(deps.logger, server, getClient, toolMap, scopes);

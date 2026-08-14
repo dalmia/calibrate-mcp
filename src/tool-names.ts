@@ -139,5 +139,17 @@ export const toolNames: Array<{ name: string; description: string }>= [
   {
     "name": "get-annotation-summary",
     "description": "Get a paginated summary table for a task, with each item's evaluator values and human labels.\n"
+  },
+  {
+    "name": "create-annotator",
+    "description": "Create an annotator, a human labeller who can be assigned annotation tasks.\n"
+  },
+  {
+    "name": "list-annotators",
+    "description": "List your annotators with their job counts and agreement scores.\n"
+  },
+  {
+    "name": "update-annotator",
+    "description": "Rename an annotator in your workspace.\n"
   }
 ];
