@@ -4,39 +4,39 @@
 
 import * as z from "zod";
 import {
+  EvaluatorLinkRequest,
+  EvaluatorLinkRequest$zodSchema,
+} from "./evaluatorlinkrequest.js";
+import {
+  EvaluatorLinkResponse,
+  EvaluatorLinkResponse$zodSchema,
+} from "./evaluatorlinkresponse.js";
+import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
-import {
-  RoutersAgentsEvaluatorLinkRequest,
-  RoutersAgentsEvaluatorLinkRequest$zodSchema,
-} from "./routersagentsevaluatorlinkrequest.js";
-import {
-  RoutersAgentsEvaluatorLinkResponse,
-  RoutersAgentsEvaluatorLinkResponse$zodSchema,
-} from "./routersagentsevaluatorlinkresponse.js";
 
 export type LinkEvaluatorsToAgentAgentsAgentUuidEvaluatorsPostRequest = {
   agent_uuid: string;
   xAPIKey?: string | null | undefined;
-  body: RoutersAgentsEvaluatorLinkRequest;
+  body: EvaluatorLinkRequest;
 };
 
 export const LinkEvaluatorsToAgentAgentsAgentUuidEvaluatorsPostRequest$zodSchema:
   z.ZodType<LinkEvaluatorsToAgentAgentsAgentUuidEvaluatorsPostRequest> = z
     .object({
       agent_uuid: z.string().describe("The agent to link the evaluators to"),
-      body: RoutersAgentsEvaluatorLinkRequest$zodSchema,
+      body: EvaluatorLinkRequest$zodSchema,
       xAPIKey: z.string().nullable().optional(),
     });
 
 export type LinkEvaluatorsToAgentAgentsAgentUuidEvaluatorsPostResponse =
-  | RoutersAgentsEvaluatorLinkResponse
+  | EvaluatorLinkResponse
   | HTTPValidationError;
 
 export const LinkEvaluatorsToAgentAgentsAgentUuidEvaluatorsPostResponse$zodSchema:
   z.ZodType<LinkEvaluatorsToAgentAgentsAgentUuidEvaluatorsPostResponse> = z
     .union([
-      RoutersAgentsEvaluatorLinkResponse$zodSchema,
+      EvaluatorLinkResponse$zodSchema,
       HTTPValidationError$zodSchema,
     ]);
