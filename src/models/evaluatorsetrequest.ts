@@ -4,11 +4,17 @@
 
 import * as z from "zod";
 
-export type EvaluatorSetRequest = { evaluator_ids: Array<string> };
+export type EvaluatorSetRequest = {
+  evaluator_ids: Array<string>;
+  optional_evaluator_ids?: Array<string> | null | undefined;
+};
 
 export const EvaluatorSetRequest$zodSchema: z.ZodType<EvaluatorSetRequest> = z
   .object({
     evaluator_ids: z.array(z.string()).describe(
       "The full ordered set of evaluators the task should end up linked to, in display order. Missing ones are unlinked, new ones are linked, and the order sets their position. Send an empty list to unlink all. Each must be one you created or a built-in default",
+    ),
+    optional_evaluator_ids: z.array(z.string()).nullable().optional().describe(
+      "Which of `evaluator_ids` annotators may leave blank. Applied as a whole set, so an ID left out becomes required again. Optional evaluators do not hold a labelling job back from completing. Omit to leave every evaluator as it is",
     ),
   });
