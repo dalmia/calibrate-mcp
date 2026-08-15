@@ -151,5 +151,9 @@ export const toolNames: Array<{ name: string; description: string }>= [
   {
     "name": "update-annotator",
     "description": "Rename an annotator in your workspace.\n"
+  },
+  {
+    "name": "create-trace",
+    "description": "Store one production agent turn against an agent in the caller's org:\nthe conversation history as input, what the agent produced as output,\nand optional metadata. Use this to capture live traffic for later\nreview and conversion into tests. Fails with 429 once the workspace\nhits its trace limit.\n"
   }
 ];
