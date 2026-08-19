@@ -3,6 +3,28 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
+
+/**
+ * How the labelling form treats the reasoning box on each judgement. `optional` shows it, `required` shows it and asks the annotator to fill it in, `hidden` leaves it out
+ */
+export const ReasoningMode = {
+  Optional: "optional",
+  Required: "required",
+  Hidden: "hidden",
+} as const;
+/**
+ * How the labelling form treats the reasoning box on each judgement. `optional` shows it, `required` shows it and asks the annotator to fill it in, `hidden` leaves it out
+ */
+export type ReasoningMode = ClosedEnum<typeof ReasoningMode>;
+
+export const ReasoningMode$zodSchema = z.enum([
+  "optional",
+  "required",
+  "hidden",
+]).describe(
+  "How the labelling form treats the reasoning box on each judgement. `optional` shows it, `required` shows it and asks the annotator to fill it in, `hidden` leaves it out",
+);
 
 export type CreateJobsRequest = {
   annotator_ids: Array<string>;
@@ -10,12 +32,17 @@ export type CreateJobsRequest = {
   select_all?: boolean | undefined;
   q?: string | null | undefined;
   evaluator_ids?: Array<string> | null | undefined;
+  comments_enabled?: boolean | undefined;
+  reasoning_mode?: ReasoningMode | undefined;
 };
 
 export const CreateJobsRequest$zodSchema: z.ZodType<CreateJobsRequest> = z
   .object({
     annotator_ids: z.array(z.string()).describe(
       "Annotator IDs to assign, creating one labelling job for each annotator. Must be in your workspace",
+    ),
+    comments_enabled: z.boolean().default(true).describe(
+      "When `true`, the labelling form lets the annotator leave a comment on each item",
     ),
     evaluator_ids: z.array(z.string()).nullable().optional().describe(
       "Subset of the task's linked evaluators to show in these jobs. Must be a subset of the current links, an empty list gives a 400. Applies to every annotator's job. Omit (`None`) to snapshot every linked evaluator",
@@ -25,6 +52,9 @@ export const CreateJobsRequest$zodSchema: z.ZodType<CreateJobsRequest> = z
     ),
     q: z.string().nullable().optional().describe(
       "Case-insensitive substring filter on `payload.name`. Applies only when `select_all=true`",
+    ),
+    reasoning_mode: ReasoningMode$zodSchema.default("optional").describe(
+      "How the labelling form treats the reasoning box on each judgement. `optional` shows it, `required` shows it and asks the annotator to fill it in, `hidden` leaves it out",
     ),
     select_all: z.boolean().default(false).describe(
       "When `true`, assign every item in the task and ignore `item_ids`. Set `q` to assign only items whose name matches it",
