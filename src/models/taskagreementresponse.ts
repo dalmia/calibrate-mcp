@@ -25,7 +25,7 @@ export const TaskAgreementResponse$zodSchema: z.ZodType<TaskAgreementResponse> =
       bucket: z.string().describe("Time bucket used for the trend series"),
       days: z.int().describe("Length of the trailing window in days"),
       evaluators: z.array(z.record(z.string(), z.any())).describe(
-        "Agreement between each evaluator and the annotators, plus that evaluator's own results, one entry per linked evaluator",
+        "Agreement between each evaluator and the annotators, plus that evaluator's own results and the human results, one entry per linked evaluator",
       ),
       human_human: HumanAgreementBlock$zodSchema,
       task_id: z.string().describe("ID of the task"),
