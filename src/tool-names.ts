@@ -125,6 +125,10 @@ export const toolNames: Array<{ name: string; description: string }>= [
     "description": "Bulk-update item payloads in an annotation task.\n"
   },
   {
+    "name": "create-labelling-jobs",
+    "description": "Assign items to annotators, creating one labelling job per annotator. Each job comes back with a public_token for the annotator's labelling link.\n"
+  },
+  {
     "name": "run-annotation-evaluators",
     "description": "Run one or more of a task's evaluators over its items as a background job. Returns a job_uuid to poll with get-annotation-evaluator-run.\n"
   },

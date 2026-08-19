@@ -36,6 +36,7 @@ import { tool$agentTestsRunBatch } from "./tools/agentTestsRunBatch.js";
 import { tool$annotationTasksAddItems } from "./tools/annotationTasksAddItems.js";
 import { tool$annotationTasksCreate } from "./tools/annotationTasksCreate.js";
 import { tool$annotationTasksCreateEvaluatorRun } from "./tools/annotationTasksCreateEvaluatorRun.js";
+import { tool$annotationTasksCreateLabellingJobs } from "./tools/annotationTasksCreateLabellingJobs.js";
 import { tool$annotationTasksGet } from "./tools/annotationTasksGet.js";
 import { tool$annotationTasksGetAgreement } from "./tools/annotationTasksGetAgreement.js";
 import { tool$annotationTasksGetEvaluatorRun } from "./tools/annotationTasksGetEvaluatorRun.js";
@@ -70,7 +71,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CalibrateMcp",
-    version: "0.0.37",
+    version: "0.0.38",
   });
 
   const getClient = deps.getSDK || (() =>
@@ -146,6 +147,7 @@ export function createMCPServer(deps: {
   tool(tool$annotationTasksSetEvaluators);
   tool(tool$annotationTasksAddItems);
   tool(tool$annotationTasksUpdateItems);
+  tool(tool$annotationTasksCreateLabellingJobs);
   tool(tool$annotationTasksCreateEvaluatorRun);
   tool(tool$annotationTasksGetEvaluatorRun);
   tool(tool$annotationTasksGetAgreement);
