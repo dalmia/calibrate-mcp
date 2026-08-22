@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
-id: a4f2bced-3118-4169-9496-013765c77ff4
+id: 3373dbf8-ea89-4af0-9fd5-35b9740afcba
 management:
-  docChecksum: c43e64a9ff00042744836cda9d331273
+  docChecksum: 39bc5ace9d5db899d1c9957854dcf913
   docVersion: 0.1.0
   speakeasyVersion: 1.788.1
   generationVersion: 2.915.1
-  releaseVersion: 0.0.40
-  configChecksum: c780ff0a82ebd752cd2830ddbdcf37a0
+  releaseVersion: 0.0.41
+  configChecksum: c052cba7fdbf1f5a6066ad72af318087
   repoURL: https://github.com/dalmia/calibrate-mcp
   installationURL: https://github.com/dalmia/calibrate-mcp
 persistentEdits:
-  generation_id: 696d3430-40d9-4b7a-95b6-0f94ddaf00f1
-  pristine_commit_hash: ba5c416018974ac07b2736ade694f4aee57a6242
-  pristine_tree_hash: a179d539eb6cecb64ef6f60f86999f19e37815b4
+  generation_id: 4271587d-e3fb-4465-99aa-702646c7be97
+  pristine_commit_hash: efa1c31680628174a92f1a344fb13e0fb126bcec
+  pristine_tree_hash: 387513db3c2c0e1f1c71efda3cc1601012e2b74e
 features:
   mcp-typescript:
     additionalDependencies: 0.1.0
@@ -53,8 +53,8 @@ trackedFiles:
     pristine_git_object: 9a316d3c5924b0fd0732282c11eb652b9f9f7e5c
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:b28dcd8383b3f3877a85a1e27517c1cc15dafaff
-    pristine_git_object: 178c929cda3ee5f52fe990d1a3e487707ac9bcb5
+    last_write_checksum: sha1:99501288fe4a3c3af1c2f4680e1fee8c9ecd0526
+    pristine_git_object: 0b7315621e87240016250cdc4eeedbc27643b333
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:ba4cbfb98a88ee288942d4e0e7a792171569b0f8
@@ -81,8 +81,8 @@ trackedFiles:
     pristine_git_object: de2714ee2fdfd1c3c62aa3dad662c1c39c681921
   src/funcs/agentTestsListRunsForAgent.ts:
     id: 1dde26aa0c7f
-    last_write_checksum: sha1:08a249860e70e9586454f0efdeae337569263040
-    pristine_git_object: b8bea2c1626ec397325017e1e490fd343d507154
+    last_write_checksum: sha1:b7cc5f5ae9fd6cae83fda9b8f76c265e395297db
+    pristine_git_object: b8f87b3db1e52ab32f621b31eef00ea6f26f05fc
   src/funcs/agentTestsRun.ts:
     id: 6c2ede891471
     last_write_checksum: sha1:8744f33959882831312b6acc76c0802c0edbbb9f
@@ -229,16 +229,16 @@ trackedFiles:
     pristine_git_object: 9c36bf01332084f735909a71036c3544cc4c7e3a
   src/landing-page.ts:
     id: ef64a6ee46d7
-    last_write_checksum: sha1:050522ba4b3dd6562dd54e8ba74a99162d7f95a3
-    pristine_git_object: faa084dc15881cade8676c914453c813cd5a0770
+    last_write_checksum: sha1:d991178303c3c6cb81843c4ca9bee1630faddb39
+    pristine_git_object: 0d55648283ff87a4e5bb878e1f1e2d18cbdbfe42
   src/lib/base64.ts:
     id: "598522066688"
     last_write_checksum: sha1:e9f04a037018040361043104960982f7c22db52d
     pristine_git_object: d4bd8b341290e7a828a171d840bd0b0fff7c7cd7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:e8400205718a0d5eb98d3d264d8fee587e0c3b6a
-    pristine_git_object: 524ef9cfbeec11884326f1826fcfc8b32c561213
+    last_write_checksum: sha1:aaccb71949df8bd52ea7cbac7ff6c2065e562ddc
+    pristine_git_object: 84dc7a1ca9d4712c0d2785c9e56521089d8acea1
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:3ff4ad6809b749125820fd39c01427b84d3fe0d6
@@ -325,8 +325,8 @@ trackedFiles:
     pristine_git_object: b42d7cda985b8199f2245063f22bb68efb5ecdd0
   src/mcp-server/mcp-server.ts:
     id: aabbc4ab07c1
-    last_write_checksum: sha1:ca1e82c398d651cf250fc419b6eae3c70e1a2652
-    pristine_git_object: 4d9533e18df9fdb09f367fac8ec8bb1512e34360
+    last_write_checksum: sha1:c86e23a546ede332bd69beec4827f9e3cd2bab6d
+    pristine_git_object: 89a250f0a5f336c469bf3e3fc31f1b3ae5cd4a45
   src/mcp-server/prompts.ts:
     id: 26f3d73cbf31
     last_write_checksum: sha1:dde03ff7d9c2659a0c3a4e2aa21d615a0b4f2b0b
@@ -341,8 +341,8 @@ trackedFiles:
     pristine_git_object: cb8330e4ae705d283de6ab337eefd3b4b8191fca
   src/mcp-server/server.ts:
     id: 2784dd48e82a
-    last_write_checksum: sha1:13921ea03f1162277f90d59758cd58f67b1d84cb
-    pristine_git_object: 43e558e9b20089f4707ee7c7f567514c52fc431e
+    last_write_checksum: sha1:38286a580d29f1522ddfd11f1887092c89e3b7ce
+    pristine_git_object: 536e8f71a3b1a8354f9462d77dd92055385f6dd3
   src/mcp-server/shared.ts:
     id: 074e80d4be1e
     last_write_checksum: sha1:19c9034032819a14f15c430de4350c8aba99d725
@@ -513,28 +513,28 @@ trackedFiles:
     pristine_git_object: 984f6cda6860685b4fc95f5ed39bced908a3f27e
   src/models/agentcreate.ts:
     id: b9b879f0f8be
-    last_write_checksum: sha1:dc8255600520a179bbc01756659f53507841a16f
-    pristine_git_object: 393f4e8aafbe964e174b5cd4da2e57f815753211
+    last_write_checksum: sha1:f2eddee455af5ce375319da5acb52cdebc993661
+    pristine_git_object: 93458c6510ce9ff0e1cb951a2c86c53d8db308d4
   src/models/agentcreateresponse.ts:
     id: 4b869e490643
     last_write_checksum: sha1:f82d433653b78857ee48c67b4cfbca86c18fffcb
     pristine_git_object: bf6b0df40cdabd8577f0cf31a7b6739568dbd9f8
   src/models/agentresponse.ts:
     id: fff2f6771cd4
-    last_write_checksum: sha1:99ce31edcbfa334539f7849789e2a674b6cb8585
-    pristine_git_object: d11461c13f1b57194d35f63c495ee8a8e0748ba7
+    last_write_checksum: sha1:58f833505c049c10c6b1120d7a86b11b5470e407
+    pristine_git_object: 476c403b85226d5d408f31e4598dd6f7d3a84ad2
   src/models/agentsummary.ts:
     id: d8974d419867
-    last_write_checksum: sha1:05aa1aa88769c87c671e5a18e2bd3c92f2e7cf35
-    pristine_git_object: be89d0750ac966024d299b5bd99ad9a07a5d1dbe
+    last_write_checksum: sha1:90c3f5295582beaab53962ec1fb77c85551df332
+    pristine_git_object: c31e09606355c586dd3944c4f36629016146c24b
   src/models/agenttestruncreateresponse.ts:
     id: 6c4912b4e012
     last_write_checksum: sha1:beac96c69ba87bf012b1b914b0d96505e76fb187
     pristine_git_object: 99cb786aa7b389ffccfb589605ca9f97b54bb208
   src/models/agenttestrunlistitem.ts:
     id: 018b52ac8a78
-    last_write_checksum: sha1:8782938eb982d07fed855d3d32835c9fbcbe911d
-    pristine_git_object: 37128d390b9348b74a562ca38aea31609828a0fd
+    last_write_checksum: sha1:bf21f8516035fc6d05e52106264172a5e48fc00c
+    pristine_git_object: 30778f5840f2aeb2c1aa50ba30542de065ee3c1e
   src/models/agenttestscreate.ts:
     id: 06764f03d3fe
     last_write_checksum: sha1:815ad7f7c45809d7936355b7e77204c56eb23aa5
@@ -621,12 +621,12 @@ trackedFiles:
     pristine_git_object: dde50803693aa64787e5b3417ed2182494cc687d
   src/models/bulktestitem.ts:
     id: f9245d766ca4
-    last_write_checksum: sha1:6eac9856476cc16da43b076692d644bf2b2054da
-    pristine_git_object: ff9e9b62b5750303ebcc56307a50b3cec4da9e36
+    last_write_checksum: sha1:72bfc96a597e9d35517353923f8ca8619fd850a6
+    pristine_git_object: 80273a08ccb810eaa00dab00b031ca291652fcf5
   src/models/bulktestupload.ts:
     id: 58951f168baa
-    last_write_checksum: sha1:a8fd99889843eb7a17aad58b31ab9521f8fa91d4
-    pristine_git_object: 50ae731ed583f251774523ff15efa9b7ae705856
+    last_write_checksum: sha1:0f3f0ec8c68fd5f44a3a1c2cc30038b7c2140a6e
+    pristine_git_object: 23ea413c6a7a8bc1a02a918f3bd96e2ddb495009
   src/models/bulktestuploadresponse.ts:
     id: 0489bcb4f04c
     last_write_checksum: sha1:908fe59afc3cf6b77d8dfb713e6bc3a96a32271e
@@ -773,8 +773,8 @@ trackedFiles:
     pristine_git_object: 229c249b863c9e1b907d28b69a0c7d3b51454389
   src/models/getagenttestrunsagenttestsagentagentuuidrunsgetop.ts:
     id: 209fe985c0cf
-    last_write_checksum: sha1:cdacd361e3950e5ad188009e864a13d95b3398a8
-    pristine_git_object: b63bdc6b891917ff1e9a3b8b50720ffa6d002783
+    last_write_checksum: sha1:8e5bd876048e6a08814e60a6dc10b7f17112c147
+    pristine_git_object: b20a01bb0561a8b15e463ac9d2eb31e4b2ab579e
   src/models/getagenttestrunstatusagenttestsruntaskidgetop.ts:
     id: dc4eb3cef3f7
     last_write_checksum: sha1:b39be47a1ab8a2dd43a7c8cd34740e9d29397d7a
@@ -969,8 +969,8 @@ trackedFiles:
     pristine_git_object: 7897e7b6dc4692cc81036e810264ca80a8ba96f6
   src/models/testcreate.ts:
     id: 201c2638a9bf
-    last_write_checksum: sha1:cf687fa1c0ae1c9498b8d09f265c73e225ae1589
-    pristine_git_object: 16806d34da11800993e780132d8c8eef2d02e999
+    last_write_checksum: sha1:c715eb1c233a5445fb03b94f417b7629003fe545
+    pristine_git_object: ba5f6cf6d901fb5de73e6f094b90531e25d2465b
   src/models/testcreateresponse.ts:
     id: 39f5ff2868d6
     last_write_checksum: sha1:9983fe6a730d5e9e1ace666d9f618c1801376c0e
@@ -981,16 +981,16 @@ trackedFiles:
     pristine_git_object: a5c0ef59f143a4b1f1a2645b339daed6db34cf7a
   src/models/testlistresponse.ts:
     id: dafb3b720327
-    last_write_checksum: sha1:ed15c763213e6143f1b22979485c0e0726e37073
-    pristine_git_object: 82229acf64858a5793cf22ebb86d62c14814077f
+    last_write_checksum: sha1:b0ed118a336f2910ca050534c28dc70d94b46a46
+    pristine_git_object: eb5ddfe44f96e96ae0789dd19d50a12a949b55b0
   src/models/testoutput.ts:
     id: b55d92dc6157
     last_write_checksum: sha1:824ed669617bcaf2573f78aeb3b9dea83b47282e
     pristine_git_object: a89bf0366ed7208d358b03f5f8b571575fc58478
   src/models/testresponse.ts:
     id: 246c759f98b9
-    last_write_checksum: sha1:15d3fd3b4c42681f1d809a33c6b7811365c7c99a
-    pristine_git_object: 62c8f1e84f09fc4a11301d7882bdab61773b2a35
+    last_write_checksum: sha1:6e386290723d8af1caa587126a49a7b93487b011
+    pristine_git_object: 99ce1db5cf08f4ce57d6f2478bdc6d39322b5625
   src/models/testruncasesummary.ts:
     id: 297bfed24696
     last_write_checksum: sha1:b9b7931fdf41d2d9b382fec65ea0af45a4211629
@@ -1005,16 +1005,16 @@ trackedFiles:
     pristine_git_object: 36d1ec09ee0a7dc9fe4d1774e83f3e3b920ad097
   src/models/testupdate.ts:
     id: 0ff547b2d634
-    last_write_checksum: sha1:bf157c27b6787e32846b9ef96d0f4ac5e8d9498e
-    pristine_git_object: 93791adc1d61a24e52ec541b45395f0b665b520a
+    last_write_checksum: sha1:3fa178050e8c69e71cf9b0a5ea88fb172402334b
+    pristine_git_object: 2796597533abbad79fe9cc0fd90ea7f72a937ba4
   src/models/toolcalloutput.ts:
     id: dd1b91f0b33d
     last_write_checksum: sha1:3eef33463bc394051ce76a0d21e8307be1de38e7
     pristine_git_object: 0776c29fde48a2aa5568379ca7dd8fc46205d83a
   src/models/traceingest.ts:
     id: ab95baa1e5df
-    last_write_checksum: sha1:a5bd7a951f132014e4917592a140f74e3168fd61
-    pristine_git_object: b1fda1ecd0a70db6724f703f67de28e708c12755
+    last_write_checksum: sha1:30e8d48744de60192b5ca345d31e5638a50d37ed
+    pristine_git_object: 87d1e6543b9bcd2938c309506a21ddfe60340020
   src/models/traceingestresponse.ts:
     id: 34982de748d0
     last_write_checksum: sha1:3a5a08905a455a50756d510efeba464da86d22e8
@@ -1029,8 +1029,8 @@ trackedFiles:
     pristine_git_object: 172f8c202e67b9d4bcb4d8c06d3b916d5a771066
   src/models/tracetoolcall.ts:
     id: a432ec1b98a0
-    last_write_checksum: sha1:5ff7f34ca25e0092db7d2290bea251e1abe8b59a
-    pristine_git_object: 385707ba8efa53c75bb1c871efdbd9c68952e285
+    last_write_checksum: sha1:b5e59b0033f29ac76b16c6c5ff768bc1b2d9d0d0
+    pristine_git_object: a5c0a9351a0fdac2f06bfc005aae39c6587f9023
   src/models/traceturn.ts:
     id: 6f15c49b14ad
     last_write_checksum: sha1:3d710c1d3309e379ba0d8dc97f2d34b041a869df
@@ -1128,7 +1128,7 @@ examples:
   create_agent_endpoint_agents_post:
     agent_within_calibrate:
       requestBody:
-        application/json: {"name": "Support Agent", "type": "agent", "config": {"system_prompt": "You are a helpful assistant.", "llm": {"model": "google/gemini-2.5-flash"}, "stt": {"provider": "google"}, "tts": {"provider": "google"}, "settings": {"agent_speaks_first": true, "max_assistant_turns": 50}}}
+        application/json: {"name": "Support Agent", "type": "agent", "interaction_type": "conversation", "config": {"system_prompt": "You are a helpful assistant.", "llm": {"model": "google/gemini-2.5-flash"}, "stt": {"provider": "google"}, "tts": {"provider": "google"}, "settings": {"agent_speaks_first": true, "max_assistant_turns": 50}}}
       responses:
         "200":
           application/json: {"uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "message": "<value>"}
@@ -1136,7 +1136,7 @@ examples:
           application/json: {}
     openai_compatible_connection:
       requestBody:
-        application/json: {"name": "My Hosted Agent", "type": "connection", "config": {"agent_url": "https://api.example.com/v1/chat/completions", "agent_headers": {"Authorization": "Bearer <token>"}, "benchmark_provider": "openrouter"}}
+        application/json: {"name": "My Hosted Agent", "type": "connection", "interaction_type": "conversation", "config": {"agent_url": "https://api.example.com/v1/chat/completions", "agent_headers": {"Authorization": "Bearer <token>"}, "benchmark_provider": "openrouter"}}
       responses:
         "200":
           application/json: {"uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "message": "<value>"}
@@ -1144,7 +1144,7 @@ examples:
           application/json: {}
     speakeasy-default-create-agent-endpoint-agents-post:
       requestBody:
-        application/json: {"name": "<value>", "type": "agent"}
+        application/json: {"name": "<value>", "type": "agent", "interaction_type": "conversation"}
       responses:
         "200":
           application/json: {"uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "message": "<value>"}
@@ -1167,7 +1167,7 @@ examples:
           agent_uuid: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
       responses:
         "200":
-          application/json: {"uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "name": "<value>", "type": "agent", "created_at": "1723757055651", "updated_at": "1735668309123"}
+          application/json: {"uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "name": "<value>", "type": "agent", "interaction_type": "general", "created_at": "1727918704076", "updated_at": "1735680815193"}
         "422":
           application/json: {}
   update_agent_endpoint_agents__agent_uuid__put:
@@ -1179,7 +1179,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "name": "<value>", "type": "agent", "created_at": "1714932490490", "updated_at": "1735627716872"}
+          application/json: {"uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "name": "<value>", "type": "agent", "interaction_type": "conversation", "created_at": "1713102361747", "updated_at": "1735660437725"}
         "422":
           application/json: {}
   list_agent_evaluators_agents__agent_uuid__evaluators_get:
@@ -1209,10 +1209,10 @@ examples:
   bulk_upload_tests_tests_bulk_post:
     speakeasy-default-bulk-upload-tests-tests-bulk-post:
       requestBody:
-        application/json: {"type": "tool_call", "tests": [{"name": "<value>", "conversation_history": [{"role": "tool"}], "evaluators": [{"evaluator_uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "variable_values": {"criteria": "The reply must cite the refund window"}}]}], "agent_uuids": ["a3b2c1d0-e5f4-3210-abcd-ef1234567890"]}
+        application/json: {"type": "tool_call", "tests": [{"name": "<value>", "evaluators": [{"evaluator_uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "variable_values": {"criteria": "The reply must cite the refund window"}}]}], "agent_uuids": ["a3b2c1d0-e5f4-3210-abcd-ef1234567890"]}
       responses:
         "200":
-          application/json: {"uuids": ["b1c2d3e4-f5a6-7890-bcde-f12345678901"], "count": 959742, "message": "<value>"}
+          application/json: {"uuids": ["b1c2d3e4-f5a6-7890-bcde-f12345678901"], "count": 706235, "message": "<value>"}
         "422":
           application/json: {}
   create_test_endpoint_tests_post:
@@ -1231,7 +1231,7 @@ examples:
           offset: 0
       responses:
         "200":
-          application/json: {"items": [{"uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "name": "<value>", "type": "conversation", "created_at": "1707485876932", "updated_at": "1735631771651"}], "total": 282314, "offset": 0}
+          application/json: {"items": [{"uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "name": "<value>", "type": "general", "created_at": "1707485876932", "updated_at": "1735631771651"}], "total": 282314, "offset": 0}
         "422":
           application/json: {}
   get_test_endpoint_tests__test_uuid__get:
@@ -1241,7 +1241,7 @@ examples:
           test_uuid: "b1c2d3e4-f5a6-7890-bcde-f12345678901"
       responses:
         "200":
-          application/json: {"uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "name": "<value>", "type": "response", "created_at": "1708923859082", "updated_at": "1735654269440"}
+          application/json: {"uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "name": "<value>", "type": "tool_call", "created_at": "1708923859082", "updated_at": "1735654269440"}
         "422":
           application/json: {}
   update_test_endpoint_tests__test_uuid__put:
@@ -1253,7 +1253,7 @@ examples:
         application/json: {"config": {"evaluation": {"type": "response"}, "history": [{"content": "What is your return policy?", "role": "user"}], "settings": {"language": "en"}}, "evaluators": [{"evaluator_uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "variable_values": {"criteria": "The reply must cite the refund window"}}]}
       responses:
         "200":
-          application/json: {"uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "name": "<value>", "type": "conversation", "created_at": "1710980660156", "updated_at": "1735686572308"}
+          application/json: {"uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "name": "<value>", "type": "general", "created_at": "1710980660156", "updated_at": "1735686572308"}
         "422":
           application/json: {}
   create_agent_test_links_agent_tests_post:
@@ -1286,7 +1286,7 @@ examples:
           offset: 0
       responses:
         "200":
-          application/json: {"items": [{"uuid": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "done", "type": "llm-unit-test", "updated_at": "1735641502230", "model_results": null, "error": false, "is_public": false}], "total": 405334, "offset": 0}
+          application/json: {"items": [{"uuid": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "done", "type": "llm-unit-test", "created_at": "1718134075390", "updated_at": "1735607430250", "model_results": [{"model": "openai/gpt-4.1", "message": ""}], "error": false, "is_public": false}], "total": 269462, "offset": 0}
         "422":
           application/json: {}
   run_agent_test_agent_tests_agent__agent_uuid__run_post:
@@ -1554,10 +1554,10 @@ examples:
   ingest_trace_traces_post:
     speakeasy-default-ingest-trace-traces-post:
       requestBody:
-        application/json: {"agent_id": "<id>", "input": [{"role": "<value>"}], "output": {}}
+        application/json: {"agent_id": "<id>", "input": [], "output": {}}
       responses:
         "200":
-          application/json: {"uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "created_at": "1717551327377"}
+          application/json: {"uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479", "created_at": "1731210296557"}
         "422":
           application/json: {}
 examplesVersion: 1.0.2

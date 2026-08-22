@@ -30,10 +30,42 @@ export const AgentResponseType$zodSchema = z.enum([
   "- `agent`: built inside Calibrate\n- `connection`: your existing agent connected to Calibrate",
 );
 
+/**
+ * What the agent expects in the request body:
+ *
+ * @remarks
+ *
+ * - `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{"messages": [...]}`
+ * - `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{"input": "..."}`
+ */
+export const AgentResponseInteractionType = {
+  Conversation: "conversation",
+  General: "general",
+} as const;
+/**
+ * What the agent expects in the request body:
+ *
+ * @remarks
+ *
+ * - `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{"messages": [...]}`
+ * - `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{"input": "..."}`
+ */
+export type AgentResponseInteractionType = ClosedEnum<
+  typeof AgentResponseInteractionType
+>;
+
+export const AgentResponseInteractionType$zodSchema = z.enum([
+  "conversation",
+  "general",
+]).describe(
+  "What the agent expects in the request body:\n\n- `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{\"messages\": [...]}`\n- `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{\"input\": \"...\"}`",
+);
+
 export type AgentResponse = {
   uuid: string;
   name: string;
   type: AgentResponseType;
+  interaction_type: AgentResponseInteractionType;
   config?: { [k: string]: any } | null | undefined;
   created_at: string;
   updated_at: string;
@@ -44,6 +76,9 @@ export const AgentResponse$zodSchema: z.ZodType<AgentResponse> = z.object({
     "Agent configuration",
   ),
   created_at: z.string().describe("When the agent was created (ISO 8601 UTC)"),
+  interaction_type: AgentResponseInteractionType$zodSchema.describe(
+    "What the agent expects in the request body:\n\n- `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{\"messages\": [...]}`\n- `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{\"input\": \"...\"}`",
+  ),
   name: z.string().describe("Name of the agent"),
   type: AgentResponseType$zodSchema.describe(
     "- `agent`: built inside Calibrate\n- `connection`: your existing agent connected to Calibrate",

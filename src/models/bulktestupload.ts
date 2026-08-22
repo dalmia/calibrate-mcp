@@ -14,6 +14,7 @@ import { BulkTestItem, BulkTestItem$zodSchema } from "./bulktestitem.js";
  * - `response`: judges the generated reply
  * - `tool_call`: diffs the generated tool calls
  * - `conversation`: judges the full conversation
+ * - `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)
  *
  * Applied to every test in the batch
  */
@@ -21,6 +22,7 @@ export const BulkTestUploadType = {
   Response: "response",
   ToolCall: "tool_call",
   Conversation: "conversation",
+  General: "general",
 } as const;
 /**
  * What the test judges:
@@ -30,6 +32,7 @@ export const BulkTestUploadType = {
  * - `response`: judges the generated reply
  * - `tool_call`: diffs the generated tool calls
  * - `conversation`: judges the full conversation
+ * - `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)
  *
  * Applied to every test in the batch
  */
@@ -39,8 +42,9 @@ export const BulkTestUploadType$zodSchema = z.enum([
   "response",
   "tool_call",
   "conversation",
+  "general",
 ]).describe(
-  "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n\n\nApplied to every test in the batch",
+  "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n- `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)\n\n\nApplied to every test in the batch",
 );
 
 export type BulkTestUpload = {
@@ -61,6 +65,6 @@ export const BulkTestUpload$zodSchema: z.ZodType<BulkTestUpload> = z.object({
     "Test items to create, at most 500 per request, with names unique within the batch",
   ),
   type: BulkTestUploadType$zodSchema.describe(
-    "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n\n\nApplied to every test in the batch",
+    "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n- `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)\n\n\nApplied to every test in the batch",
   ),
 });

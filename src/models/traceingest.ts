@@ -10,11 +10,23 @@ import {
 import { TraceOutput, TraceOutput$zodSchema } from "./traceoutput.js";
 import { TraceTurn, TraceTurn$zodSchema } from "./traceturn.js";
 
+/**
+ * What the agent was given for this turn. For a `general` agent, the standalone prompt as a string. For a `conversation` agent, the history up to the reported output, oldest turn first, in OpenAI chat format
+ */
+export type Input = string | Array<TraceTurn>;
+
+export const Input$zodSchema: z.ZodType<Input> = z.union([
+  z.string(),
+  z.array(TraceTurn$zodSchema),
+]).describe(
+  "What the agent was given for this turn. For a `general` agent, the standalone prompt as a string. For a `conversation` agent, the history up to the reported output, oldest turn first, in OpenAI chat format",
+);
+
 export type TraceIngest = {
   agent_id: string;
   message_id?: string | null | undefined;
   conversation_id?: string | null | undefined;
-  input: Array<TraceTurn>;
+  input: string | Array<TraceTurn>;
   output: TraceOutput;
   metadata?: Array<TraceMetadataEntry> | null | undefined;
 };
@@ -26,8 +38,11 @@ export const TraceIngest$zodSchema: z.ZodType<TraceIngest> = z.object({
   conversation_id: z.string().nullable().optional().describe(
     "Your own ID for the conversation this turn belongs to, stored for reference only. Omit if you have none",
   ),
-  input: z.array(TraceTurn$zodSchema).describe(
-    "Conversation history up to the reported output, oldest turn first, in OpenAI chat format",
+  input: z.union([
+    z.string(),
+    z.array(TraceTurn$zodSchema),
+  ]).describe(
+    "What the agent was given for this turn. For a `general` agent, the standalone prompt as a string. For a `conversation` agent, the history up to the reported output, oldest turn first, in OpenAI chat format",
   ),
   message_id: z.string().nullable().optional().describe(
     "Your own ID for the last user message in `input`, stored for reference only. Omit if you have none",

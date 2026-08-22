@@ -48,10 +48,12 @@ export type AgentTestRunListItem = {
   name: string;
   status: TaskStatus;
   type: AgentTestRunListItemType;
+  created_at: string;
   updated_at: string;
   total_tests?: number | null | undefined;
   passed?: number | null | undefined;
   failed?: number | null | undefined;
+  evaluators?: Array<string> | undefined;
   results?: Array<TestRunCaseSummary> | null | undefined;
   latency_ms?: { [k: string]: any } | null | undefined;
   cost?: { [k: string]: any } | null | undefined;
@@ -67,7 +69,11 @@ export const AgentTestRunListItem$zodSchema: z.ZodType<AgentTestRunListItem> = z
     cost: z.record(z.string(), z.any()).nullable().optional().describe(
       "Aggregated cost as `{mean, min, max, count}` (USD)",
     ),
+    created_at: z.string().describe("When the run was created (ISO 8601 UTC)"),
     error: z.boolean().default(false).describe("True if the run failed"),
+    evaluators: z.array(z.string()).optional().describe(
+      "Names of the evaluators that judged this run, deduplicated and in display order. `Tool call` is appended when any test in the run was a tool-call test. Empty when the run had no evaluators",
+    ),
     failed: z.int().nullable().optional().describe(
       "Number of test cases that failed",
     ),

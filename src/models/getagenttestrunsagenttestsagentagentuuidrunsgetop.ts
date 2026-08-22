@@ -49,6 +49,7 @@ export type GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetRequest = {
   type?: GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetType | null | undefined;
   status?: TaskStatus | null | undefined;
   has_failures?: boolean | null | undefined;
+  around?: string | null | undefined;
   limit?: number | null | undefined;
   offset?: number | undefined;
   xAPIKey?: string | null | undefined;
@@ -57,6 +58,9 @@ export type GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetRequest = {
 export const GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetRequest$zodSchema:
   z.ZodType<GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetRequest> = z.object({
     agent_uuid: z.string().describe("Agent whose test runs to list"),
+    around: z.string().describe(
+      "ID of a run to jump to, returning the page that contains it instead of the page at `offset`",
+    ).nullable().optional(),
     has_failures: z.boolean().describe(
       "Filter by whether the run has any failing test case or model. `true` returns only runs with failures (or errors), `false` only clean runs. Omit for both",
     ).nullable().optional(),

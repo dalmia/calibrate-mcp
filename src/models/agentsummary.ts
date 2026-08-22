@@ -30,10 +30,42 @@ export const AgentSummaryType$zodSchema = z.enum([
   "- `agent`: built inside Calibrate\n- `connection`: your existing agent connected to Calibrate",
 );
 
+/**
+ * What the agent expects in the request body:
+ *
+ * @remarks
+ *
+ * - `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{"messages": [...]}`
+ * - `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{"input": "..."}`
+ */
+export const AgentSummaryInteractionType = {
+  Conversation: "conversation",
+  General: "general",
+} as const;
+/**
+ * What the agent expects in the request body:
+ *
+ * @remarks
+ *
+ * - `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{"messages": [...]}`
+ * - `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{"input": "..."}`
+ */
+export type AgentSummaryInteractionType = ClosedEnum<
+  typeof AgentSummaryInteractionType
+>;
+
+export const AgentSummaryInteractionType$zodSchema = z.enum([
+  "conversation",
+  "general",
+]).describe(
+  "What the agent expects in the request body:\n\n- `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{\"messages\": [...]}`\n- `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{\"input\": \"...\"}`",
+);
+
 export type AgentSummary = {
   uuid: string;
   name: string;
   type: AgentSummaryType;
+  interaction_type: AgentSummaryInteractionType;
   created_at: string;
   updated_at: string;
   connection_verified?: boolean | null | undefined;
@@ -47,6 +79,9 @@ export const AgentSummary$zodSchema: z.ZodType<AgentSummary> = z.object({
   created_at: z.string().describe("When the agent was created (ISO 8601 UTC)"),
   has_default_inputs: z.boolean().describe(
     "Whether the agent has custom request fields configured",
+  ),
+  interaction_type: AgentSummaryInteractionType$zodSchema.describe(
+    "What the agent expects in the request body:\n\n- `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{\"messages\": [...]}`\n- `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{\"input\": \"...\"}`",
   ),
   name: z.string().describe("Name of the agent"),
   type: AgentSummaryType$zodSchema.describe(

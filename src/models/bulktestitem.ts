@@ -15,20 +15,25 @@ import {
 
 export type BulkTestItem = {
   name: string;
-  conversation_history: Array<ChatMessage>;
+  conversation_history?: Array<ChatMessage> | null | undefined;
+  input?: string | null | undefined;
   evaluators?: Array<RoutersTestsEvaluatorRef> | null | undefined;
   tool_calls?: Array<ExpectedToolCall> | null | undefined;
   inputs?: { [k: string]: any } | null | undefined;
 };
 
 export const BulkTestItem$zodSchema: z.ZodType<BulkTestItem> = z.object({
-  conversation_history: z.array(ChatMessage$zodSchema).describe(
-    "Ordered messages ending at the user turn the agent should answer",
-  ),
+  conversation_history: z.array(ChatMessage$zodSchema).nullable().optional()
+    .describe(
+      "Ordered messages ending at the user turn the agent should answer. **Required for `response` and `conversation` batches**, and for `tool_call` batches aimed at a conversational agent",
+    ),
   evaluators: z.array(RoutersTestsEvaluatorRef$zodSchema).nullable().optional()
     .describe(
-      "Evaluators to link. Used by `response` and `conversation` tests",
+      "Evaluators to link. Used by `response`, `conversation`, and `general` tests",
     ),
+  input: z.string().nullable().optional().describe(
+    "Standalone prompt with no conversation around it. **Required for `general` batches**, and for `tool_call` batches aimed at a general agent",
+  ),
   inputs: z.record(z.string(), z.any()).nullable().optional().describe(
     "Extra request fields for this test, overriding the agent's `default_inputs` per key",
   ),

@@ -7,11 +7,15 @@ import * as z from "zod";
 export type TraceToolCall = {
   tool: string;
   arguments?: { [k: string]: any } | null | undefined;
+  output?: any | undefined;
 };
 
 export const TraceToolCall$zodSchema: z.ZodType<TraceToolCall> = z.object({
   arguments: z.record(z.string(), z.any()).nullable().optional().describe(
     "Argument values the agent passed to the tool. Omit when the call had none",
+  ),
+  output: z.any().optional().describe(
+    "What the tool returned for this call. Any JSON value. Omit when you do not record it",
   ),
   tool: z.string().describe("Name of the tool the agent called"),
 });

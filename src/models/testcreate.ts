@@ -17,11 +17,13 @@ import {
  * - `response`: judges the generated reply
  * - `tool_call`: diffs the generated tool calls
  * - `conversation`: judges the full conversation
+ * - `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)
  */
 export const TestCreateType = {
   Response: "response",
   ToolCall: "tool_call",
   Conversation: "conversation",
+  General: "general",
 } as const;
 /**
  * What the test judges:
@@ -31,6 +33,7 @@ export const TestCreateType = {
  * - `response`: judges the generated reply
  * - `tool_call`: diffs the generated tool calls
  * - `conversation`: judges the full conversation
+ * - `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)
  */
 export type TestCreateType = ClosedEnum<typeof TestCreateType>;
 
@@ -38,8 +41,9 @@ export const TestCreateType$zodSchema = z.enum([
   "response",
   "tool_call",
   "conversation",
+  "general",
 ]).describe(
-  "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n",
+  "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n- `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)\n",
 );
 
 export type TestCreate = {
@@ -51,7 +55,7 @@ export type TestCreate = {
 
 export const TestCreate$zodSchema: z.ZodType<TestCreate> = z.object({
   config: z.record(z.string(), z.any()).nullable().optional().describe(
-    "The calibrate test config. Three top-level keys.\n\n- `history`: the required conversation up to the agent's turn. Each item is `{role, content}` with `role` one of `user`, `assistant`, `tool`. A `tool` message also carries `tool_call_id` and `name`.\n- `evaluation`: the required `{type, ...}`, where `type` matches the test's `type` below.\n- `settings`: an optional object, e.g. `{\"language\": \"en\"}`.\n\n`evaluation` by test type:\n- `response`: judge the agent's reply, graded by the linked evaluators. `{\"type\": \"response\"}`\n- `conversation`: append the reply and judge the whole conversation. `{\"type\": \"conversation\"}`\n- `tool_call`: diff the agent's tool calls against expected ones. Add `tool_calls`, a list of `{tool, arguments, accept_any_arguments?}`.\n\nFor `tool_call`, each expected argument value is one of:\n- `{\"match_type\": \"exact\", \"value\": <any>}`: must equal `value`\n- `{\"match_type\": \"llm_judge\", \"criteria\": \"...\"}`: judged against the criteria\n- `{\"match_type\": \"any\"}`: any value, only checks the argument was passed\n\n`response` / `conversation` example:\n```json\n{\n  \"history\": [{\"role\": \"user\", \"content\": \"What is your return policy?\"}],\n  \"evaluation\": {\"type\": \"response\"},\n  \"settings\": {\"language\": \"en\"}\n}\n```\n\n`tool_call` example:\n```json\n{\n  \"history\": [{\"role\": \"user\", \"content\": \"Book room 101 for tomorrow\"}],\n  \"evaluation\": {\n    \"type\": \"tool_call\",\n    \"tool_calls\": [\n      {\n        \"tool\": \"book_room\",\n        \"arguments\": {\n          \"room\": {\"match_type\": \"exact\", \"value\": \"101\"},\n          \"date\": {\"match_type\": \"llm_judge\", \"criteria\": \"tomorrow's date\"}\n        },\n        \"accept_any_arguments\": false\n      }\n    ]\n  }\n}\n```\n\nEvaluators are linked via the separate `evaluators` field, not inside `config`.\n\nOmit to create the test with no config and fill it in later via update",
+    "The calibrate test config.\n\n- `history`: the conversation up to the agent's turn, required for `response` and `conversation` tests and for a `tool_call` test aimed at a conversational agent. Each item is `{role, content}` with `role` one of `user`, `assistant`, `tool`. A `tool` message also carries `tool_call_id` and `name`.\n- `input`: a standalone prompt with no conversation around it, required for `general` tests and for a `tool_call` test aimed at a `general` agent. A string, not a conversation.\n- `evaluation`: the required `{type, ...}`, where `type` matches the test's `type` below.\n- `settings`: an optional object, e.g. `{\"language\": \"en\"}`.\n\nA `tool_call` test carries exactly one of `history` or `input`, and which one it carries decides the agent it can be linked to.\n\n`evaluation` by test type:\n- `response`: judge the agent's reply, graded by the linked evaluators. `{\"type\": \"response\"}`\n- `conversation`: append the reply and judge the whole conversation. `{\"type\": \"conversation\"}`\n- `tool_call`: diff the agent's tool calls against expected ones. Add `tool_calls`, a list of `{tool, arguments, accept_any_arguments?}`.\n- `general`: judge a standalone, non-conversational input/output pair, graded by the linked evaluators. `{\"type\": \"general\"}`\n\nFor `tool_call`, each expected argument value is one of:\n- `{\"match_type\": \"exact\", \"value\": <any>}`: must equal `value`\n- `{\"match_type\": \"llm_judge\", \"criteria\": \"...\"}`: judged against the criteria\n- `{\"match_type\": \"any\"}`: any value, only checks the argument was passed\n\n`response` / `conversation` example:\n```json\n{\n  \"history\": [{\"role\": \"user\", \"content\": \"What is your return policy?\"}],\n  \"evaluation\": {\"type\": \"response\"},\n  \"settings\": {\"language\": \"en\"}\n}\n```\n\n`tool_call` example, for a conversational agent. Swap `history` for `input` to aim it at a `general` agent:\n```json\n{\n  \"history\": [{\"role\": \"user\", \"content\": \"Book room 101 for tomorrow\"}],\n  \"evaluation\": {\n    \"type\": \"tool_call\",\n    \"tool_calls\": [\n      {\n        \"tool\": \"book_room\",\n        \"arguments\": {\n          \"room\": {\"match_type\": \"exact\", \"value\": \"101\"},\n          \"date\": {\"match_type\": \"llm_judge\", \"criteria\": \"tomorrow's date\"}\n        },\n        \"accept_any_arguments\": false\n      }\n    ]\n  }\n}\n```\n\n`general` example:\n```json\n{\n  \"input\": \"Summarize this article: ...\",\n  \"evaluation\": {\"type\": \"general\"},\n  \"settings\": {\"language\": \"en\"}\n}\n```\n\nEvaluators are linked via the separate `evaluators` field, not inside `config`.\n\nOmit to create the test with no config and fill it in later via update",
   ),
   evaluators: z.array(RoutersTestsEvaluatorRef$zodSchema).nullable().optional()
     .describe(
@@ -59,6 +63,6 @@ export const TestCreate$zodSchema: z.ZodType<TestCreate> = z.object({
     ),
   name: z.string().describe("Name of the test, unique within the workspace"),
   type: TestCreateType$zodSchema.describe(
-    "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n",
+    "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n- `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)\n",
   ),
 });

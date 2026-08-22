@@ -30,9 +30,41 @@ export const AgentCreateType$zodSchema = z.enum([
   "- `agent`: built inside Calibrate\n- `connection`: your existing agent connected to Calibrate",
 );
 
+/**
+ * What the agent expects in the request body:
+ *
+ * @remarks
+ *
+ * - `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{"messages": [...]}`
+ * - `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{"input": "..."}`
+ */
+export const AgentCreateInteractionType = {
+  Conversation: "conversation",
+  General: "general",
+} as const;
+/**
+ * What the agent expects in the request body:
+ *
+ * @remarks
+ *
+ * - `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{"messages": [...]}`
+ * - `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{"input": "..."}`
+ */
+export type AgentCreateInteractionType = ClosedEnum<
+  typeof AgentCreateInteractionType
+>;
+
+export const AgentCreateInteractionType$zodSchema = z.enum([
+  "conversation",
+  "general",
+]).describe(
+  "What the agent expects in the request body:\n\n- `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{\"messages\": [...]}`\n- `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{\"input\": \"...\"}`",
+);
+
 export type AgentCreate = {
   name: string;
   type?: AgentCreateType | undefined;
+  interaction_type?: AgentCreateInteractionType | undefined;
   config?: { [k: string]: any } | null | undefined;
 };
 
@@ -40,6 +72,10 @@ export const AgentCreate$zodSchema: z.ZodType<AgentCreate> = z.object({
   config: z.record(z.string(), z.any()).nullable().optional().describe(
     "Agent behavioral config. The keys depend on `type`.\n\n**`type=agent`**, built inside Calibrate:\n- `system_prompt`: the agent's instructions\n- `llm.model`: `provider/model`, e.g. `openai/gpt-4.1` or `google/gemini-2.5-flash`\n- `stt.provider`: `deepgram`, `openai`, `cartesia`, `elevenlabs`, `google`, `sarvam`, or `smallest`\n- `tts.provider`: `cartesia`, `openai`, `google`, `elevenlabs`, `sarvam`, or `smallest`\n- `settings.agent_speaks_first`, `settings.max_assistant_turns`\n- `system_tools.end_call`: let the agent end the call\n- `data_extraction_fields`: `[{name, type, description, required}]`\n\n```json\n{\n  \"system_prompt\": \"You are a helpful support agent.\",\n  \"llm\": {\"model\": \"openai/gpt-4.1\"},\n  \"stt\": {\"provider\": \"deepgram\"},\n  \"tts\": {\"provider\": \"elevenlabs\"},\n  \"settings\": {\"agent_speaks_first\": true, \"max_assistant_turns\": 50}\n}\n```\n\n**`type=connection`**, your own HTTP endpoint:\n- `agent_url`: public HTTP(S) endpoint your agent is called at\n- `agent_headers`: headers sent on each request, e.g. auth\n- `benchmark_provider`: `openrouter` by default. Other values: `openai`, `google`, `anthropic`, `meta-llama`, `mistralai`, `deepseek`, `x-ai`, `cohere`, `qwen`, or `ai21`\n\n```json\n{\n  \"agent_url\": \"https://api.example.com/agent\",\n  \"agent_headers\": {\"Authorization\": \"Bearer <token>\"},\n  \"benchmark_provider\": \"openrouter\"\n}\n```\n\nFor `type=agent`, omitted keys inherit managed defaults. Omit `config` entirely to use all defaults. For `type=connection`, `config` is stored as-is and must contain `agent_url`",
   ),
+  interaction_type: AgentCreateInteractionType$zodSchema.default("conversation")
+    .describe(
+      "What the agent expects in the request body:\n\n- `conversation`: a normal back-and-forth agent, answers within an ongoing conversation. Receives `{\"messages\": [...]}`\n- `general`: a one-shot agent, takes a single plain input and produces a single plain output, no conversation. Receives `{\"input\": \"...\"}`",
+    ),
   name: z.string().describe("Agent name, unique within the workspace"),
   type: AgentCreateType$zodSchema.default("agent").describe(
     "- `agent`: built inside Calibrate\n- `connection`: your existing agent connected to Calibrate",

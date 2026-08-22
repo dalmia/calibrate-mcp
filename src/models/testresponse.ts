@@ -13,11 +13,13 @@ import { ClosedEnum } from "../types/enums.js";
  * - `response`: judges the generated reply
  * - `tool_call`: diffs the generated tool calls
  * - `conversation`: judges the full conversation
+ * - `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)
  */
 export const TestResponseType = {
   Response: "response",
   ToolCall: "tool_call",
   Conversation: "conversation",
+  General: "general",
 } as const;
 /**
  * What the test judges:
@@ -27,6 +29,7 @@ export const TestResponseType = {
  * - `response`: judges the generated reply
  * - `tool_call`: diffs the generated tool calls
  * - `conversation`: judges the full conversation
+ * - `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)
  */
 export type TestResponseType = ClosedEnum<typeof TestResponseType>;
 
@@ -34,8 +37,9 @@ export const TestResponseType$zodSchema = z.enum([
   "response",
   "tool_call",
   "conversation",
+  "general",
 ]).describe(
-  "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n",
+  "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n- `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)\n",
 );
 
 export type TestResponse = {
@@ -58,7 +62,7 @@ export const TestResponse$zodSchema: z.ZodType<TestResponse> = z.object({
   ),
   name: z.string().describe("Name of the test"),
   type: TestResponseType$zodSchema.describe(
-    "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n",
+    "What the test judges:\n\n- `response`: judges the generated reply\n- `tool_call`: diffs the generated tool calls\n- `conversation`: judges the full conversation\n- `general`: judges a single plain-text input/output pair with no conversation involved (e.g. summarization, extraction, classification)\n",
   ),
   updated_at: z.string().describe(
     "When the test was last updated (ISO 8601 UTC)",
