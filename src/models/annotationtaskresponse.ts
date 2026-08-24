@@ -75,7 +75,7 @@ export const AnnotationTaskResponse$zodSchema: z.ZodType<
     "Number of items in the task",
   ),
   items: z.array(z.record(z.string(), z.any())).optional().describe(
-    "The task's items, each with its agreement stats. You get these when you fetch one task by ID, not when you list tasks",
+    "The task's items, each with its agreement stats and an `is_tool_call` flag marking the rows a person labels on the tool call rather than a text reply. You get these when you fetch one task by ID, not when you list tasks",
   ),
   jobs: z.array(z.record(z.string(), z.any())).optional().describe(
     "The task's labelling jobs. You get these when you fetch one task by ID, not when you list tasks",

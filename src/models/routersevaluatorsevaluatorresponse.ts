@@ -19,6 +19,7 @@ import {
  * - `llm`: a reply with its conversation history
  * - `llm-general`: a standalone input and output pair
  * - `conversation`: a full conversation
+ * - `tool-call`: whether the agent called the right tool, labelled by a person
  */
 export const RoutersEvaluatorsEvaluatorResponseEvaluatorType = {
   Tts: "tts",
@@ -26,6 +27,7 @@ export const RoutersEvaluatorsEvaluatorResponseEvaluatorType = {
   Llm: "llm",
   LlmGeneral: "llm-general",
   Conversation: "conversation",
+  ToolCall: "tool-call",
 } as const;
 /**
  * What the evaluator judges:
@@ -37,6 +39,7 @@ export const RoutersEvaluatorsEvaluatorResponseEvaluatorType = {
  * - `llm`: a reply with its conversation history
  * - `llm-general`: a standalone input and output pair
  * - `conversation`: a full conversation
+ * - `tool-call`: whether the agent called the right tool, labelled by a person
  */
 export type RoutersEvaluatorsEvaluatorResponseEvaluatorType = ClosedEnum<
   typeof RoutersEvaluatorsEvaluatorResponseEvaluatorType
@@ -49,9 +52,10 @@ export const RoutersEvaluatorsEvaluatorResponseEvaluatorType$zodSchema = z.enum(
     "llm",
     "llm-general",
     "conversation",
+    "tool-call",
   ],
 ).describe(
-  "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n",
+  "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n- `tool-call`: whether the agent called the right tool, labelled by a person\n",
 );
 
 /**
@@ -122,6 +126,7 @@ export type RoutersEvaluatorsEvaluatorResponse = {
   data_type: RoutersEvaluatorsEvaluatorResponseDataType;
   output_type: RoutersEvaluatorsEvaluatorResponseOutputType;
   is_default: boolean;
+  is_protected: boolean;
   slug?: string | null | undefined;
   source_default_slug?: string | null | undefined;
   live_version_id?: string | null | undefined;
@@ -144,10 +149,13 @@ export const RoutersEvaluatorsEvaluatorResponse$zodSchema: z.ZodType<
   ),
   evaluator_type: RoutersEvaluatorsEvaluatorResponseEvaluatorType$zodSchema
     .describe(
-      "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n",
+      "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n- `tool-call`: whether the agent called the right tool, labelled by a person\n",
     ),
   is_default: z.boolean().describe(
     "True when the evaluator is a built-in default or your workspace's editable copy of one. False for an evaluator you created yourself",
+  ),
+  is_protected: z.boolean().describe(
+    "True when the evaluator is locked. A locked evaluator cannot be deleted, and only its name, description and rubric can change",
   ),
   live_version: EvaluatorLiveVersionSummary$zodSchema.nullable().optional()
     .describe("The version that is currently live"),

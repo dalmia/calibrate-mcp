@@ -22,6 +22,7 @@ export const ListEvaluatorsEvaluatorsGetEvaluatorType = {
   Llm: "llm",
   LlmGeneral: "llm-general",
   Conversation: "conversation",
+  ToolCall: "tool-call",
 } as const;
 /**
  * Filter by what the evaluator judges. Omit for all types
@@ -36,6 +37,7 @@ export const ListEvaluatorsEvaluatorsGetEvaluatorType$zodSchema = z.enum([
   "llm",
   "llm-general",
   "conversation",
+  "tool-call",
 ]).describe("Filter by what the evaluator judges. Omit for all types");
 
 /**
