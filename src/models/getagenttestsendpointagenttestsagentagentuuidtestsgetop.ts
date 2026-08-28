@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
@@ -12,9 +13,32 @@ import {
   PaginatedResponseTestListResponse$zodSchema,
 } from "./paginatedresponsetestlistresponse.js";
 
+/**
+ * How to match `q` against the searched fields
+ */
+export const QMode = {
+  Contains: "contains",
+  StartsWith: "starts_with",
+  EndsWith: "ends_with",
+  Exact: "exact",
+} as const;
+/**
+ * How to match `q` against the searched fields
+ */
+export type QMode = ClosedEnum<typeof QMode>;
+
+export const QMode$zodSchema = z.enum([
+  "contains",
+  "starts_with",
+  "ends_with",
+  "exact",
+]).describe("How to match `q` against the searched fields");
+
 export type GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetRequest = {
   agent_uuid: string;
+  type?: Array<string> | null | undefined;
   q?: string | null | undefined;
+  q_mode?: QMode | undefined;
   limit?: number | null | undefined;
   offset?: number | undefined;
   xAPIKey?: string | null | undefined;
@@ -31,7 +55,13 @@ export const GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetRequest$zodSch
         "Number of items to skip before returning results",
       ),
       q: z.string().describe(
-        "Case-insensitive substring search on `name`. Blank is a no-op",
+        "Case-insensitive search on `name`. Blank is a no-op",
+      ).nullable().optional(),
+      q_mode: QMode$zodSchema.default("contains").describe(
+        "How to match `q` against the searched fields",
+      ),
+      type: z.array(z.string()).describe(
+        "Keep only tests of these types. Repeat the parameter or pass one comma-separated value. Accepts `response`, `tool_call`, `conversation`, `general`",
       ).nullable().optional(),
       xAPIKey: z.string().nullable().optional(),
     });

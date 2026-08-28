@@ -3,12 +3,16 @@
  */
 
 import { CalibrateMcpCore } from "../core.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import {
+  BulkDeleteAgentTestLinksAgentTestsBulkUnlinkPostRequest,
+  BulkDeleteAgentTestLinksAgentTestsBulkUnlinkPostRequest$zodSchema,
+} from "../models/bulkdeleteagenttestlinksagenttestsbulkunlinkpostop.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
@@ -18,22 +22,18 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import {
-  GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetRequest,
-  GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetRequest$zodSchema,
-} from "../models/getagenttestsendpointagenttestsagentagentuuidtestsgetop.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * List tests for agent
+ * Bulk unlink tests from agent
  *
  * @remarks
- * List the tests linked to an agent.
+ * Unlink one or more tests from an agent. Tests that are not linked are skipped.
  */
-export function agentTestsListForAgent(
+export function agentTestsBulkUnlink(
   client$: CalibrateMcpCore,
-  request: GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetRequest,
+  request: BulkDeleteAgentTestLinksAgentTestsBulkUnlinkPostRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -56,7 +56,7 @@ export function agentTestsListForAgent(
 
 async function $do(
   client$: CalibrateMcpCore,
-  request: GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetRequest,
+  request: BulkDeleteAgentTestLinksAgentTestsBulkUnlinkPostRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -76,34 +76,20 @@ async function $do(
   const parsed$ = safeParse(
     request,
     (value$) =>
-      GetAgentTestsEndpointAgentTestsAgentAgentUuidTestsGetRequest$zodSchema
-        .parse(value$),
+      BulkDeleteAgentTestLinksAgentTestsBulkUnlinkPostRequest$zodSchema.parse(
+        value$,
+      ),
     "Input validation failed",
   );
   if (!parsed$.ok) {
     return [parsed$, { status: "invalid" }];
   }
   const payload$ = parsed$.value;
-  const body$ = null;
-
-  const pathParams$ = {
-    agent_uuid: encodeSimple("agent_uuid", payload$.agent_uuid, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-  };
-  const path$ = pathToFunc("/agent-tests/agent/{agent_uuid}/tests")(
-    pathParams$,
-  );
-  const query$ = encodeFormQuery({
-    "limit": payload$.limit,
-    "offset": payload$.offset,
-    "q": payload$.q,
-    "q_mode": payload$.q_mode,
-    "type": payload$.type,
-  });
+  const body$ = encodeJSON("body", payload$.body, { explode: true });
+  const path$ = pathToFunc("/agent-tests/bulk-unlink")();
 
   const headers$ = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/json",
     "X-API-Key": encodeSimple("X-API-Key", payload$.xAPIKey, {
       explode: false,
@@ -116,8 +102,7 @@ async function $do(
   const context = {
     options: client$._options,
     baseURL: options?.serverURL ?? client$._baseURL ?? "",
-    operationID:
-      "get_agent_tests_endpoint_agent_tests_agent__agent_uuid__tests_get",
+    operationID: "bulk_delete_agent_test_links_agent_tests_bulk_unlink_post",
     oAuth2Scopes: null,
     resolvedSecurity: requestSecurity,
     securitySource: client$._options.security,
@@ -135,11 +120,10 @@ async function $do(
 
   const requestRes = client$._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "POST",
     baseURL: options?.serverURL,
     path: path$,
     headers: headers$,
-    query: query$,
     body: body$,
     userAgent: client$._options.userAgent,
     timeoutMs: options?.timeoutMs || client$._options.timeoutMs
