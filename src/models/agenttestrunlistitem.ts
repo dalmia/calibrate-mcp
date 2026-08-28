@@ -8,6 +8,10 @@ import {
   ModelRunSummary,
   ModelRunSummary$zodSchema,
 } from "./modelrunsummary.js";
+import {
+  RunListEvaluator,
+  RunListEvaluator$zodSchema,
+} from "./runlistevaluator.js";
 import { TaskStatus, TaskStatus$zodSchema } from "./taskstatus.js";
 import {
   TestRunCaseSummary,
@@ -53,7 +57,7 @@ export type AgentTestRunListItem = {
   total_tests?: number | null | undefined;
   passed?: number | null | undefined;
   failed?: number | null | undefined;
-  evaluators?: Array<string> | undefined;
+  evaluators?: Array<RunListEvaluator> | undefined;
   results?: Array<TestRunCaseSummary> | null | undefined;
   latency_ms?: { [k: string]: any } | null | undefined;
   cost?: { [k: string]: any } | null | undefined;
@@ -71,8 +75,8 @@ export const AgentTestRunListItem$zodSchema: z.ZodType<AgentTestRunListItem> = z
     ),
     created_at: z.string().describe("When the run was created (ISO 8601 UTC)"),
     error: z.boolean().default(false).describe("True if the run failed"),
-    evaluators: z.array(z.string()).optional().describe(
-      "Names of the evaluators that judged this run, deduplicated and in display order. `Tool call` is appended when any test in the run was a tool-call test. Empty when the run had no evaluators",
+    evaluators: z.array(RunListEvaluator$zodSchema).optional().describe(
+      "The evaluators that judged this run, deduplicated and in display order. A `Tool call` entry is appended when any test in the run was a tool-call test. That entry has no `uuid`, because it is not an evaluator in the library. Empty when the run had no evaluators",
     ),
     failed: z.int().nullable().optional().describe(
       "Number of test cases that failed",
