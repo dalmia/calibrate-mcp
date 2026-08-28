@@ -10,6 +10,8 @@ export type BulkCreateItemsResponse = {
   new_item_ids?: Array<string> | null | undefined;
   existing_item_ids?: Array<string> | null | undefined;
   annotation_job_id?: string | null | undefined;
+  evaluator_result_count?: number | null | undefined;
+  evaluator_run_job_id?: string | null | undefined;
 };
 
 export const BulkCreateItemsResponse$zodSchema: z.ZodType<
@@ -19,6 +21,12 @@ export const BulkCreateItemsResponse$zodSchema: z.ZodType<
     "ID of the labelling job that holds the annotations you provided, present only when you send annotations with the items",
   ),
   count: z.int().describe("How many items the request resolved to"),
+  evaluator_result_count: z.int().nullable().optional().describe(
+    "How many evaluator scores were stored, present only when you send `evaluator_results` with the items",
+  ),
+  evaluator_run_job_id: z.string().nullable().optional().describe(
+    "ID of the evaluator-run job that holds the scores you provided, present only when you send `evaluator_results` with the items",
+  ),
   existing_item_ids: z.array(z.string()).nullable().optional().describe(
     "IDs of items that already existed by name and were reused",
   ),
