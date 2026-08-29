@@ -29,6 +29,7 @@ export type TraceIngest = {
   input: string | Array<TraceTurn>;
   output: TraceOutput;
   metadata?: Array<TraceMetadataEntry> | null | undefined;
+  labels?: Array<string> | undefined;
 };
 
 export const TraceIngest$zodSchema: z.ZodType<TraceIngest> = z.object({
@@ -43,6 +44,9 @@ export const TraceIngest$zodSchema: z.ZodType<TraceIngest> = z.object({
     z.array(TraceTurn$zodSchema),
   ]).describe(
     "What the agent was given for this turn. For a `general` agent, the standalone prompt as a string. For a `conversation` agent, the history up to the reported output, oldest turn first, in OpenAI chat format",
+  ),
+  labels: z.array(z.string()).optional().describe(
+    "Your own tags for this turn, such as an environment or a release. Matched exactly when filtering, so keep the spelling stable. Omit if you have none",
   ),
   message_id: z.string().nullable().optional().describe(
     "Your own ID for the last user message in `input`, stored for reference only. Omit if you have none",
