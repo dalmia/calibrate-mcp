@@ -11,10 +11,12 @@ import { ClosedEnum } from "../types/enums.js";
  * @remarks
  * - `no_linked_tests`: the agent has no tests linked
  * - `connection_not_verified`: the agent's connection is not verified
+ * - `over_row_limit`: the agent has more linked tests than this workspace allows in one run
  */
 export const Reason = {
   NoLinkedTests: "no_linked_tests",
   ConnectionNotVerified: "connection_not_verified",
+  OverRowLimit: "over_row_limit",
 } as const;
 /**
  * Why this agent was not run:
@@ -22,14 +24,16 @@ export const Reason = {
  * @remarks
  * - `no_linked_tests`: the agent has no tests linked
  * - `connection_not_verified`: the agent's connection is not verified
+ * - `over_row_limit`: the agent has more linked tests than this workspace allows in one run
  */
 export type Reason = ClosedEnum<typeof Reason>;
 
 export const Reason$zodSchema = z.enum([
   "no_linked_tests",
   "connection_not_verified",
+  "over_row_limit",
 ]).describe(
-  "Why this agent was not run:\n- `no_linked_tests`: the agent has no tests linked\n- `connection_not_verified`: the agent's connection is not verified",
+  "Why this agent was not run:\n- `no_linked_tests`: the agent has no tests linked\n- `connection_not_verified`: the agent's connection is not verified\n- `over_row_limit`: the agent has more linked tests than this workspace allows in one run",
 );
 
 export type BatchTestSkip = {
@@ -42,6 +46,6 @@ export const BatchTestSkip$zodSchema: z.ZodType<BatchTestSkip> = z.object({
   agent_name: z.string().describe("Name of the skipped agent"),
   agent_uuid: z.string().describe("ID of the skipped agent"),
   reason: Reason$zodSchema.describe(
-    "Why this agent was not run:\n- `no_linked_tests`: the agent has no tests linked\n- `connection_not_verified`: the agent's connection is not verified",
+    "Why this agent was not run:\n- `no_linked_tests`: the agent has no tests linked\n- `connection_not_verified`: the agent's connection is not verified\n- `over_row_limit`: the agent has more linked tests than this workspace allows in one run",
   ),
 });
