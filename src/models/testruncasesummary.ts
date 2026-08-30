@@ -22,7 +22,7 @@ export const TestRunCaseSummary$zodSchema: z.ZodType<TestRunCaseSummary> = z
   .object({
     name: z.string().nullable().optional().describe("Name of the test case"),
     passed: z.boolean().nullable().optional().describe(
-      "Whether the case passed (null if it errored or is still running)",
+      "Whether the case passed (null while the case is still running)",
     ),
   }).describe(
     "Flat summary for one test case in the run-LIST endpoints. Carries only\nenough to render a run's pass/fail breakdown and a case name. The full detail\nfor each case (agent output, judge verdicts, reasoning, latency, cost, the\ntest-case definition) lives on the run-DETAIL endpoint\n(`GET /agent-tests/run/{task_id}`).",

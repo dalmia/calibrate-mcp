@@ -22,6 +22,8 @@ export type TestRunStatusResponse = {
   total_tokens?: { [k: string]: any } | null | undefined;
   evaluators?: Array<TestRunEvaluator> | null | undefined;
   results?: Array<TestCaseResult> | null | undefined;
+  unanswered_tests?: number | null | undefined;
+  stopped_early?: boolean | undefined;
   error?: boolean | undefined;
   is_public?: boolean | undefined;
   share_token?: string | null | undefined;
@@ -56,6 +58,9 @@ export const TestRunStatusResponse$zodSchema: z.ZodType<TestRunStatusResponse> =
       "Token for building the public share URL",
     ),
     status: TaskStatus$zodSchema,
+    stopped_early: z.boolean().default(false).describe(
+      "Whether the run stopped before starting every test case, after too many failed in a row",
+    ),
     task_id: z.string().describe("Test run job ID"),
     test_uuids: z.array(z.string()).nullable().optional().describe(
       "IDs of the tests this run executed, in run order",
@@ -65,5 +70,8 @@ export const TestRunStatusResponse$zodSchema: z.ZodType<TestRunStatusResponse> =
     ),
     total_tokens: z.record(z.string(), z.any()).nullable().optional().describe(
       "Aggregated token usage as `{mean, min, max, count}`",
+    ),
+    unanswered_tests: z.int().nullable().optional().describe(
+      "Number of test cases that produced no answer because the agent or the judge could not be reached, which makes the pass rate an unfair measure of the agent",
     ),
   });

@@ -17,6 +17,7 @@ export type TestCaseResult = {
   judge_results?: Array<JudgeResult> | null | undefined;
   latency_ms?: number | null | undefined;
   cost?: number | null | undefined;
+  unanswered?: boolean | undefined;
 };
 
 export const TestCaseResult$zodSchema: z.ZodType<TestCaseResult> = z.object({
@@ -43,5 +44,8 @@ export const TestCaseResult$zodSchema: z.ZodType<TestCaseResult> = z.object({
   ),
   test_case_id: z.string().nullable().optional().describe(
     "ID of the test case within the run",
+  ),
+  unanswered: z.boolean().default(false).describe(
+    "Whether this case produced no answer because the agent or the judge could not be reached, in which case `reasoning` carries the error and `passed` is not a verdict on the agent",
   ),
 });

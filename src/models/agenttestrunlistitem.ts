@@ -63,6 +63,7 @@ export type AgentTestRunListItem = {
   cost?: { [k: string]: any } | null | undefined;
   total_tokens?: { [k: string]: any } | null | undefined;
   model_results?: Array<ModelRunSummary> | null | undefined;
+  unanswered_tests?: number | null | undefined;
   error?: boolean | undefined;
   is_public?: boolean | undefined;
   share_token?: string | null | undefined;
@@ -113,6 +114,9 @@ export const AgentTestRunListItem$zodSchema: z.ZodType<AgentTestRunListItem> = z
     ),
     type: AgentTestRunListItemType$zodSchema.describe(
       "What kind of run this is:\n- `llm-unit-test`: a single run of the agent's tests\n- `llm-benchmark`: a multi-model comparison",
+    ),
+    unanswered_tests: z.int().nullable().optional().describe(
+      "Number of test cases that produced no answer because the agent or the judge could not be reached, which makes the pass rate an unfair measure of the agent",
     ),
     updated_at: z.string().describe(
       "When the run was last updated (ISO 8601 UTC)",
