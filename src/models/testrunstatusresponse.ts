@@ -24,6 +24,7 @@ export type TestRunStatusResponse = {
   results?: Array<TestCaseResult> | null | undefined;
   unanswered_tests?: number | null | undefined;
   stopped_early?: boolean | undefined;
+  aborted?: boolean | undefined;
   error?: boolean | undefined;
   is_public?: boolean | undefined;
   share_token?: string | null | undefined;
@@ -31,6 +32,9 @@ export type TestRunStatusResponse = {
 
 export const TestRunStatusResponse$zodSchema: z.ZodType<TestRunStatusResponse> =
   z.object({
+    aborted: z.boolean().default(false).describe(
+      "Whether a user stopped this run before it finished. The results collected up to that point are kept, and test cases that never ran are counted neither as passed nor as failed",
+    ),
     cost: z.record(z.string(), z.any()).nullable().optional().describe(
       "Aggregated cost as `{mean, min, max, count}` (USD)",
     ),

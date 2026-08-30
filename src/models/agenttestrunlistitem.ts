@@ -64,6 +64,7 @@ export type AgentTestRunListItem = {
   total_tokens?: { [k: string]: any } | null | undefined;
   model_results?: Array<ModelRunSummary> | null | undefined;
   unanswered_tests?: number | null | undefined;
+  aborted?: boolean | undefined;
   error?: boolean | undefined;
   is_public?: boolean | undefined;
   share_token?: string | null | undefined;
@@ -71,6 +72,9 @@ export type AgentTestRunListItem = {
 
 export const AgentTestRunListItem$zodSchema: z.ZodType<AgentTestRunListItem> = z
   .object({
+    aborted: z.boolean().default(false).describe(
+      "Whether a user stopped this run before it finished. The results collected up to that point are kept, and test cases that never ran are counted neither as passed nor as failed",
+    ),
     cost: z.record(z.string(), z.any()).nullable().optional().describe(
       "Aggregated cost as `{mean, min, max, count}` (USD)",
     ),

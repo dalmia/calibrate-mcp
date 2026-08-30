@@ -18,6 +18,7 @@ export type TestCaseResult = {
   latency_ms?: number | null | undefined;
   cost?: number | null | undefined;
   unanswered?: boolean | undefined;
+  not_run?: boolean | undefined;
 };
 
 export const TestCaseResult$zodSchema: z.ZodType<TestCaseResult> = z.object({
@@ -32,6 +33,9 @@ export const TestCaseResult$zodSchema: z.ZodType<TestCaseResult> = z.object({
     "How long the agent took to respond, in milliseconds",
   ),
   name: z.string().nullable().optional().describe("Name of the test"),
+  not_run: z.boolean().default(false).describe(
+    "Whether this case never started, because a user stopped the run first. It is counted neither as passed nor as failed",
+  ),
   output: TestOutput$zodSchema.nullable().optional().describe(
     "The agent's output for this case",
   ),

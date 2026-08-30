@@ -17,6 +17,7 @@ export type BenchmarkStatusResponse = {
   evaluators?: Array<TestRunEvaluator> | null | undefined;
   model_results?: Array<ModelResult> | null | undefined;
   leaderboard_summary?: Array<{ [k: string]: any }> | null | undefined;
+  aborted?: boolean | undefined;
   error?: boolean | undefined;
   is_public?: boolean | undefined;
   share_token?: string | null | undefined;
@@ -25,6 +26,9 @@ export type BenchmarkStatusResponse = {
 export const BenchmarkStatusResponse$zodSchema: z.ZodType<
   BenchmarkStatusResponse
 > = z.object({
+  aborted: z.boolean().default(false).describe(
+    "Whether a user stopped this run before it finished. The results collected up to that point are kept, and test cases that never ran are counted neither as passed nor as failed",
+  ),
   error: z.boolean().default(false).describe("True if the run failed"),
   evaluators: z.array(TestRunEvaluator$zodSchema).nullable().optional()
     .describe(
