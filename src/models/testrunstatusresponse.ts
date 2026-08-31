@@ -12,6 +12,7 @@ import {
 
 export type TestRunStatusResponse = {
   task_id: string;
+  name: string;
   status: TaskStatus;
   test_uuids?: Array<string> | null | undefined;
   total_tests?: number | null | undefined;
@@ -51,6 +52,9 @@ export const TestRunStatusResponse$zodSchema: z.ZodType<TestRunStatusResponse> =
     ),
     latency_ms: z.record(z.string(), z.any()).nullable().optional().describe(
       "Aggregated response latency in milliseconds, as `{p50, p95, p99, count}`",
+    ),
+    name: z.string().describe(
+      "Name of the run. A run nobody has renamed shows its number instead, such as `Run 1` for a test run or `Benchmark 1` for a benchmark",
     ),
     passed: z.int().nullable().optional().describe(
       "Number of test cases that passed",

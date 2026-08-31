@@ -12,6 +12,7 @@ import {
 
 export type BenchmarkStatusResponse = {
   task_id: string;
+  name: string;
   status: TaskStatus;
   test_uuids?: Array<string> | null | undefined;
   evaluators?: Array<TestRunEvaluator> | null | undefined;
@@ -43,6 +44,9 @@ export const BenchmarkStatusResponse$zodSchema: z.ZodType<
     ),
   model_results: z.array(ModelResult$zodSchema).nullable().optional().describe(
     "Results for each model",
+  ),
+  name: z.string().describe(
+    "Name of the run. A run nobody has renamed shows its number instead, such as `Run 1` for a test run or `Benchmark 1` for a benchmark",
   ),
   share_token: z.string().nullable().optional().describe(
     "Token for building the public share URL",

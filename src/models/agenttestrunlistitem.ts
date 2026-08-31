@@ -97,7 +97,7 @@ export const AgentTestRunListItem$zodSchema: z.ZodType<AgentTestRunListItem> = z
         "Flat summary for each model in a benchmark run (fetch the benchmark detail for full results)",
       ),
     name: z.string().describe(
-      "Display name, such as `Run 1` for a unit test or `Benchmark 1` for a benchmark",
+      "Name of the run. A run nobody has renamed shows its number instead, such as `Run 1` for a test run or `Benchmark 1` for a benchmark",
     ),
     passed: z.int().nullable().optional().describe(
       "Number of test cases that passed",
