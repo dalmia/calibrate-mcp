@@ -81,6 +81,10 @@ export const toolNames: Array<{ name: string; description: string }>= [
     "description": "Poll the status and results of an agent test run by task_id. Returns\nqueued, in_progress, completed, failed, or aborted status. When\ncompleted, includes per-test-case pass/fail results and evaluator\njudgments. Use the task_id from run-agent-tests or\nrun-agent-tests-batch.\n"
   },
   {
+    "name": "get-agent-test-case-result",
+    "description": "Fetch the full result of one test case in a run, including the\nconversation, the agent's output and each evaluator's reasoning. Pass\nthe model query param for a benchmark, which runs every test once per\nmodel. Use with mode=summary on get-agent-test-run, which returns\nlight rows without this detail.\n"
+  },
+  {
     "name": "run-agent-benchmark",
     "description": "Start a multi-model benchmark over an agent's linked tests as a background job. Optionally restrict to a subset of linked tests. Returns a task_id to poll with get-agent-benchmark.\n"
   },

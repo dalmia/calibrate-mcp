@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
-id: dfc97e1d-0fc6-48fe-9765-f5bf56e6e284
+id: 150bba5b-cf1d-4af8-ba18-5b9515cf4b12
 management:
-  docChecksum: 09b0f9e84bd2cad4dad9275bf224679f
+  docChecksum: 17bcdec97245d43eed5c65bc2a5cdf5c
   docVersion: 0.1.0
   speakeasyVersion: 1.788.1
   generationVersion: 2.915.1
-  releaseVersion: 0.0.53
-  configChecksum: aedaf955013021247bd7c281cd947c2b
+  releaseVersion: 0.0.54
+  configChecksum: 745a0ca6eaa15950c066d39effeeb9e4
   repoURL: https://github.com/dalmia/calibrate-mcp
   installationURL: https://github.com/dalmia/calibrate-mcp
 persistentEdits:
-  generation_id: 0d0de06a-cf24-4e1c-969e-bf2ec1f68fa8
-  pristine_commit_hash: 0ffd098fb31f1da27e4d1c21eef190636842b960
-  pristine_tree_hash: 30a93097e1c074c97ab4f01ef038ff2c0b64317c
+  generation_id: e6bdc81c-789c-40e9-96e5-ee83db541da7
+  pristine_commit_hash: 94dea1ac8cba8422cb051845c7ac6aaf61ab023f
+  pristine_tree_hash: 66cfde2a1898e9c887fbc57f347fb2cfcbca9a29
 features:
   mcp-typescript:
     additionalDependencies: 0.1.0
@@ -49,12 +49,12 @@ trackedFiles:
     pristine_git_object: 4f9e60a9462fc4def738d60c3aaadf8232ef185f
   manifest.json:
     id: ca642a226869
-    last_write_checksum: sha1:1d6e9220dc0f6dac882b7eeafbba65e1df21d8a3
-    pristine_git_object: 944cf49ac226e003e8c83494f24c6d438806397f
+    last_write_checksum: sha1:4970fb3b51de411d9717a12bfd3bc654455b3a70
+    pristine_git_object: 004ac8979a2fea83e23eab0f16b0510c8ab29417
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:f9ab3cae844c6edaece514f249c41e5ee674e267
-    pristine_git_object: b691cf379af9034505daf7b52097706da90ca6ae
+    last_write_checksum: sha1:95878fc66bb8677dd3b9fcdb20e9a0571e7ec1ae
+    pristine_git_object: 546879f892f0a0c4a6f0bf466185b7659598a645
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:ba4cbfb98a88ee288942d4e0e7a792171569b0f8
@@ -69,12 +69,16 @@ trackedFiles:
     pristine_git_object: f617eb418afc9d029ae0585968d40943f0a3653d
   src/funcs/agentTestsGetBenchmark.ts:
     id: 6d457a49bdbf
-    last_write_checksum: sha1:9ea1e4b59c201e5460490c7ea0fa8081a23040fd
-    pristine_git_object: 3cd445c31d2a6bc674aea4fcd7257f8cde9e82e0
+    last_write_checksum: sha1:5d0eff762e7bec2a7393806ecc2a64ab1b0cd60a
+    pristine_git_object: 1f1b206da011b1eb881c7e5671e110410c4b1b68
   src/funcs/agentTestsGetRun.ts:
     id: 4fb5758bb1b8
-    last_write_checksum: sha1:a21abb2ceeeeb513e4f4a75dc0088234fbd1407d
-    pristine_git_object: 76dc31c5c6ac8f5d6351c4a0769c0f9e4c0a8390
+    last_write_checksum: sha1:30a32cf6a4acfee2ee3384e460914b15c5babecb
+    pristine_git_object: 9846b2c506bf3c20081c8d5a0732af9a4d8e5003
+  src/funcs/agentTestsGetRunCase.ts:
+    id: c2db08588943
+    last_write_checksum: sha1:f66f51073518805eec5edff2a2d14a4421b2725c
+    pristine_git_object: 4a933daafd21ffc22c5c814038806fdc3410ef60
   src/funcs/agentTestsLink.ts:
     id: a378171561af
     last_write_checksum: sha1:77ad43e8304e7387255b9d026f3da31a80732c9d
@@ -233,16 +237,16 @@ trackedFiles:
     pristine_git_object: 9c36bf01332084f735909a71036c3544cc4c7e3a
   src/landing-page.ts:
     id: ef64a6ee46d7
-    last_write_checksum: sha1:7100615240663f97f84df2c7c79d0c120e6fd133
-    pristine_git_object: d10d24250b3185926bef978f2859834fdf891cb4
+    last_write_checksum: sha1:801c4db4194c62b5bbe1671faf8dc0486c984d93
+    pristine_git_object: 22efe5a317b816311bbaf0ea74c5379d9936f2d4
   src/lib/base64.ts:
     id: "598522066688"
     last_write_checksum: sha1:e9f04a037018040361043104960982f7c22db52d
     pristine_git_object: d4bd8b341290e7a828a171d840bd0b0fff7c7cd7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:afd0ac696d67973f640948ce92e52d42c077d1f3
-    pristine_git_object: a2a7be796b91d4d40d6cad1f179656fc65962f2e
+    last_write_checksum: sha1:e722917d48e205c4f51c0b78e3a34a0f062a62d1
+    pristine_git_object: 91b3d2bcd0d9c773bc76d1d67bef5282678b7fd9
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:3ff4ad6809b749125820fd39c01427b84d3fe0d6
@@ -329,8 +333,8 @@ trackedFiles:
     pristine_git_object: b42d7cda985b8199f2245063f22bb68efb5ecdd0
   src/mcp-server/mcp-server.ts:
     id: aabbc4ab07c1
-    last_write_checksum: sha1:ed8960b1dc5c019a640609f71e87860203e01d5e
-    pristine_git_object: 2dd673467597d6322a0c4942171387dfbf430b95
+    last_write_checksum: sha1:6ee0b0a949c2b947a4bf5652357c4a5cd17f0262
+    pristine_git_object: 0c957acefab61def5c511eac1213c7f2bac02ec7
   src/mcp-server/prompts.ts:
     id: 26f3d73cbf31
     last_write_checksum: sha1:dde03ff7d9c2659a0c3a4e2aa21d615a0b4f2b0b
@@ -345,8 +349,8 @@ trackedFiles:
     pristine_git_object: cb8330e4ae705d283de6ab337eefd3b4b8191fca
   src/mcp-server/server.ts:
     id: 2784dd48e82a
-    last_write_checksum: sha1:c4bfaec4e5d9ac6b98da6f7cda013b6ce81aa89e
-    pristine_git_object: d9afa5b17b01e7d930afa852672c1d04e19a3e93
+    last_write_checksum: sha1:0035665c7e9b42b9c15eb06c1cfa0f2e9f4b443a
+    pristine_git_object: c871942791c01e471c0ee7127eae8d5751093a8a
   src/mcp-server/shared.ts:
     id: 074e80d4be1e
     last_write_checksum: sha1:19c9034032819a14f15c430de4350c8aba99d725
@@ -371,6 +375,10 @@ trackedFiles:
     id: e3e3e7e9901d
     last_write_checksum: sha1:23d2251d7af5a2ccf396c3991c7a86d137515715
     pristine_git_object: a5be2c60959e334bbb88eacbcbbe4c8ea5069015
+  src/mcp-server/tools/agentTestsGetRunCase.ts:
+    id: 2c61a7b98b11
+    last_write_checksum: sha1:c31428274a968423e36e99c10b27b9940d08fa85
+    pristine_git_object: 14ff45ab60b7e041384a5328fd80d4d786539573
   src/mcp-server/tools/agentTestsLink.ts:
     id: d3d795749170
     last_write_checksum: sha1:4480d13002691617b38cda8dffd252b8c61bdcf6
@@ -791,14 +799,18 @@ trackedFiles:
     id: 76c387f09c05
     last_write_checksum: sha1:2ef41b3a18486405a76f056aab30d440ad5e42e6
     pristine_git_object: 229c249b863c9e1b907d28b69a0c7d3b51454389
+  src/models/getagenttestcaseresultagenttestsruntaskidresultstestuuidgetop.ts:
+    id: d862b9629f8f
+    last_write_checksum: sha1:673db55021eb6110264fc73b834fd064f11de57f
+    pristine_git_object: 89dfc8f8068d62d3a9b053be015d2d483fff36ee
   src/models/getagenttestrunsagenttestsagentagentuuidrunsgetop.ts:
     id: 209fe985c0cf
     last_write_checksum: sha1:8e5bd876048e6a08814e60a6dc10b7f17112c147
     pristine_git_object: b20a01bb0561a8b15e463ac9d2eb31e4b2ab579e
   src/models/getagenttestrunstatusagenttestsruntaskidgetop.ts:
     id: dc4eb3cef3f7
-    last_write_checksum: sha1:b39be47a1ab8a2dd43a7c8cd34740e9d29397d7a
-    pristine_git_object: 955c814ca9a0cebd90174d6da517d6e0804357cf
+    last_write_checksum: sha1:27d75ce7321f1a3da40f891e42bcde02a194a594
+    pristine_git_object: cf6f1bcf825aa7a3ca9de49957f27c904c3490b8
   src/models/getagenttestsendpointagenttestsagentagentuuidtestsgetop.ts:
     id: d4abb620bf44
     last_write_checksum: sha1:d03138f54c550a05d079541214b18ea4b789f872
@@ -809,8 +821,8 @@ trackedFiles:
     pristine_git_object: 5230f4e85ce69d74eca3036277546395f7a27fbc
   src/models/getbenchmarkstatusagenttestsbenchmarktaskidgetop.ts:
     id: 1afafa29f61d
-    last_write_checksum: sha1:e1fd35bc6edc6669114560d4c4bd17c8ef2cfcff
-    pristine_git_object: 0268c44b8d5021f489c08109acda13790725a8da
+    last_write_checksum: sha1:c682f00db361887e47cf30b54dd4524cf415683f
+    pristine_git_object: 272cb3896ba8b27f02a3c373cca049d35a39f448
   src/models/getevaluatorendpointevaluatorsevaluatoruuidgetop.ts:
     id: b5fd8dfb7a65
     last_write_checksum: sha1:08f8e224fc568c80c6d3b075e29646c902c0586f
@@ -989,8 +1001,8 @@ trackedFiles:
     pristine_git_object: dfa0b6b1d680f1c11167c581f8aaffa3af48ca79
   src/models/testcaseresult.ts:
     id: a1e300dd1880
-    last_write_checksum: sha1:4c8a881f95bda037e56088d8cb53e4162e80ae5b
-    pristine_git_object: fa433a8bae956817997f0654f2768754c4228618
+    last_write_checksum: sha1:3e6534bb1d4c28a1a9a289cdc91d4b75822dfbf1
+    pristine_git_object: 873c8e72d48b57395f89425043398be24e4fa937
   src/models/testcreate.ts:
     id: 201c2638a9bf
     last_write_checksum: sha1:c715eb1c233a5445fb03b94f417b7629003fe545
@@ -1025,8 +1037,8 @@ trackedFiles:
     pristine_git_object: c25e17ceb20958f7c776ad90e43799445d9f8e42
   src/models/testrunstatusresponse.ts:
     id: 7b23be72b795
-    last_write_checksum: sha1:4f49e4ffbd3267b8f75612e6ac9cd863a17f4ab7
-    pristine_git_object: d90b2a21d990c036666af1441d583eeccdbda8ab
+    last_write_checksum: sha1:4467e75467e048db77c9a2618cc5099d01b07731
+    pristine_git_object: 22cf68986be06f3f217bef0712027a460de0162d
   src/models/testupdate.ts:
     id: 0ff547b2d634
     last_write_checksum: sha1:3fa178050e8c69e71cf9b0a5ea88fb172402334b
@@ -1093,8 +1105,8 @@ trackedFiles:
     pristine_git_object: 69399d9a4791dc943c057601abd7a8f3c151c53b
   src/tool-names.ts:
     id: a9977280f9eb
-    last_write_checksum: sha1:0d976b570bd6a4904e734a1aded79ae90d1a2b8c
-    pristine_git_object: e55ccd500543cf13b65d20ac30351af70aa4c235
+    last_write_checksum: sha1:954abb2cf592c1184768e3f97358bea6c149f674
+    pristine_git_object: 2434dabc793869dda37a03692609e057c61d15a9
   src/types/async.ts:
     id: fac8da972f86
     last_write_checksum: sha1:675d04bb4b4081dc3482f18de98674f9b446e7b4
@@ -1351,10 +1363,24 @@ examples:
           task_id: "a3b2c1d0-e5f4-3210-abcd-ef1234567890"
         query:
           only_failed: false
+          mode: "full"
           compact: false
       responses:
         "200":
-          application/json: {"task_id": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "in_progress", "evaluators": [{"output_config": {"scale": [{"color": "#e5484d", "name": "Wrong", "value": false}, {"color": "#30a46c", "name": "Correct", "value": true}]}}], "results": [{"output": {"tool_calls": [{"tool": "<value>", "arguments": {"city": "Paris"}}]}, "judge_results": [{"variable_values": {"criteria": "Is the reply correct and helpful?"}}], "unanswered": false, "not_run": false}], "stopped_early": false, "aborted": false, "error": false, "is_public": false}
+          application/json: {"task_id": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "in_progress", "evaluators": [{"output_config": {"scale": [{"color": "#e5484d", "name": "Wrong", "value": false}, {"color": "#30a46c", "name": "Correct", "value": true}]}}], "results": [{"test_uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "output": {"tool_calls": [{"tool": "<value>", "arguments": {"city": "Paris"}}]}, "judge_results": [{"variable_values": {"criteria": "Is the reply correct and helpful?"}}], "unanswered": false, "not_run": false}], "stopped_early": false, "aborted": false, "error": false, "is_public": false}
+        "422":
+          application/json: {}
+  get_agent_test_case_result_agent_tests_run__task_id__results__test_uuid__get:
+    speakeasy-default-get-agent-test-case-result-agent-tests-run-task-id-results-test-uuid-get:
+      parameters:
+        path:
+          task_id: "a3b2c1d0-e5f4-3210-abcd-ef1234567890"
+          test_uuid: "b1c2d3e4-f5a6-7890-bcde-f12345678901"
+        query:
+          model: "openai/gpt-4.1"
+      responses:
+        "200":
+          application/json: {"test_uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "output": {"tool_calls": [{"tool": "<value>", "arguments": {"city": "Paris"}}]}, "judge_results": [{"variable_values": {"criteria": "Is the reply correct and helpful?"}}], "unanswered": false, "not_run": false}
         "422":
           application/json: {}
   run_agent_benchmark_agent_tests_agent__agent_uuid__benchmark_post:
@@ -1376,10 +1402,11 @@ examples:
           task_id: "a3b2c1d0-e5f4-3210-abcd-ef1234567890"
         query:
           only_failed: false
+          mode: "full"
           compact: false
       responses:
         "200":
-          application/json: {"task_id": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "cancelled", "evaluators": [{"output_config": {"scale": [{"color": "#e5484d", "name": "Wrong", "value": false}, {"color": "#30a46c", "name": "Correct", "value": true}]}}], "model_results": [{"model": "openai/gpt-4.1", "message": "<value>", "test_results": [{"output": {"tool_calls": [{"tool": "<value>", "arguments": {"city": "Paris"}}]}, "judge_results": [{"variable_values": {"criteria": "Is the reply correct and helpful?"}}], "unanswered": false, "not_run": false}]}], "leaderboard_summary": [{"cost": 0.0021, "failed": 2, "helpfulness": 0.92, "latency_p50": 480, "model": "openai/gpt-4.1", "passed": 8, "safety": 1}, {"cost": 0.0034, "failed": 1, "helpfulness": 0.95, "latency_p50": 520, "model": "anthropic/claude-sonnet-4", "passed": 9, "safety": 1}], "aborted": false, "error": false, "is_public": false}
+          application/json: {"task_id": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "cancelled", "evaluators": [{"output_config": {"scale": [{"color": "#e5484d", "name": "Wrong", "value": false}, {"color": "#30a46c", "name": "Correct", "value": true}]}}], "model_results": [{"model": "openai/gpt-4.1", "message": "<value>", "test_results": [{"test_uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "output": {"tool_calls": [{"tool": "<value>", "arguments": {"city": "Paris"}}]}, "judge_results": [{"variable_values": {"criteria": "Is the reply correct and helpful?"}}], "unanswered": false, "not_run": false}]}], "leaderboard_summary": [{"cost": 0.0021, "failed": 2, "helpfulness": 0.92, "latency_p50": 480, "model": "openai/gpt-4.1", "passed": 8, "safety": 1}, {"cost": 0.0034, "failed": 1, "helpfulness": 0.95, "latency_p50": 520, "model": "anthropic/claude-sonnet-4", "passed": 9, "safety": 1}], "aborted": false, "error": false, "is_public": false}
         "422":
           application/json: {}
   create_evaluator_endpoint_evaluators_post:

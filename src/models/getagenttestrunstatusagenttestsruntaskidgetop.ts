@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
@@ -12,9 +13,33 @@ import {
   TestRunStatusResponse$zodSchema,
 } from "./testrunstatusresponse.js";
 
+/**
+ * How much of each test case to return. `full` returns every field of every case. `summary` returns one light row per case, with its ID, name, verdict and short reason, leaving out the conversation, the agent's output and the evaluator verdicts. Read those one case at a time from `GET /agent-tests/run/{task_id}/results/{test_uuid}`
+ */
+export const GetAgentTestRunStatusAgentTestsRunTaskIdGetMode = {
+  Full: "full",
+  Summary: "summary",
+} as const;
+/**
+ * How much of each test case to return. `full` returns every field of every case. `summary` returns one light row per case, with its ID, name, verdict and short reason, leaving out the conversation, the agent's output and the evaluator verdicts. Read those one case at a time from `GET /agent-tests/run/{task_id}/results/{test_uuid}`
+ */
+export type GetAgentTestRunStatusAgentTestsRunTaskIdGetMode = ClosedEnum<
+  typeof GetAgentTestRunStatusAgentTestsRunTaskIdGetMode
+>;
+
+export const GetAgentTestRunStatusAgentTestsRunTaskIdGetMode$zodSchema = z.enum(
+  [
+    "full",
+    "summary",
+  ],
+).describe(
+  "How much of each test case to return. `full` returns every field of every case. `summary` returns one light row per case, with its ID, name, verdict and short reason, leaving out the conversation, the agent's output and the evaluator verdicts. Read those one case at a time from `GET /agent-tests/run/{task_id}/results/{test_uuid}`",
+);
+
 export type GetAgentTestRunStatusAgentTestsRunTaskIdGetRequest = {
   task_id: string;
   only_failed?: boolean | undefined;
+  mode?: GetAgentTestRunStatusAgentTestsRunTaskIdGetMode | undefined;
   compact?: boolean | undefined;
   xAPIKey?: string | null | undefined;
 };
@@ -23,6 +48,11 @@ export const GetAgentTestRunStatusAgentTestsRunTaskIdGetRequest$zodSchema:
   z.ZodType<GetAgentTestRunStatusAgentTestsRunTaskIdGetRequest> = z.object({
     compact: z.boolean().default(false).describe(
       "Return a compact response that omits heavy detail fields (`results.output`, `results.test_case`, `results.judge_results`, `results.reasoning`, `evaluators.output_config`), keeping only the lightweight decision fields. Omit for full detail",
+    ),
+    mode: GetAgentTestRunStatusAgentTestsRunTaskIdGetMode$zodSchema.default(
+      "full",
+    ).describe(
+      "How much of each test case to return. `full` returns every field of every case. `summary` returns one light row per case, with its ID, name, verdict and short reason, leaving out the conversation, the agent's output and the evaluator verdicts. Read those one case at a time from `GET /agent-tests/run/{task_id}/results/{test_uuid}`",
     ),
     only_failed: z.boolean().default(false).describe(
       "Return only failing test cases. Omit to return every case",

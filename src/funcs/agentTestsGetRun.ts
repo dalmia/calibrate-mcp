@@ -98,6 +98,7 @@ async function $do(
   );
   const query$ = encodeFormQuery({
     "compact": payload$.compact,
+    "mode": payload$.mode,
     "only_failed": payload$.only_failed,
   });
 

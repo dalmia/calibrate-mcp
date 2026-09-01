@@ -22,6 +22,7 @@ export type TestRunStatusResponse = {
   cost?: { [k: string]: any } | null | undefined;
   total_tokens?: { [k: string]: any } | null | undefined;
   evaluators?: Array<TestRunEvaluator> | null | undefined;
+  evaluator_summary?: Array<{ [k: string]: any }> | null | undefined;
   results?: Array<TestCaseResult> | null | undefined;
   unanswered_tests?: number | null | undefined;
   stopped_early?: boolean | undefined;
@@ -40,6 +41,10 @@ export const TestRunStatusResponse$zodSchema: z.ZodType<TestRunStatusResponse> =
       "Aggregated cost as `{mean, min, max, count}` (USD)",
     ),
     error: z.boolean().default(false).describe("True if the run failed"),
+    evaluator_summary: z.array(z.record(z.string(), z.any())).nullable()
+      .optional().describe(
+        "Totals for each evaluator over the whole run, matching the shape a benchmark reports for each model. Only evaluators that returned a verdict appear",
+      ),
     evaluators: z.array(TestRunEvaluator$zodSchema).nullable().optional()
       .describe(
         "The evaluators used in this run. Each verdict in `judge_results` links to one of these by `evaluator_uuid`",

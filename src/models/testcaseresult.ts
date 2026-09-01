@@ -3,12 +3,30 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 import { JudgeResult, JudgeResult$zodSchema } from "./judgeresult.js";
 import { TestOutput, TestOutput$zodSchema } from "./testoutput.js";
+
+export const TestType = {
+  Response: "response",
+  ToolCall: "tool_call",
+  Conversation: "conversation",
+  General: "general",
+} as const;
+export type TestType = ClosedEnum<typeof TestType>;
+
+export const TestType$zodSchema = z.enum([
+  "response",
+  "tool_call",
+  "conversation",
+  "general",
+]);
 
 export type TestCaseResult = {
   test_case_id?: string | null | undefined;
   name?: string | null | undefined;
+  test_uuid?: string | null | undefined;
+  test_type?: TestType | null | undefined;
   passed?: boolean | null | undefined;
   reasoning?: string | null | undefined;
   output?: TestOutput | null | undefined;
@@ -48,6 +66,12 @@ export const TestCaseResult$zodSchema: z.ZodType<TestCaseResult> = z.object({
   ),
   test_case_id: z.string().nullable().optional().describe(
     "ID of the test case within the run",
+  ),
+  test_type: TestType$zodSchema.nullable().optional().describe(
+    "What the test asks of the agent, which decides how a reader draws the case",
+  ),
+  test_uuid: z.string().nullable().optional().describe(
+    "ID of the test this case ran, which is what you pass to read the case on its own",
   ),
   unanswered: z.boolean().default(false).describe(
     "Whether this case produced no answer because the agent or the judge could not be reached, in which case `reasoning` carries the error and `passed` is not a verdict on the agent",

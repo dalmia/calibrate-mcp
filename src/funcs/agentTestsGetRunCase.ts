@@ -19,21 +19,21 @@ import {
 } from "../models/errors/httpclienterrors.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import {
-  GetBenchmarkStatusAgentTestsBenchmarkTaskIdGetRequest,
-  GetBenchmarkStatusAgentTestsBenchmarkTaskIdGetRequest$zodSchema,
-} from "../models/getbenchmarkstatusagenttestsbenchmarktaskidgetop.js";
+  GetAgentTestCaseResultAgentTestsRunTaskIdResultsTestUuidGetRequest,
+  GetAgentTestCaseResultAgentTestsRunTaskIdResultsTestUuidGetRequest$zodSchema,
+} from "../models/getagenttestcaseresultagenttestsruntaskidresultstestuuidgetop.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get benchmark status
+ * Get test case result
  *
  * @remarks
- * Get the results of a benchmark run
+ * Get the full result of one test case in a run
  */
-export function agentTestsGetBenchmark(
+export function agentTestsGetRunCase(
   client$: CalibrateMcpCore,
-  request: GetBenchmarkStatusAgentTestsBenchmarkTaskIdGetRequest,
+  request: GetAgentTestCaseResultAgentTestsRunTaskIdResultsTestUuidGetRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -56,7 +56,7 @@ export function agentTestsGetBenchmark(
 
 async function $do(
   client$: CalibrateMcpCore,
-  request: GetBenchmarkStatusAgentTestsBenchmarkTaskIdGetRequest,
+  request: GetAgentTestCaseResultAgentTestsRunTaskIdResultsTestUuidGetRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -76,9 +76,8 @@ async function $do(
   const parsed$ = safeParse(
     request,
     (value$) =>
-      GetBenchmarkStatusAgentTestsBenchmarkTaskIdGetRequest$zodSchema.parse(
-        value$,
-      ),
+      GetAgentTestCaseResultAgentTestsRunTaskIdResultsTestUuidGetRequest$zodSchema
+        .parse(value$),
     "Input validation failed",
   );
   if (!parsed$.ok) {
@@ -92,14 +91,16 @@ async function $do(
       explode: false,
       charEncoding: "percent",
     }),
+    test_uuid: encodeSimple("test_uuid", payload$.test_uuid, {
+      explode: false,
+      charEncoding: "percent",
+    }),
   };
-  const path$ = pathToFunc("/agent-tests/benchmark/{task_id}")(
+  const path$ = pathToFunc("/agent-tests/run/{task_id}/results/{test_uuid}")(
     pathParams$,
   );
   const query$ = encodeFormQuery({
-    "compact": payload$.compact,
-    "mode": payload$.mode,
-    "only_failed": payload$.only_failed,
+    "model": payload$.model,
   });
 
   const headers$ = new Headers(compactMap({
@@ -115,7 +116,8 @@ async function $do(
   const context = {
     options: client$._options,
     baseURL: options?.serverURL ?? client$._baseURL ?? "",
-    operationID: "get_benchmark_status_agent_tests_benchmark__task_id__get",
+    operationID:
+      "get_agent_test_case_result_agent_tests_run__task_id__results__test_uuid__get",
     oAuth2Scopes: null,
     resolvedSecurity: requestSecurity,
     securitySource: client$._options.security,
