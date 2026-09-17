@@ -15,6 +15,7 @@ export type BenchmarkStatusResponse = {
   name: string;
   status: TaskStatus;
   test_uuids?: Array<string> | null | undefined;
+  parallel_models?: boolean | null | undefined;
   evaluators?: Array<TestRunEvaluator> | null | undefined;
   model_results?: Array<ModelResult> | null | undefined;
   leaderboard_summary?: Array<{ [k: string]: any }> | null | undefined;
@@ -50,6 +51,9 @@ export const BenchmarkStatusResponse$zodSchema: z.ZodType<
   ),
   name: z.string().describe(
     "Name of the run. A run nobody has renamed shows its number instead, such as `Run 1` for a test run or `Benchmark 1` for a benchmark",
+  ),
+  parallel_models: z.boolean().nullable().optional().describe(
+    "How the models were run. `true` means several ran at a time, `false` means each one ran only after the one before it had finished",
   ),
   share_token: z.string().nullable().optional().describe(
     "Token for building the public share URL",
