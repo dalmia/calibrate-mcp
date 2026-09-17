@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
-id: 51ec5f32-c92b-4315-8cbf-8fdf0d819e99
+id: 6d61feb3-6c59-4fcc-91fa-6ce2dd27dc11
 management:
-  docChecksum: 651a84319ebd981cdd9f46bb5f36b949
+  docChecksum: 61a095df8ddea0171eeaf2592c3adf5c
   docVersion: 0.1.0
   speakeasyVersion: 1.788.1
   generationVersion: 2.915.1
-  releaseVersion: 0.0.58
-  configChecksum: 84edb746813ac1e554f27fec6040da3b
+  releaseVersion: 0.0.59
+  configChecksum: 15fbe7bfbfa3e9c9587d3d7ed774315d
   repoURL: https://github.com/dalmia/calibrate-mcp
   installationURL: https://github.com/dalmia/calibrate-mcp
 persistentEdits:
-  generation_id: d85cb84c-e3c5-4d06-a187-5698a9d0ae69
-  pristine_commit_hash: 767b5373c89495a2ddf4d11ed29ff13a4d5b039d
-  pristine_tree_hash: d03b08a1d43eea0bf3d00489330339039f34dee2
+  generation_id: ff3acc99-ad03-41ba-ae15-9cf3b0b5b490
+  pristine_commit_hash: 3f345f55cd3d726dab4425beb3845c1b674bf7e8
+  pristine_tree_hash: d360d9fc7d5a00091465ed85e62c18cffadf8ebc
 features:
   mcp-typescript:
     additionalDependencies: 0.1.0
@@ -53,8 +53,8 @@ trackedFiles:
     pristine_git_object: 004ac8979a2fea83e23eab0f16b0510c8ab29417
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:d6225bcb3e4198171e4e02ce18dbc34dd930024c
-    pristine_git_object: 5785f3d81705286f60d7bd800602c4ab348b9dea
+    last_write_checksum: sha1:9cec61f4e6bbc3502fc83e08ee6a1c1da7d4ddb1
+    pristine_git_object: e38d0fb48a7ffd6a42a097d97b9a5226bb0cd6c6
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:ba4cbfb98a88ee288942d4e0e7a792171569b0f8
@@ -237,16 +237,16 @@ trackedFiles:
     pristine_git_object: 9c36bf01332084f735909a71036c3544cc4c7e3a
   src/landing-page.ts:
     id: ef64a6ee46d7
-    last_write_checksum: sha1:39bcf358720724247c78e18291a47fe4dcf635b1
-    pristine_git_object: 82f3f2638919a1ce1b9c6067bffa01ae88e20b66
+    last_write_checksum: sha1:6b84133c11a09eba5eefb574947da724ca806c2d
+    pristine_git_object: bbac206325770f30e09265d6aee1fce597cc87a9
   src/lib/base64.ts:
     id: "598522066688"
     last_write_checksum: sha1:e9f04a037018040361043104960982f7c22db52d
     pristine_git_object: d4bd8b341290e7a828a171d840bd0b0fff7c7cd7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:2be15e04c8d070de76cb739ac16b9feba6c1de7c
-    pristine_git_object: fe8814d8a89b40faee9655d035d4c7bbe6786336
+    last_write_checksum: sha1:8980345bc9f408924e9ac30ff5f1908ae2c6c86b
+    pristine_git_object: e56febf985c8221cacda143337bb17a8bf02d6b3
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:3ff4ad6809b749125820fd39c01427b84d3fe0d6
@@ -333,8 +333,8 @@ trackedFiles:
     pristine_git_object: b42d7cda985b8199f2245063f22bb68efb5ecdd0
   src/mcp-server/mcp-server.ts:
     id: aabbc4ab07c1
-    last_write_checksum: sha1:4fe716902f1028fae57600b64266260a0aa2be9b
-    pristine_git_object: b21203d9f62fe88866bfb91d887bc126c6d54522
+    last_write_checksum: sha1:701b2a9e5e9f8ae9407622f53fbcb327289466b1
+    pristine_git_object: 3cd727f7351a206a9b7eec7d9580765e4e8fa71c
   src/mcp-server/prompts.ts:
     id: 26f3d73cbf31
     last_write_checksum: sha1:dde03ff7d9c2659a0c3a4e2aa21d615a0b4f2b0b
@@ -349,8 +349,8 @@ trackedFiles:
     pristine_git_object: cb8330e4ae705d283de6ab337eefd3b4b8191fca
   src/mcp-server/server.ts:
     id: 2784dd48e82a
-    last_write_checksum: sha1:3a99cd9e35cb3f3088e4658fe53a2a3b6f5b5c11
-    pristine_git_object: a4078f06830eb75e967d656d336ae1bdd1a6485a
+    last_write_checksum: sha1:d25df1e31ef4aec87c0e9cc919bc02a44327510d
+    pristine_git_object: 52f199d45ec6f7555ab8cb3035c9af163d77a0cb
   src/mcp-server/shared.ts:
     id: 074e80d4be1e
     last_write_checksum: sha1:19c9034032819a14f15c430de4350c8aba99d725
@@ -553,8 +553,8 @@ trackedFiles:
     pristine_git_object: 99cb786aa7b389ffccfb589605ca9f97b54bb208
   src/models/agenttestrunlistitem.ts:
     id: 018b52ac8a78
-    last_write_checksum: sha1:fd83e96a9da44709a9e9801a5c00da5fa794555c
-    pristine_git_object: a71249728cd63bf8ffa7bb198ec5d2b4c2ca58fd
+    last_write_checksum: sha1:9308ccc61fa84314cc18e9178a36743aeb575d61
+    pristine_git_object: 38e6f142cd98b8f49bf32cafd4e38518758a2848
   src/models/agenttestsbulkunlinkresponse.ts:
     id: d974a2d59b71
     last_write_checksum: sha1:1cc843c17438fe4ce35f157e0b3d99fc82e97163
@@ -629,8 +629,8 @@ trackedFiles:
     pristine_git_object: 45f4155c238a01bb4e38312b23483c5123080fe3
   src/models/benchmarkstatusresponse.ts:
     id: b5fec18b588b
-    last_write_checksum: sha1:b4f9b617d420f22816c07c57f2d03c9531626bfc
-    pristine_git_object: 41ae251f5f6f49b665052f99c81a368850fb3f65
+    last_write_checksum: sha1:b4f95338104f4cb7a01c40a3487d0580aac12942
+    pristine_git_object: 5fc209872142b01342d7d2bf1ae515e7bf81d338
   src/models/bulkcreateitemsannotationtaskstaskuuiditemspostop.ts:
     id: 9324781b6ffc
     last_write_checksum: sha1:6a2cfcb1b9a69e2570ac78f9ea67982a08d408ec
@@ -889,8 +889,8 @@ trackedFiles:
     pristine_git_object: f6f323216147a8fc91f38ca872f9d8bd1e4d4403
   src/models/modelresult.ts:
     id: b19c31f33198
-    last_write_checksum: sha1:d1e80482877466b7a6b9d13b2a4d0f667eba90d4
-    pristine_git_object: e4ebce66788205fd33018ba4ab10977ff2250f53
+    last_write_checksum: sha1:2289acd5a31f3c60dc25ac71fb3e2c16ce3a70cf
+    pristine_git_object: f263b1ca0723cdd8e927bc7268e55e2f0fe7a22d
   src/models/modelrunsummary.ts:
     id: 2e83a1517de0
     last_write_checksum: sha1:731bce95d10eef07d0ccfe9a1dbd12d4f38e23f2
@@ -1037,8 +1037,8 @@ trackedFiles:
     pristine_git_object: c25e17ceb20958f7c776ad90e43799445d9f8e42
   src/models/testrunstatusresponse.ts:
     id: 7b23be72b795
-    last_write_checksum: sha1:4467e75467e048db77c9a2618cc5099d01b07731
-    pristine_git_object: 22cf68986be06f3f217bef0712027a460de0162d
+    last_write_checksum: sha1:906fb824cf20f16b68fdf3a00d8b90467575d1ea
+    pristine_git_object: 13cfa2880dd60251fc12e89fa40841a7ccff4ee0
   src/models/testupdate.ts:
     id: 0ff547b2d634
     last_write_checksum: sha1:3fa178050e8c69e71cf9b0a5ea88fb172402334b
@@ -1323,7 +1323,7 @@ examples:
           offset: 0
       responses:
         "200":
-          application/json: {"items": [{"uuid": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "done", "type": "llm-unit-test", "created_at": "1718134075390", "updated_at": "1735607430250", "model_results": [{"model": "openai/gpt-4.1", "message": ""}], "aborted": false, "error": false, "is_public": false}], "total": 269462, "offset": 0}
+          application/json: {"items": [{"uuid": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "done", "type": "llm-unit-test", "created_at": "1718134075390", "updated_at": "1735607430250", "model_results": [{"model": "openai/gpt-4.1", "message": ""}], "stopped_early": false, "aborted": false, "error": false, "is_public": false}], "total": 269462, "offset": 0}
         "422":
           application/json: {}
   bulk_delete_agent_test_links_agent_tests_bulk_unlink_post:
@@ -1367,7 +1367,7 @@ examples:
           compact: false
       responses:
         "200":
-          application/json: {"task_id": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "in_progress", "evaluators": [{"output_config": {"scale": [{"color": "#e5484d", "name": "Wrong", "value": false}, {"color": "#30a46c", "name": "Correct", "value": true}]}}], "results": [{"test_uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "output": {"tool_calls": [{"tool": "<value>", "arguments": {"city": "Paris"}}]}, "judge_results": [{"variable_values": {"criteria": "Is the reply correct and helpful?"}}], "unanswered": false, "not_run": false}], "stopped_early": false, "aborted": false, "error": false, "is_public": false}
+          application/json: {"task_id": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "in_progress", "evaluators": [{"output_config": {"scale": [{"color": "#e5484d", "name": "Wrong", "value": false}, {"color": "#30a46c", "name": "Correct", "value": true}]}}], "results": [{"test_uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "output": {"tool_calls": [{"tool": "<value>", "arguments": {"city": "Paris"}}]}, "judge_results": [{"variable_values": {"criteria": "Is the reply correct and helpful?"}}], "unanswered": false, "not_run": false}], "stopped_early": false, "aborted": false, "is_public": false}
         "422":
           application/json: {}
   get_agent_test_case_result_agent_tests_run__task_id__results__test_uuid__get:
@@ -1406,7 +1406,7 @@ examples:
           compact: false
       responses:
         "200":
-          application/json: {"task_id": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "cancelled", "evaluators": [{"output_config": {"scale": [{"color": "#e5484d", "name": "Wrong", "value": false}, {"color": "#30a46c", "name": "Correct", "value": true}]}}], "model_results": [{"model": "openai/gpt-4.1", "message": "<value>", "test_results": [{"test_uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "output": {"tool_calls": [{"tool": "<value>", "arguments": {"city": "Paris"}}]}, "judge_results": [{"variable_values": {"criteria": "Is the reply correct and helpful?"}}], "unanswered": false, "not_run": false}]}], "leaderboard_summary": [{"cost": 0.0021, "failed": 2, "helpfulness": 0.92, "latency_p50": 480, "model": "openai/gpt-4.1", "passed": 8, "safety": 1}, {"cost": 0.0034, "failed": 1, "helpfulness": 0.95, "latency_p50": 520, "model": "anthropic/claude-sonnet-4", "passed": 9, "safety": 1}], "aborted": false, "error": false, "is_public": false}
+          application/json: {"task_id": "a3b2c1d0-e5f4-3210-abcd-ef1234567890", "name": "<value>", "status": "cancelled", "evaluators": [{"output_config": {"scale": [{"color": "#e5484d", "name": "Wrong", "value": false}, {"color": "#30a46c", "name": "Correct", "value": true}]}}], "model_results": [{"model": "openai/gpt-4.1", "message": "<value>", "test_results": [{"test_uuid": "b1c2d3e4-f5a6-7890-bcde-f12345678901", "output": {"tool_calls": [{"tool": "<value>", "arguments": {"city": "Paris"}}]}, "judge_results": [{"variable_values": {"criteria": "Is the reply correct and helpful?"}}], "unanswered": false, "not_run": false}], "stopped_early": false}], "leaderboard_summary": [{"cost": 0.0021, "failed": 2, "helpfulness": 0.92, "latency_p50": 480, "model": "openai/gpt-4.1", "passed": 8, "safety": 1}, {"cost": 0.0034, "failed": 1, "helpfulness": 0.95, "latency_p50": 520, "model": "anthropic/claude-sonnet-4", "passed": 9, "safety": 1}], "stopped_early": false, "aborted": false, "is_public": false}
         "422":
           application/json: {}
   create_evaluator_endpoint_evaluators_post:

@@ -17,6 +17,8 @@ export type ModelResult = {
   latency_ms?: { [k: string]: any } | null | undefined;
   cost?: { [k: string]: any } | null | undefined;
   total_tokens?: { [k: string]: any } | null | undefined;
+  unanswered_tests?: number | null | undefined;
+  stopped_early?: boolean | undefined;
 };
 
 export const ModelResult$zodSchema: z.ZodType<ModelResult> = z.object({
@@ -36,6 +38,9 @@ export const ModelResult$zodSchema: z.ZodType<ModelResult> = z.object({
   passed: z.int().nullable().optional().describe(
     "Number of test cases that passed",
   ),
+  stopped_early: z.boolean().default(false).describe(
+    "Whether this model's run stopped before starting every test case, after too many failed in a row",
+  ),
   success: z.boolean().nullable().optional().describe(
     "Whether this model's run succeeded",
   ),
@@ -46,5 +51,8 @@ export const ModelResult$zodSchema: z.ZodType<ModelResult> = z.object({
   ),
   total_tokens: z.record(z.string(), z.any()).nullable().optional().describe(
     "Aggregated token usage as `{mean, min, max, count}`",
+  ),
+  unanswered_tests: z.int().nullable().optional().describe(
+    "Number of test cases that produced no answer because the agent or the judge could not be reached, which makes the pass rate an unfair measure of the agent",
   ),
 });

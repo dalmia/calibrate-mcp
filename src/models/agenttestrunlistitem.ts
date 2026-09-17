@@ -64,6 +64,7 @@ export type AgentTestRunListItem = {
   total_tokens?: { [k: string]: any } | null | undefined;
   model_results?: Array<ModelRunSummary> | null | undefined;
   unanswered_tests?: number | null | undefined;
+  stopped_early?: boolean | undefined;
   aborted?: boolean | undefined;
   error?: boolean | undefined;
   is_public?: boolean | undefined;
@@ -110,6 +111,9 @@ export const AgentTestRunListItem$zodSchema: z.ZodType<AgentTestRunListItem> = z
       "Token for building the public share URL",
     ),
     status: TaskStatus$zodSchema,
+    stopped_early: z.boolean().default(false).describe(
+      "Whether the run stopped before starting every test case, after too many failed in a row",
+    ),
     total_tests: z.int().nullable().optional().describe(
       "Total number of test cases",
     ),

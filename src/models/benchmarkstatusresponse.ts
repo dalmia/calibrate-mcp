@@ -18,8 +18,9 @@ export type BenchmarkStatusResponse = {
   evaluators?: Array<TestRunEvaluator> | null | undefined;
   model_results?: Array<ModelResult> | null | undefined;
   leaderboard_summary?: Array<{ [k: string]: any }> | null | undefined;
+  stopped_early?: boolean | undefined;
   aborted?: boolean | undefined;
-  error?: boolean | undefined;
+  error?: string | null | undefined;
   is_public?: boolean | undefined;
   share_token?: string | null | undefined;
 };
@@ -30,7 +31,9 @@ export const BenchmarkStatusResponse$zodSchema: z.ZodType<
   aborted: z.boolean().default(false).describe(
     "Whether a user stopped this run before it finished. The results collected up to that point are kept, and test cases that never ran are counted neither as passed nor as failed",
   ),
-  error: z.boolean().default(false).describe("True if the run failed"),
+  error: z.string().nullable().optional().describe(
+    "Why the run could not be carried out, when it failed before producing any result",
+  ),
   evaluators: z.array(TestRunEvaluator$zodSchema).nullable().optional()
     .describe(
       "The evaluators used in this run. Each verdict in `judge_results` links to one of these by `evaluator_uuid`",
@@ -52,6 +55,9 @@ export const BenchmarkStatusResponse$zodSchema: z.ZodType<
     "Token for building the public share URL",
   ),
   status: TaskStatus$zodSchema,
+  stopped_early: z.boolean().default(false).describe(
+    "Whether any model's run stopped before starting every test case, after too many failed in a row",
+  ),
   task_id: z.string().describe("Benchmark run job ID"),
   test_uuids: z.array(z.string()).nullable().optional().describe(
     "IDs of the tests this benchmark executed, in run order",
