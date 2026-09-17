@@ -7,11 +7,15 @@ import * as z from "zod";
 export type BenchmarkRequest = {
   models: Array<string>;
   test_uuids?: Array<string> | null | undefined;
+  parallel_models?: boolean | undefined;
 };
 
 export const BenchmarkRequest$zodSchema: z.ZodType<BenchmarkRequest> = z.object(
   {
     models: z.array(z.string()).describe("Model names to benchmark"),
+    parallel_models: z.boolean().default(true).describe(
+      "Whether to run the models at the same time. Set false to run them one after another",
+    ),
     test_uuids: z.array(z.string()).nullable().optional().describe(
       "A subset of the agent's linked tests to benchmark. Each ID must be linked to the agent. Omit to run all linked tests",
     ),
