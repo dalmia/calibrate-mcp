@@ -28,7 +28,7 @@ export const ModelResult$zodSchema: z.ZodType<ModelResult> = z.object({
   evaluator_summary: z.array(z.record(z.string(), z.any())).nullable()
     .optional().describe("Aggregate summary for each evaluator for this model"),
   failed: z.int().nullable().optional().describe(
-    "Number of test cases that failed",
+    "Number of test cases that did not pass, which includes the ones that produced no answer",
   ),
   latency_ms: z.record(z.string(), z.any()).nullable().optional().describe(
     "Aggregated latency in milliseconds, as `{p50, p95, p99, count}`",

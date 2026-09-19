@@ -85,7 +85,7 @@ export const AgentTestRunListItem$zodSchema: z.ZodType<AgentTestRunListItem> = z
       "The evaluators that judged this run, deduplicated and in display order. A `Tool call` entry is appended when any test in the run was a tool-call test. That entry has no `uuid`, because it is not an evaluator in the library. Empty when the run had no evaluators",
     ),
     failed: z.int().nullable().optional().describe(
-      "Number of test cases that failed",
+      "Number of test cases that did not pass, which includes the ones that produced no answer",
     ),
     is_public: z.boolean().default(false).describe(
       "Whether the run is shared publicly",

@@ -52,7 +52,7 @@ export const TestRunStatusResponse$zodSchema: z.ZodType<TestRunStatusResponse> =
         "The evaluators used in this run. Each verdict in `judge_results` links to one of these by `evaluator_uuid`",
       ),
     failed: z.int().nullable().optional().describe(
-      "Number of test cases that failed",
+      "Number of test cases that did not pass, which includes the ones that produced no answer",
     ),
     is_public: z.boolean().default(false).describe(
       "Whether the run is shared publicly",

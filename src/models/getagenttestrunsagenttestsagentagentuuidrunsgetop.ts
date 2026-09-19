@@ -62,7 +62,7 @@ export const GetAgentTestRunsAgentTestsAgentAgentUuidRunsGetRequest$zodSchema:
       "ID of a run to jump to, returning the page that contains it instead of the page at `offset`",
     ).nullable().optional(),
     has_failures: z.boolean().describe(
-      "Filter by whether the run has any failing test case or model. `true` returns only runs with failures (or errors), `false` only clean runs. Omit for both",
+      "Filter by whether a test in the run did not pass. `true` returns only runs with a failing test, `false` only runs that got through every test and passed them all. A run that broke, was stopped, or gave up part way with no failing test is in neither: filter by `status` for those. Omit for both",
     ).nullable().optional(),
     limit: z.int().describe(
       "Maximum number of items to return. Omit for no limit (all items)",

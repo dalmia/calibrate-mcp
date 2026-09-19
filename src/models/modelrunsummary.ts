@@ -18,11 +18,12 @@ export type ModelRunSummary = {
   total_tests?: number | null | undefined;
   passed?: number | null | undefined;
   failed?: number | null | undefined;
+  unanswered_tests?: number | null | undefined;
 };
 
 export const ModelRunSummary$zodSchema: z.ZodType<ModelRunSummary> = z.object({
   failed: z.int().nullable().optional().describe(
-    "Number of test cases that failed for this model",
+    "Number of test cases that did not pass for this model, which includes the ones that produced no answer",
   ),
   message: z.string().default("").describe(
     "Status or result message for this model",
@@ -36,6 +37,9 @@ export const ModelRunSummary$zodSchema: z.ZodType<ModelRunSummary> = z.object({
   ),
   total_tests: z.int().nullable().optional().describe(
     "Total test cases for this model",
+  ),
+  unanswered_tests: z.int().nullable().optional().describe(
+    "Number of this model's test cases that produced no answer, already counted in `failed`",
   ),
 }).describe(
   "Flat summary for one model in a benchmark run-LIST item. The full results\nfor each case of a model live on the benchmark detail endpoint\n(`GET /agent-tests/benchmark/{task_id}`), not here.",
