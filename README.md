@@ -61,4 +61,4 @@ Point Cursor at the local build by using `node` with the path to `bin/mcp-server
 ## Resources
 
 - `npx @dalmia/calibrate-mcp start --help` — all flags and transports
-- [Calibrate docs](https://calibrate.artpark.ai/docs) — API reference
+- [Calibrate docs](https://docs.calibrate.artpark.ai) — API reference
