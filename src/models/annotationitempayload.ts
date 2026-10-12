@@ -3,9 +3,15 @@
  */
 
 import * as z from "zod";
+import {
+  ItemMetadataEntry,
+  ItemMetadataEntry$zodSchema,
+} from "./itemmetadataentry.js";
+import { ItemPayload, ItemPayload$zodSchema } from "./itempayload.js";
 
 export type AnnotationItemPayload = {
-  payload?: any | undefined;
+  payload: ItemPayload;
+  metadata?: Array<ItemMetadataEntry> | null | undefined;
   annotations?: { [k: string]: any } | null | undefined;
   evaluator_results?: { [k: string]: any } | null | undefined;
 };
@@ -19,7 +25,11 @@ export const AnnotationItemPayload$zodSchema: z.ZodType<AnnotationItemPayload> =
       .describe(
         "Evaluator scores to record, keyed by evaluator ID. Each evaluator ID must be linked to the task. Put the score in `value`, a bool for binary or a number within the scale for rating, with optional `reasoning` and `version_number`. Omit `version_number` to record against the evaluator's live version. An item recording a tool call takes the tool-call evaluator and no other, and every other item takes any evaluator except that one",
       ),
-    payload: z.any().optional().describe(
-      "The item's payload. `name` is required and unique within the task for every type. The other fields depend on the task `type`:\n\n- `stt`: `name`, `reference_transcript`, `predicted_transcript`\n- `llm`: `name`, `chat_history` (list of `{role, content}` turns ending at the user turn), `agent_response` (the reply to judge), optional `evaluator_variables`\n- `llm-general`: `name`, `input`, `output`, optional `evaluator_variables`\n- `conversation`: `name`, `transcript` (list of `{role, content}` turns), optional `evaluator_variables`\n\n`evaluator_variables` maps an evaluator ID to that evaluator's `{{\"{{\"}}variable}}` values for this item",
+    metadata: z.array(ItemMetadataEntry$zodSchema).nullable().optional()
+      .describe(
+        "Key-value pairs stored with the item and shown beside it on the labelling form. Omit if you have none",
+      ),
+    payload: ItemPayload$zodSchema.describe(
+      "What an annotation item holds. Which fields apply depends on the task type",
     ),
   });

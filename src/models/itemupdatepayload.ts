@@ -3,13 +3,26 @@
  */
 
 import * as z from "zod";
+import {
+  ItemMetadataEntry,
+  ItemMetadataEntry$zodSchema,
+} from "./itemmetadataentry.js";
+import { ItemPayload, ItemPayload$zodSchema } from "./itempayload.js";
 
-export type ItemUpdatePayload = { uuid: string; payload?: any | undefined };
+export type ItemUpdatePayload = {
+  uuid: string;
+  payload: ItemPayload;
+  metadata?: Array<ItemMetadataEntry> | null | undefined;
+};
 
 export const ItemUpdatePayload$zodSchema: z.ZodType<ItemUpdatePayload> = z
   .object({
-    payload: z.any().optional().describe(
-      "The item's new payload. `payload['name']` is still required and must be unique within the task",
+    metadata: z.array(ItemMetadataEntry$zodSchema).nullable().optional()
+      .describe(
+        "Key-value pairs stored with the item and shown beside it on the labelling form. Omit to leave the stored pairs as they are. Send an empty list to clear them",
+      ),
+    payload: ItemPayload$zodSchema.describe(
+      "What an annotation item holds. Which fields apply depends on the task type",
     ),
     uuid: z.string().describe("ID of the item to update"),
   });
