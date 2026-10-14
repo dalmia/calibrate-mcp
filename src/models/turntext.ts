@@ -21,7 +21,7 @@ export const TurnText$zodSchema: z.ZodType<TurnText> = z.object({
     "Display name for the text in `content`, shown to annotators",
   ),
   versions: z.record(z.string(), z.string()).nullable().optional().describe(
-    "Other forms of the same text, such as a translation or a human rewrite, keyed by the name annotators see for each. Shown to annotators only",
+    "Other forms of the same text, such as a translation or a human rewrite, keyed by the name annotators see for each. Shown to annotators only. Requires text in `content`",
   ),
 }).describe(
   "Text with a display name and other forms of it, sent in place of a plain string",

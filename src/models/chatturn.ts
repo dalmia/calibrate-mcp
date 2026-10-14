@@ -28,7 +28,7 @@ export const ChatTurn$zodSchema: z.ZodType<ChatTurn> = collectExtraKeys$(
       "Message author role in the conversation history",
     ),
     versions: z.record(z.string(), z.string()).nullable().optional().describe(
-      "Other forms of the same text, such as a translation or a human rewrite, keyed by the name annotators see for each. Shown to annotators only",
+      "Other forms of the same text, such as a translation or a human rewrite, keyed by the name annotators see for each. Shown to annotators only. Requires text in `content`",
     ),
   }).describe("One message in a conversation, in OpenAI chat format").catchall(
     z.any(),
