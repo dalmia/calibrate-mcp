@@ -11,6 +11,8 @@ import { collectExtraKeys as collectExtraKeys$ } from "../lib/schemas.js";
 export type ChatTurn = {
   role: string;
   content?: string | null | undefined;
+  label?: string | null | undefined;
+  versions?: { [k: string]: string } | null | undefined;
   AdditionalProperties?: { [k: string]: any };
 };
 
@@ -19,8 +21,14 @@ export const ChatTurn$zodSchema: z.ZodType<ChatTurn> = collectExtraKeys$(
     content: z.string().nullable().optional().describe(
       "Message text. Omit for turns that only carry tool calls",
     ),
+    label: z.string().nullable().optional().describe(
+      "Display name for the text in `content`, shown to annotators",
+    ),
     role: z.string().describe(
       "Message author role in the conversation history",
+    ),
+    versions: z.record(z.string(), z.string()).nullable().optional().describe(
+      "Other forms of the same text, such as a translation or a human rewrite, keyed by the name annotators see for each. Shown to annotators only",
     ),
   }).describe("One message in a conversation, in OpenAI chat format").catchall(
     z.any(),
@@ -32,7 +40,9 @@ export const ChatTurn$zodSchema: z.ZodType<ChatTurn> = collectExtraKeys$(
 export const ChatTurn$zodSchemaOutbound: z.ZodType<any> = z.object({
   AdditionalProperties: z.record(z.string(), z.any()).optional(),
   content: z.nullable(z.string()).optional(),
+  label: z.nullable(z.string()).optional(),
   role: z.string(),
+  versions: z.nullable(z.record(z.string(), z.string())).optional(),
 }).describe("One message in a conversation, in OpenAI chat format").transform(
   (v) => {
     const { AdditionalProperties, ...rest } = v;

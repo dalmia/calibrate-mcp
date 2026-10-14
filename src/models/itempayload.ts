@@ -5,6 +5,42 @@
 import * as z from "zod";
 import { ChatTurn, ChatTurn$zodSchema } from "./chatturn.js";
 import { ToolCall, ToolCall$zodSchema } from "./toolcall.js";
+import { TurnText, TurnText$zodSchema } from "./turntext.js";
+
+/**
+ * The reply to judge. An empty string when the reply was a tool call. For `llm` tasks
+ */
+export type AgentResponseUnion = TurnText | string;
+
+export const AgentResponseUnion$zodSchema: z.ZodType<AgentResponseUnion> = z
+  .union([
+    TurnText$zodSchema,
+    z.string(),
+  ]).describe(
+    "The reply to judge. An empty string when the reply was a tool call. For `llm` tasks",
+  );
+
+/**
+ * The standalone input the agent was given. For `llm-general` tasks
+ */
+export type ItemPayloadInput = TurnText | string;
+
+export const ItemPayloadInput$zodSchema: z.ZodType<ItemPayloadInput> = z.union([
+  TurnText$zodSchema,
+  z.string(),
+]).describe(
+  "The standalone input the agent was given. For `llm-general` tasks",
+);
+
+/**
+ * The output to judge. For `llm-general` tasks
+ */
+export type Output = TurnText | string;
+
+export const Output$zodSchema: z.ZodType<Output> = z.union([
+  TurnText$zodSchema,
+  z.string(),
+]).describe("The output to judge. For `llm-general` tasks");
 
 /**
  * What an annotation item holds. Which fields apply depends on the task type
@@ -17,9 +53,9 @@ export type ItemPayload = {
   text?: string | null | undefined;
   audio_path?: string | null | undefined;
   chat_history?: Array<ChatTurn> | null | undefined;
-  agent_response?: string | null | undefined;
-  input?: string | null | undefined;
-  output?: string | null | undefined;
+  agent_response?: TurnText | string | null | undefined;
+  input?: TurnText | string | null | undefined;
+  output?: TurnText | string | null | undefined;
   transcript?: Array<ChatTurn> | null | undefined;
   tool_calls?: Array<ToolCall> | null | undefined;
   expected_tool_calls?: Array<ToolCall> | null | undefined;
@@ -34,7 +70,10 @@ export const ItemPayload$zodSchema: z.ZodType<ItemPayload> = z.object({
   actual_tool_calls: z.array(ToolCall$zodSchema).nullable().optional().describe(
     "Tool calls the agent made. Sending this marks the item as a tool call for a person to judge. For `llm` and `llm-general` tasks",
   ),
-  agent_response: z.string().nullable().optional().describe(
+  agent_response: z.union([
+    TurnText$zodSchema,
+    z.string(),
+  ]).nullable().optional().describe(
     "The reply to judge. An empty string when the reply was a tool call. For `llm` tasks",
   ),
   audio_path: z.string().nullable().optional().describe(
@@ -54,13 +93,19 @@ export const ItemPayload$zodSchema: z.ZodType<ItemPayload> = z.object({
     .describe(
       "Tool calls the agent should have made. Sending this marks the item as a tool call for a person to judge. For `llm` and `llm-general` tasks",
     ),
-  input: z.string().nullable().optional().describe(
+  input: z.union([
+    TurnText$zodSchema,
+    z.string(),
+  ]).nullable().optional().describe(
     "The standalone input the agent was given. For `llm-general` tasks",
   ),
   name: z.string().describe(
     "Name of the item, unique within the task. For every task type",
   ),
-  output: z.string().nullable().optional().describe(
+  output: z.union([
+    TurnText$zodSchema,
+    z.string(),
+  ]).nullable().optional().describe(
     "The output to judge. For `llm-general` tasks",
   ),
   predicted_transcript: z.string().nullable().optional().describe(

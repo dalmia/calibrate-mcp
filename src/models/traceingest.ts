@@ -13,9 +13,9 @@ import { TraceTurn, TraceTurn$zodSchema } from "./traceturn.js";
 /**
  * What the agent was given for this turn. For a `general` agent, the standalone prompt as a string. For a `conversation` agent, the history up to the reported output, oldest turn first, in OpenAI chat format
  */
-export type Input = string | Array<TraceTurn>;
+export type TraceIngestInput = string | Array<TraceTurn>;
 
-export const Input$zodSchema: z.ZodType<Input> = z.union([
+export const TraceIngestInput$zodSchema: z.ZodType<TraceIngestInput> = z.union([
   z.string(),
   z.array(TraceTurn$zodSchema),
 ]).describe(
