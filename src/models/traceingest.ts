@@ -37,7 +37,7 @@ export const TraceIngest$zodSchema: z.ZodType<TraceIngest> = z.object({
     "ID of the agent that produced the turn. Must be an agent in your workspace",
   ),
   conversation_id: z.string().nullable().optional().describe(
-    "Your own ID for the conversation this turn belongs to, stored for reference only. Omit if you have none",
+    "Your own ID for the conversation this turn belongs to. Turns sharing it are grouped into one conversation. Omit if you have none",
   ),
   input: z.union([
     z.string(),
