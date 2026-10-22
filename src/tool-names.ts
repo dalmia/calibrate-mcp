@@ -109,6 +109,18 @@ export const toolNames: Array<{ name: string; description: string }>= [
     "description": "Add a new version to an evaluator you created, optionally making it live. The variable names must match the previous version.\n"
   },
   {
+    "name": "create-dataset",
+    "description": "Create an empty STT or TTS dataset in the caller's org. The name must\nbe unique in the workspace (409 otherwise). Add items separately.\n"
+  },
+  {
+    "name": "get-dataset",
+    "description": "Get one dataset in the caller's org with all of its items, each with\na download link for its audio (STT) and its text.\n"
+  },
+  {
+    "name": "upload-dataset-item",
+    "description": "Upload one WAV clip (at most 25 MB and 10 minutes) with its\nground-truth transcript and append it to an STT dataset in the\ncaller's org.\n"
+  },
+  {
     "name": "create-annotation-task",
     "description": "Create an annotation task for labelling items against evaluators. Optionally link evaluators in order.\n"
   },

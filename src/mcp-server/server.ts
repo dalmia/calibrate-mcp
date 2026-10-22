@@ -49,6 +49,9 @@ import { tool$annotationTasksUpdateItems } from "./tools/annotationTasksUpdateIt
 import { tool$annotatorsCreate } from "./tools/annotatorsCreate.js";
 import { tool$annotatorsList } from "./tools/annotatorsList.js";
 import { tool$annotatorsUpdate } from "./tools/annotatorsUpdate.js";
+import { tool$datasetsCreate } from "./tools/datasetsCreate.js";
+import { tool$datasetsGet } from "./tools/datasetsGet.js";
+import { tool$datasetsUploadItem } from "./tools/datasetsUploadItem.js";
 import { tool$evaluatorsCreate } from "./tools/evaluatorsCreate.js";
 import { tool$evaluatorsCreateVersion } from "./tools/evaluatorsCreateVersion.js";
 import { tool$evaluatorsGet } from "./tools/evaluatorsGet.js";
@@ -73,7 +76,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CalibrateMcp",
-    version: "0.0.79",
+    version: "0.0.80",
   });
 
   const getClient = deps.getSDK || (() =>
@@ -145,6 +148,9 @@ export function createMCPServer(deps: {
   tool(tool$evaluatorsList);
   tool(tool$evaluatorsGet);
   tool(tool$evaluatorsCreateVersion);
+  tool(tool$datasetsCreate);
+  tool(tool$datasetsGet);
+  tool(tool$datasetsUploadItem);
   tool(tool$annotationTasksCreate);
   tool(tool$annotationTasksList);
   tool(tool$annotationTasksGet);
