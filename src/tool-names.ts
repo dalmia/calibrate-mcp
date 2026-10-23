@@ -177,6 +177,10 @@ export const toolNames: Array<{ name: string; description: string }>= [
     "description": "Rename an annotator in your workspace.\n"
   },
   {
+    "name": "get-current-workspace",
+    "description": "Get the workspace the caller's API key belongs to, as its ID and\nname. Put the ID at the front of a Calibrate web address to link\nstraight to something in that workspace, as in `/<uuid>/tests`.\nWithout it, a link opens whichever workspace the reader looked at\nlast. Requires a Calibrate API key (CALIBRATE_API_KEY).\n"
+  },
+  {
     "name": "create-trace",
     "description": "Store one production agent turn against an agent in the caller's org:\nthe conversation history as input, what the agent produced as output,\nand optional metadata. Use this to capture live traffic for later\nreview and conversion into tests. Fails with 429 once the workspace\nhits its trace limit.\n"
   }
