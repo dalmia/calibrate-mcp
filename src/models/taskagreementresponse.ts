@@ -5,6 +5,14 @@
 import * as z from "zod";
 import { collectExtraKeys as collectExtraKeys$ } from "../lib/schemas.js";
 import {
+  EvaluatorAgreement,
+  EvaluatorAgreement$zodSchema,
+} from "./evaluatoragreement.js";
+import {
+  EvaluatorsWithHumansBlock,
+  EvaluatorsWithHumansBlock$zodSchema,
+} from "./evaluatorswithhumansblock.js";
+import {
   HumanAgreementBlock,
   HumanAgreementBlock$zodSchema,
   HumanAgreementBlock$zodSchemaOutbound,
@@ -12,21 +20,19 @@ import {
 
 export type TaskAgreementResponse = {
   task_id: string;
-  bucket: string;
-  days: number;
   human_human: HumanAgreementBlock;
-  evaluators: Array<{ [k: string]: any }>;
+  evaluators_with_humans: EvaluatorsWithHumansBlock;
+  evaluators: Array<EvaluatorAgreement>;
   AdditionalProperties?: { [k: string]: any };
 };
 
 export const TaskAgreementResponse$zodSchema: z.ZodType<TaskAgreementResponse> =
   collectExtraKeys$(
     z.object({
-      bucket: z.string().describe("Time bucket used for the trend series"),
-      days: z.int().describe("Length of the trailing window in days"),
-      evaluators: z.array(z.record(z.string(), z.any())).describe(
+      evaluators: z.array(EvaluatorAgreement$zodSchema).describe(
         "Agreement between each evaluator and the annotators, plus that evaluator's own results and the human results, one entry per linked evaluator",
       ),
+      evaluators_with_humans: EvaluatorsWithHumansBlock$zodSchema,
       human_human: HumanAgreementBlock$zodSchema,
       task_id: z.string().describe("ID of the task"),
     }).catchall(z.any()),
@@ -37,9 +43,8 @@ export const TaskAgreementResponse$zodSchema: z.ZodType<TaskAgreementResponse> =
 export const TaskAgreementResponse$zodSchemaOutbound: z.ZodType<any> = z.object(
   {
     AdditionalProperties: z.record(z.string(), z.any()).optional(),
-    bucket: z.string(),
-    days: z.int(),
-    evaluators: z.array(z.record(z.string(), z.any())),
+    evaluators: z.array(EvaluatorAgreement$zodSchema),
+    evaluators_with_humans: EvaluatorsWithHumansBlock$zodSchema,
     human_human: HumanAgreementBlock$zodSchemaOutbound,
     task_id: z.string(),
   },

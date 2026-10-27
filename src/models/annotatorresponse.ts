@@ -3,6 +3,10 @@
  */
 
 import * as z from "zod";
+import {
+  KappaOfAnswerKind,
+  KappaOfAnswerKind$zodSchema,
+} from "./kappaofanswerkind.js";
 
 export type AnnotatorResponse = {
   uuid: string;
@@ -12,6 +16,7 @@ export type AnnotatorResponse = {
   jobs_count?: number | null | undefined;
   current_agreement?: number | null | undefined;
   pair_count?: number | null | undefined;
+  kappa_by_kind?: Array<KappaOfAnswerKind> | null | undefined;
 };
 
 export const AnnotatorResponse$zodSchema: z.ZodType<AnnotatorResponse> = z
@@ -25,6 +30,10 @@ export const AnnotatorResponse$zodSchema: z.ZodType<AnnotatorResponse> = z
     jobs_count: z.int().nullable().optional().describe(
       "Number of labelling jobs assigned to this annotator",
     ),
+    kappa_by_kind: z.array(KappaOfAnswerKind$zodSchema).nullable().optional()
+      .describe(
+        "Agreement with the other annotators and its kappa, one entry for each kind of answer compared, binary answers first. The kinds are never combined into one kappa",
+      ),
     name: z.string().describe("Annotator name"),
     pair_count: z.int().nullable().optional().describe(
       "Number of comparable annotation pairs behind the current agreement score",

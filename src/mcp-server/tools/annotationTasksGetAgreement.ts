@@ -13,7 +13,7 @@ const args = {
 export const tool$annotationTasksGetAgreement: ToolDefinition<typeof args> = {
   name: "get-annotation-agreement",
   description:
-    `Get human-vs-human and human-vs-evaluator agreement metrics for a task, with a trend series.
+    `Get human-vs-human and human-vs-evaluator agreement metrics for a task, with a chance-corrected kappa for each evaluator.
 `,
   scopes: ["read"],
   annotations: {

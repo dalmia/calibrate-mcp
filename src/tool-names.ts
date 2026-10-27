@@ -158,7 +158,7 @@ export const toolNames: Array<{ name: string; description: string }>= [
   },
   {
     "name": "get-annotation-agreement",
-    "description": "Get human-vs-human and human-vs-evaluator agreement metrics for a task, with a trend series.\n"
+    "description": "Get human-vs-human and human-vs-evaluator agreement metrics for a task, with a chance-corrected kappa for each evaluator.\n"
   },
   {
     "name": "get-annotation-summary",

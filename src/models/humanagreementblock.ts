@@ -8,7 +8,6 @@ import { collectExtraKeys as collectExtraKeys$ } from "../lib/schemas.js";
 export type HumanAgreementBlock = {
   current: number | null;
   pair_count: number;
-  series: Array<{ [k: string]: any }>;
   AdditionalProperties?: { [k: string]: any };
 };
 
@@ -21,9 +20,6 @@ export const HumanAgreementBlock$zodSchema: z.ZodType<HumanAgreementBlock> =
       pair_count: z.int().describe(
         "How many annotator pairs the current value averages over",
       ),
-      series: z.array(z.record(z.string(), z.any())).describe(
-        "Agreement over time, one point per time bucket",
-      ),
     }).catchall(z.any()),
     "AdditionalProperties",
     true,
@@ -33,7 +29,6 @@ export const HumanAgreementBlock$zodSchemaOutbound: z.ZodType<any> = z.object({
   AdditionalProperties: z.record(z.string(), z.any()).optional(),
   current: z.nullable(z.number()),
   pair_count: z.int(),
-  series: z.array(z.record(z.string(), z.any())),
 }).transform((v) => {
   const { AdditionalProperties, ...rest } = v;
   return {

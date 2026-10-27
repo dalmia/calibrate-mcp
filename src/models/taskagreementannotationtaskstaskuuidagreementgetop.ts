@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../types/enums.js";
 import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
@@ -13,41 +12,14 @@ import {
   TaskAgreementResponse$zodSchema,
 } from "./taskagreementresponse.js";
 
-/**
- * How to bucket points in the trend series
- */
-export const Bucket = {
-  Week: "week",
-  Month: "month",
-  Year: "year",
-} as const;
-/**
- * How to bucket points in the trend series
- */
-export type Bucket = ClosedEnum<typeof Bucket>;
-
-export const Bucket$zodSchema = z.enum([
-  "week",
-  "month",
-  "year",
-]).describe("How to bucket points in the trend series");
-
 export type TaskAgreementAnnotationTasksTaskUuidAgreementGetRequest = {
   task_uuid: string;
-  bucket?: Bucket | undefined;
-  days?: number | undefined;
   xAPIKey?: string | null | undefined;
 };
 
 export const TaskAgreementAnnotationTasksTaskUuidAgreementGetRequest$zodSchema:
   z.ZodType<TaskAgreementAnnotationTasksTaskUuidAgreementGetRequest> = z.object(
     {
-      bucket: Bucket$zodSchema.default("week").describe(
-        "How to bucket points in the trend series",
-      ),
-      days: z.int().default(90).describe(
-        "Trailing window in days for the trend series",
-      ),
       task_uuid: z.string().describe("Annotation task to act on"),
       xAPIKey: z.string().nullable().optional(),
     },
