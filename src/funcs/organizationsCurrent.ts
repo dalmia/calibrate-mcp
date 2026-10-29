@@ -31,7 +31,7 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Get the workspace your API key belongs to
  */
-export function workspaceCurrent(
+export function organizationsCurrent(
   client$: CalibrateMcpCore,
   request?: GetCurrentWorkspaceOrganizationsCurrentGetRequest | undefined,
   options?: RequestOptions,

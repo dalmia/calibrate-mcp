@@ -56,6 +56,7 @@ import { tool$evaluatorsCreate } from "./tools/evaluatorsCreate.js";
 import { tool$evaluatorsCreateVersion } from "./tools/evaluatorsCreateVersion.js";
 import { tool$evaluatorsGet } from "./tools/evaluatorsGet.js";
 import { tool$evaluatorsList } from "./tools/evaluatorsList.js";
+import { tool$organizationsCurrent } from "./tools/organizationsCurrent.js";
 import { tool$testsBulkCreate } from "./tools/testsBulkCreate.js";
 import { tool$testsCreate } from "./tools/testsCreate.js";
 import { tool$testsGet } from "./tools/testsGet.js";
@@ -63,7 +64,6 @@ import { tool$testsList } from "./tools/testsList.js";
 import { tool$testsUpdate } from "./tools/testsUpdate.js";
 import { tool$tracesCreate } from "./tools/tracesCreate.js";
 import { tool$tracesList } from "./tools/tracesList.js";
-import { tool$workspaceCurrent } from "./tools/workspaceCurrent.js";
 
 export function createMCPServer(deps: {
   logger: ConsoleLogger;
@@ -78,7 +78,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CalibrateMcp",
-    version: "0.0.88",
+    version: "0.0.89",
   });
 
   const getClient = deps.getSDK || (() =>
@@ -167,7 +167,7 @@ export function createMCPServer(deps: {
   tool(tool$annotatorsCreate);
   tool(tool$annotatorsList);
   tool(tool$annotatorsUpdate);
-  tool(tool$workspaceCurrent);
+  tool(tool$organizationsCurrent);
   tool(tool$tracesCreate);
   tool(tool$tracesList);
 
