@@ -223,6 +223,10 @@
     {
       "name": "create-trace",
       "description": "Store one production agent turn against an agent in the caller's org:\nthe conversation history as input, what the agent produced as output,\nand optional metadata. Use this to capture live traffic for later\nreview and conversion into tests. Fails with 429 once the workspace\nhits its trace limit.\n"
+    },
+    {
+      "name": "list-traces",
+      "description": "List the traces in the caller's org, newest first, one page at a\ntime. Each trace carries a short preview of its last user message\nand reply, its tool calls and labels, and the scores from its\nlatest scoring run with each evaluator's reasoning and evaluator\nversion. Filter by agent, label, creation time, text, or score.\nSet include_content to also get each trace's full input, output\nand metadata.\n"
     }
   ]
 }

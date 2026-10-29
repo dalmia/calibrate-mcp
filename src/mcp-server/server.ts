@@ -62,6 +62,7 @@ import { tool$testsGet } from "./tools/testsGet.js";
 import { tool$testsList } from "./tools/testsList.js";
 import { tool$testsUpdate } from "./tools/testsUpdate.js";
 import { tool$tracesCreate } from "./tools/tracesCreate.js";
+import { tool$tracesList } from "./tools/tracesList.js";
 import { tool$workspaceCurrent } from "./tools/workspaceCurrent.js";
 
 export function createMCPServer(deps: {
@@ -77,7 +78,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CalibrateMcp",
-    version: "0.0.87",
+    version: "0.0.88",
   });
 
   const getClient = deps.getSDK || (() =>
@@ -168,6 +169,7 @@ export function createMCPServer(deps: {
   tool(tool$annotatorsUpdate);
   tool(tool$workspaceCurrent);
   tool(tool$tracesCreate);
+  tool(tool$tracesList);
 
   if (deps.dynamic) {
     registerDynamicTools(deps.logger, server, getClient, toolMap, scopes);
