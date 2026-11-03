@@ -109,7 +109,7 @@ export const ListTracesEndpointTracesGetRequest$zodSchema: z.ZodType<
     "Return only traces whose latest scoring run matches this condition. Each is written as `<evaluator ID>:<condition>`, where the condition is `passed`, `failed`, or one of `=`, `!=`, `<`, `<=`, `>`, `>=` followed by a number, such as `>=4`. Repeat the parameter to require every condition at once",
   ).nullable().optional(),
   sort_by_evaluator: z.string().describe(
-    "Order traces by this evaluator's score on each trace's latest scoring run. Traces it has not scored come last whichever direction you pick",
+    "Order traces by this evaluator's score on each trace's latest scoring run. Traces this evaluator has not scored come last whichever direction you pick, and an evaluator not linked to the agent counts as having scored none",
   ).nullable().optional(),
   sort_order: SortOrder$zodSchema.default("desc").describe(
     "Whether `sort_by_evaluator` puts the highest scores first or the lowest. Ignored without it",

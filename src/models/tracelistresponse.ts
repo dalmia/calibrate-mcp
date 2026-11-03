@@ -29,7 +29,7 @@ export const TraceListResponse$zodSchema: z.ZodType<TraceListResponse> = z
     offset: z.int().default(0).describe("The applied `offset`"),
     score_averages: z.array(TraceScoreAverage$zodSchema).nullable().optional()
       .describe(
-        "One entry per evaluator that scored at least one matching trace, averaged over every matching trace rather than this page. Ask for it with `include_score_averages`",
+        "One average for each evaluator linked to the agent that scored at least one trace matching the filters, covering all the matching traces it scored rather than this page. Ask for it with `include_score_averages`",
       ),
     total: z.int().describe(
       "Total number of items matching the query, before pagination",

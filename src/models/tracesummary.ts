@@ -94,7 +94,7 @@ export const TraceSummary$zodSchema: z.ZodType<TraceSummary> = z.object({
     "The agent reply, truncated for display",
   ),
   results: z.array(TraceScoreResult$zodSchema).optional().describe(
-    "Results for each evaluator on the latest scoring run",
+    "Results on the latest scoring run from the evaluators linked to the agent",
   ),
   tool_call_count: z.int().describe(
     "Number of tool calls the agent issued for this turn",
