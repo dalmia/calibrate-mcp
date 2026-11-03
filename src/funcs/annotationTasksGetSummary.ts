@@ -98,7 +98,9 @@ async function $do(
   );
   const query$ = encodeFormQuery({
     "compact": payload$.compact,
+    "date_field": payload$.date_field,
     "disagreement_only": payload$.disagreement_only,
+    "end": payload$.end,
     "item_id": payload$.item_id,
     "limit": payload$.limit,
     "live_only": payload$.live_only,
@@ -106,6 +108,7 @@ async function $do(
     "order": payload$.order,
     "q": payload$.q,
     "sort_by": payload$.sort_by,
+    "start": payload$.start,
   });
 
   const headers$ = new Headers(compactMap({

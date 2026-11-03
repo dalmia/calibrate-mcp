@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 import {
   HTTPValidationError,
   HTTPValidationError$zodSchema,
@@ -12,14 +13,65 @@ import {
   TaskAgreementResponse$zodSchema,
 } from "./taskagreementresponse.js";
 
+/**
+ * Which date `start` and `end` apply to:
+ *
+ * @remarks
+ *
+ * - `row_added`: when the row was added to the task
+ * - `annotator_answered`: when the annotator first gave the answer in their latest labelling job. Editing does not change this date
+ *
+ * Omit to use `row_added`
+ */
+export const TaskAgreementAnnotationTasksTaskUuidAgreementGetDateField = {
+  RowAdded: "row_added",
+  AnnotatorAnswered: "annotator_answered",
+} as const;
+/**
+ * Which date `start` and `end` apply to:
+ *
+ * @remarks
+ *
+ * - `row_added`: when the row was added to the task
+ * - `annotator_answered`: when the annotator first gave the answer in their latest labelling job. Editing does not change this date
+ *
+ * Omit to use `row_added`
+ */
+export type TaskAgreementAnnotationTasksTaskUuidAgreementGetDateField =
+  ClosedEnum<typeof TaskAgreementAnnotationTasksTaskUuidAgreementGetDateField>;
+
+export const TaskAgreementAnnotationTasksTaskUuidAgreementGetDateField$zodSchema =
+  z.enum([
+    "row_added",
+    "annotator_answered",
+  ]).describe(
+    "Which date `start` and `end` apply to:\n\n- `row_added`: when the row was added to the task\n- `annotator_answered`: when the annotator first gave the answer in their latest labelling job. Editing does not change this date\n\nOmit to use `row_added`",
+  );
+
 export type TaskAgreementAnnotationTasksTaskUuidAgreementGetRequest = {
   task_uuid: string;
+  date_field?:
+    | TaskAgreementAnnotationTasksTaskUuidAgreementGetDateField
+    | undefined;
+  start?: string | null | undefined;
+  end?: string | null | undefined;
   xAPIKey?: string | null | undefined;
 };
 
 export const TaskAgreementAnnotationTasksTaskUuidAgreementGetRequest$zodSchema:
   z.ZodType<TaskAgreementAnnotationTasksTaskUuidAgreementGetRequest> = z.object(
     {
+      date_field:
+        TaskAgreementAnnotationTasksTaskUuidAgreementGetDateField$zodSchema
+          .default("row_added").describe(
+            "Which date `start` and `end` apply to:\n\n- `row_added`: when the row was added to the task\n- `annotator_answered`: when the annotator first gave the answer in their latest labelling job. Editing does not change this date\n\nOmit to use `row_added`",
+          ),
+      end: z.iso.datetime({ offset: true }).describe(
+        "Return only rows or answers dated before this time (ISO 8601). A time with no timezone is read as UTC. Omit for no latest date",
+      ).nullable().optional(),
+      start: z.iso.datetime({ offset: true }).describe(
+        "Return only rows or answers dated at or after this time (ISO 8601). A time with no timezone is read as UTC. Omit for no earliest date",
+      ).nullable().optional(),
       task_uuid: z.string().describe("Annotation task to act on"),
       xAPIKey: z.string().nullable().optional(),
     },

@@ -14,6 +14,42 @@ import {
 } from "./tasksummaryresponse.js";
 
 /**
+ * Which date `start` and `end` apply to:
+ *
+ * @remarks
+ *
+ * - `row_added`: when the row was added to the task
+ * - `annotator_answered`: when the annotator first gave the answer in their latest labelling job. Editing does not change this date
+ *
+ * Omit to use `row_added`
+ */
+export const TaskSummaryAnnotationTasksTaskUuidSummaryGetDateField = {
+  RowAdded: "row_added",
+  AnnotatorAnswered: "annotator_answered",
+} as const;
+/**
+ * Which date `start` and `end` apply to:
+ *
+ * @remarks
+ *
+ * - `row_added`: when the row was added to the task
+ * - `annotator_answered`: when the annotator first gave the answer in their latest labelling job. Editing does not change this date
+ *
+ * Omit to use `row_added`
+ */
+export type TaskSummaryAnnotationTasksTaskUuidSummaryGetDateField = ClosedEnum<
+  typeof TaskSummaryAnnotationTasksTaskUuidSummaryGetDateField
+>;
+
+export const TaskSummaryAnnotationTasksTaskUuidSummaryGetDateField$zodSchema = z
+  .enum([
+    "row_added",
+    "annotator_answered",
+  ]).describe(
+    "Which date `start` and `end` apply to:\n\n- `row_added`: when the row was added to the task\n- `annotator_answered`: when the annotator first gave the answer in their latest labelling job. Editing does not change this date\n\nOmit to use `row_added`",
+  );
+
+/**
  * Sort direction
  */
 export const Order = {
@@ -35,6 +71,11 @@ export type TaskSummaryAnnotationTasksTaskUuidSummaryGetRequest = {
   item_id?: string | null | undefined;
   live_only?: boolean | undefined;
   disagreement_only?: boolean | undefined;
+  date_field?:
+    | TaskSummaryAnnotationTasksTaskUuidSummaryGetDateField
+    | undefined;
+  start?: string | null | undefined;
+  end?: string | null | undefined;
   q?: string | null | undefined;
   sort_by?: string | undefined;
   order?: Order | undefined;
@@ -49,9 +90,16 @@ export const TaskSummaryAnnotationTasksTaskUuidSummaryGetRequest$zodSchema:
     compact: z.boolean().default(false).describe(
       "Return a compact response that omits heavy detail fields (`rows.payload`, `rows.evaluator_reasoning`, `rows.annotations.reasoning`, `evaluators.versions.system_prompt`, `evaluators.versions.output_config`, `evaluators.versions.variables`, `item_comments`), keeping only the lightweight decision fields. Omit for full detail",
     ),
+    date_field: TaskSummaryAnnotationTasksTaskUuidSummaryGetDateField$zodSchema
+      .default("row_added").describe(
+        "Which date `start` and `end` apply to:\n\n- `row_added`: when the row was added to the task\n- `annotator_answered`: when the annotator first gave the answer in their latest labelling job. Editing does not change this date\n\nOmit to use `row_added`",
+      ),
     disagreement_only: z.boolean().default(false).describe(
       "When true, keep only rows where the evaluator disagreed with at least one annotator",
     ),
+    end: z.iso.datetime({ offset: true }).describe(
+      "Return only rows or answers dated before this time (ISO 8601). A time with no timezone is read as UTC. Omit for no latest date",
+    ).nullable().optional(),
     item_id: z.string().describe(
       "Filter rows to a single item. The full task-wide annotator union is still returned in `annotators`",
     ).nullable().optional(),
@@ -69,6 +117,9 @@ export const TaskSummaryAnnotationTasksTaskUuidSummaryGetRequest$zodSchema:
     sort_by: z.string().default("created_at").describe(
       "Sort key for the results",
     ),
+    start: z.iso.datetime({ offset: true }).describe(
+      "Return only rows or answers dated at or after this time (ISO 8601). A time with no timezone is read as UTC. Omit for no earliest date",
+    ).nullable().optional(),
     task_uuid: z.string().describe("Annotation task to act on"),
     xAPIKey: z.string().nullable().optional(),
   });

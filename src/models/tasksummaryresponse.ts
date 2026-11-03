@@ -54,7 +54,7 @@ export const TaskSummaryResponse$zodSchema: z.ZodType<TaskSummaryResponse> =
         .describe("Annotator comments, keyed by item ID"),
       pagination: PaginationMeta$zodSchema,
       rows: z.array(z.record(z.string(), z.any())).describe(
-        "One row per item, evaluator, and version on this page, with the evaluator's value and each annotator's label",
+        "One row per item, evaluator, and version on this page, with the evaluator's value and each annotator's label. `item_added_at` is when the row was added (ISO 8601 UTC). Each label's `answered_at` is when the annotator first gave it in their latest labelling job, and editing does not change it",
       ),
       task_id: z.string().describe("ID of the task"),
       task_type: TaskType$zodSchema.describe("Type of the task"),

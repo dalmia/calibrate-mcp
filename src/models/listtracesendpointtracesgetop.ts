@@ -80,10 +80,10 @@ export const ListTracesEndpointTracesGetRequest$zodSchema: z.ZodType<
     "Return only the turns of this conversation. Requires `agent_id`",
   ).nullable().optional(),
   created_after: z.iso.datetime({ offset: true }).describe(
-    "Return only traces created at or after this time (ISO 8601). A time with no timezone is read as UTC",
+    "Return only traces created at or after this time (ISO 8601). A time with no timezone is read as UTC. Omit for no earliest date",
   ).nullable().optional(),
   created_before: z.iso.datetime({ offset: true }).describe(
-    "Return only traces created before this time (ISO 8601). A time with no timezone is read as UTC",
+    "Return only traces created before this time (ISO 8601). A time with no timezone is read as UTC. Omit for no latest date",
   ).nullable().optional(),
   include_content: z.boolean().default(false).describe(
     "Also return each trace's full input, output and metadata. Use `limit` and `offset` to page through them",

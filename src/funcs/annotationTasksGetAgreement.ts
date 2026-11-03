@@ -3,7 +3,7 @@
  */
 
 import { CalibrateMcpCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -96,6 +96,11 @@ async function $do(
   const path$ = pathToFunc("/annotation-tasks/{task_uuid}/agreement")(
     pathParams$,
   );
+  const query$ = encodeFormQuery({
+    "date_field": payload$.date_field,
+    "end": payload$.end,
+    "start": payload$.start,
+  });
 
   const headers$ = new Headers(compactMap({
     Accept: "application/json",
@@ -132,6 +137,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path$,
     headers: headers$,
+    query: query$,
     body: body$,
     userAgent: client$._options.userAgent,
     timeoutMs: options?.timeoutMs || client$._options.timeoutMs
