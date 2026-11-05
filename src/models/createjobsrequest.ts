@@ -26,6 +26,21 @@ export const ReasoningMode$zodSchema = z.enum([
   "How the labelling form treats the reasoning box on each judgement. `optional` shows it, `required` shows it and asks the annotator to fill it in, `hidden` leaves it out",
 );
 
+export const EvaluatorReasoningModes = {
+  Optional: "optional",
+  Required: "required",
+  Hidden: "hidden",
+} as const;
+export type EvaluatorReasoningModes = ClosedEnum<
+  typeof EvaluatorReasoningModes
+>;
+
+export const EvaluatorReasoningModes$zodSchema = z.enum([
+  "optional",
+  "required",
+  "hidden",
+]);
+
 export type CreateJobsRequest = {
   annotator_ids: Array<string>;
   item_ids?: Array<string> | undefined;
@@ -34,6 +49,10 @@ export type CreateJobsRequest = {
   evaluator_ids?: Array<string> | null | undefined;
   comments_enabled?: boolean | undefined;
   reasoning_mode?: ReasoningMode | undefined;
+  evaluator_reasoning_modes?:
+    | { [k: string]: EvaluatorReasoningModes }
+    | null
+    | undefined;
 };
 
 export const CreateJobsRequest$zodSchema: z.ZodType<CreateJobsRequest> = z
@@ -46,6 +65,12 @@ export const CreateJobsRequest$zodSchema: z.ZodType<CreateJobsRequest> = z
     ),
     evaluator_ids: z.array(z.string()).nullable().optional().describe(
       "Subset of the task's linked evaluators to show in these jobs. Must be a subset of the current links, an empty list gives a 400. Applies to every annotator's job. Omit (`None`) to snapshot every linked evaluator",
+    ),
+    evaluator_reasoning_modes: z.record(
+      z.string(),
+      EvaluatorReasoningModes$zodSchema,
+    ).nullable().optional().describe(
+      "Map of evaluator ID to how the labelling form treats the reasoning box for that evaluator, with the same values as `reasoning_mode`. Every ID must be an evaluator on these jobs, otherwise you get a 400. An evaluator left out uses `reasoning_mode`",
     ),
     item_ids: z.array(z.string()).optional().describe(
       "Item IDs to assign. **Required when `select_all=false`**. Ignored when `select_all=true`",
