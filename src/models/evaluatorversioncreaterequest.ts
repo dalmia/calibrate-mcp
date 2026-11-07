@@ -27,7 +27,7 @@ export const EvaluatorVersionCreateRequest$zodSchema: z.ZodType<
     "When `true`, immediately point the evaluator's live version at this new version",
   ),
   output_config: OutputConfig$zodSchema.nullable().optional().describe(
-    "The scale points and their labels. Required for a `rating` evaluator. A `binary` evaluator uses the default Correct/Wrong labels unless you set your own",
+    "The rows of the rating scale, each a number and its label. Required for a `rating` evaluator. For a rating evaluator, give the label for the worst result the lowest number and the label for the best result the highest number. A `binary` evaluator uses the default Correct/Wrong labels unless you set your own",
   ),
   system_prompt: z.string().describe(
     "Judge system prompt. May contain `{{\"{{\"}}variable}}` placeholders",

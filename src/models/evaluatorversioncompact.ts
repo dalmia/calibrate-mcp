@@ -26,7 +26,7 @@ export const EvaluatorVersionCompact$zodSchema: z.ZodType<
     "The model that runs the judge, named the way its provider does, for example `openai/gpt-4.1` or `anthropic/claude-sonnet-4`",
   ),
   output_config: OutputConfig$zodSchema.nullable().optional().describe(
-    "The scale points and their labels. Required for a `rating` evaluator. A `binary` evaluator uses the default Correct/Wrong labels unless you set your own",
+    "The rows of the rating scale, each a number and its label. Required for a `rating` evaluator. For a rating evaluator, give the label for the worst result the lowest number and the label for the best result the highest number. A `binary` evaluator uses the default Correct/Wrong labels unless you set your own",
   ),
   system_prompt: z.string().nullable().optional().describe(
     "Judge system prompt, with `{{\"{{\"}}variable}}` placeholders unrendered",

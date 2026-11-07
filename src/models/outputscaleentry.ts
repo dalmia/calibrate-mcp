@@ -20,14 +20,14 @@ export type OutputScaleEntry = {
 export const OutputScaleEntry$zodSchema: z.ZodType<OutputScaleEntry> = z.object(
   {
     color: z.string().nullable().optional().describe(
-      "Color to show for this level. Omit for the default",
+      "Color to show for this row. Omit for the default",
     ),
     description: z.string().nullable().optional().describe(
-      "Rubric text for this level, added to the judge prompt. Omit to leave this level undescribed",
+      "Rubric text for this row, added to the judge prompt. Omit to leave this row undescribed",
     ),
-    name: z.string().describe("Short label for this scale point"),
+    name: z.string().describe("Short label for this row"),
     value: z.any().optional().describe(
-      "The value for this scale point. Use a boolean for a `binary` evaluator, a number for a `rating` one",
+      "The value for this row. Use a boolean for a `binary` evaluator, a number for a `rating` one. For a rating evaluator, give the label for the worst result the lowest number and the label for the best result the highest number",
     ),
   },
 ).describe(
