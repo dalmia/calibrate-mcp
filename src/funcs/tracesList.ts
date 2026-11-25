@@ -90,6 +90,7 @@ async function $do(
     "conversation_id": payload$?.conversation_id,
     "created_after": payload$?.created_after,
     "created_before": payload$?.created_before,
+    "feedback": payload$?.feedback,
     "include_content": payload$?.include_content,
     "include_score_averages": payload$?.include_score_averages,
     "labels": payload$?.labels,
@@ -100,6 +101,7 @@ async function $do(
     "score": payload$?.score,
     "sort_by_evaluator": payload$?.sort_by_evaluator,
     "sort_order": payload$?.sort_order,
+    "source": payload$?.source,
   });
 
   const headers$ = new Headers(compactMap({

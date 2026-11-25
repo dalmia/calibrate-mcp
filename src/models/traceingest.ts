@@ -4,6 +4,10 @@
 
 import * as z from "zod";
 import {
+  TraceFeedbackIngest,
+  TraceFeedbackIngest$zodSchema,
+} from "./tracefeedbackingest.js";
+import {
   TraceMetadataEntry,
   TraceMetadataEntry$zodSchema,
 } from "./tracemetadataentry.js";
@@ -30,6 +34,7 @@ export type TraceIngest = {
   output: TraceOutput;
   metadata?: Array<TraceMetadataEntry> | null | undefined;
   labels?: Array<string> | undefined;
+  feedback?: TraceFeedbackIngest | null | undefined;
 };
 
 export const TraceIngest$zodSchema: z.ZodType<TraceIngest> = z.object({
@@ -38,6 +43,9 @@ export const TraceIngest$zodSchema: z.ZodType<TraceIngest> = z.object({
   ),
   conversation_id: z.string().nullable().optional().describe(
     "Your own ID for the conversation this turn belongs to. Turns sharing it are grouped into one conversation. Omit if you have none",
+  ),
+  feedback: TraceFeedbackIngest$zodSchema.nullable().optional().describe(
+    "A verdict on the agent's output, if you already have one. Omit if you have none",
   ),
   input: z.union([
     z.string(),

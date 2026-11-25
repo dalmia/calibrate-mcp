@@ -3,10 +3,12 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 import {
   TraceEvalRunStatus,
   TraceEvalRunStatus$zodSchema,
 } from "./traceevalrunstatus.js";
+import { TraceFeedback, TraceFeedback$zodSchema } from "./tracefeedback.js";
 import {
   TraceMetadataEntry,
   TraceMetadataEntry$zodSchema,
@@ -18,6 +20,35 @@ import {
 } from "./tracescoreresult.js";
 import { TraceToolCall, TraceToolCall$zodSchema } from "./tracetoolcall.js";
 import { TraceTurn, TraceTurn$zodSchema } from "./traceturn.js";
+
+/**
+ * Where the trace came from:
+ *
+ * @remarks
+ *
+ * - `api`: sent to `POST /traces`
+ * - `chat`: a reply the agent gave on its chat link
+ */
+export const Source = {
+  Api: "api",
+  Chat: "chat",
+} as const;
+/**
+ * Where the trace came from:
+ *
+ * @remarks
+ *
+ * - `api`: sent to `POST /traces`
+ * - `chat`: a reply the agent gave on its chat link
+ */
+export type Source = ClosedEnum<typeof Source>;
+
+export const Source$zodSchema = z.enum([
+  "api",
+  "chat",
+]).describe(
+  "Where the trace came from:\n\n- `api`: sent to `POST /traces`\n- `chat`: a reply the agent gave on its chat link",
+);
 
 /**
  * What the agent was given for this turn. For a `general` agent, the standalone prompt as a string. For a `conversation` agent, the history up to the reported output, oldest turn first, in OpenAI chat format. Sent only with `include_content`
@@ -45,6 +76,8 @@ export type TraceSummary = {
   tool_call_count: number;
   metadata_count: number;
   labels: Array<string>;
+  source: Source;
+  feedback?: TraceFeedback | null | undefined;
   input?: string | Array<TraceTurn> | null | undefined;
   output?: TraceOutput | null | undefined;
   metadata?: Array<TraceMetadataEntry> | null | undefined;
@@ -60,6 +93,9 @@ export const TraceSummary$zodSchema: z.ZodType<TraceSummary> = z.object({
     "The conversation ID you sent, if any",
   ),
   created_at: z.string().describe("When the trace was created (ISO 8601 UTC)"),
+  feedback: TraceFeedback$zodSchema.nullable().optional().describe(
+    "The verdict and comment given on the trace, through the API or on the chat link",
+  ),
   input: z.union([
     z.string(),
     z.array(TraceTurn$zodSchema),
@@ -95,6 +131,9 @@ export const TraceSummary$zodSchema: z.ZodType<TraceSummary> = z.object({
   ),
   results: z.array(TraceScoreResult$zodSchema).optional().describe(
     "Results on the latest scoring run from the evaluators linked to the agent",
+  ),
+  source: Source$zodSchema.describe(
+    "Where the trace came from:\n\n- `api`: sent to `POST /traces`\n- `chat`: a reply the agent gave on its chat link",
   ),
   tool_call_count: z.int().describe(
     "Number of tool calls the agent issued for this turn",

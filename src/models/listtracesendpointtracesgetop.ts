@@ -35,6 +35,70 @@ export const ListTracesEndpointTracesGetOutputType$zodSchema = z.enum([
 );
 
 /**
+ * Return only traces from this source:
+ *
+ * @remarks
+ *
+ * - `api`: sent to `POST /traces`
+ * - `chat`: a reply the agent gave on its chat link
+ */
+export const ListTracesEndpointTracesGetSource = {
+  Api: "api",
+  Chat: "chat",
+} as const;
+/**
+ * Return only traces from this source:
+ *
+ * @remarks
+ *
+ * - `api`: sent to `POST /traces`
+ * - `chat`: a reply the agent gave on its chat link
+ */
+export type ListTracesEndpointTracesGetSource = ClosedEnum<
+  typeof ListTracesEndpointTracesGetSource
+>;
+
+export const ListTracesEndpointTracesGetSource$zodSchema = z.enum([
+  "api",
+  "chat",
+]).describe(
+  "Return only traces from this source:\n\n- `api`: sent to `POST /traces`\n- `chat`: a reply the agent gave on its chat link",
+);
+
+/**
+ * Return only traces with this feedback:
+ *
+ * @remarks
+ *
+ * - `correct`: marked correct
+ * - `wrong`: marked wrong
+ * - `any`: marked either way
+ */
+export const Feedback = {
+  Correct: "correct",
+  Wrong: "wrong",
+  Any: "any",
+} as const;
+/**
+ * Return only traces with this feedback:
+ *
+ * @remarks
+ *
+ * - `correct`: marked correct
+ * - `wrong`: marked wrong
+ * - `any`: marked either way
+ */
+export type Feedback = ClosedEnum<typeof Feedback>;
+
+export const Feedback$zodSchema = z.enum([
+  "correct",
+  "wrong",
+  "any",
+]).describe(
+  "Return only traces with this feedback:\n\n- `correct`: marked correct\n- `wrong`: marked wrong\n- `any`: marked either way",
+);
+
+/**
  * Whether `sort_by_evaluator` puts the highest scores first or the lowest. Ignored without it
  */
 export const SortOrder = {
@@ -62,6 +126,8 @@ export type ListTracesEndpointTracesGetRequest = {
   score?: Array<string> | null | undefined;
   created_after?: string | null | undefined;
   created_before?: string | null | undefined;
+  source?: ListTracesEndpointTracesGetSource | null | undefined;
+  feedback?: Feedback | null | undefined;
   sort_by_evaluator?: string | null | undefined;
   sort_order?: SortOrder | undefined;
   include_content?: boolean | undefined;
@@ -85,6 +151,9 @@ export const ListTracesEndpointTracesGetRequest$zodSchema: z.ZodType<
   created_before: z.iso.datetime({ offset: true }).describe(
     "Return only traces created before this time (ISO 8601). A time with no timezone is read as UTC. Omit for no latest date",
   ).nullable().optional(),
+  feedback: Feedback$zodSchema.nullable().optional().describe(
+    "Return only traces with this feedback:\n\n- `correct`: marked correct\n- `wrong`: marked wrong\n- `any`: marked either way",
+  ),
   include_content: z.boolean().default(false).describe(
     "Also return each trace's full input, output and metadata. Use `limit` and `offset` to page through them",
   ),
@@ -114,6 +183,10 @@ export const ListTracesEndpointTracesGetRequest$zodSchema: z.ZodType<
   sort_order: SortOrder$zodSchema.default("desc").describe(
     "Whether `sort_by_evaluator` puts the highest scores first or the lowest. Ignored without it",
   ),
+  source: ListTracesEndpointTracesGetSource$zodSchema.nullable().optional()
+    .describe(
+      "Return only traces from this source:\n\n- `api`: sent to `POST /traces`\n- `chat`: a reply the agent gave on its chat link",
+    ),
   xAPIKey: z.string().nullable().optional(),
 });
 

@@ -15,7 +15,7 @@ export const tool$tracesCreate: ToolDefinition<typeof args> = {
   description:
     `Store one production agent turn against an agent in the caller's org:
 the conversation history as input, what the agent produced as output,
-and optional metadata. Use this to capture live traffic for later
+and optional metadata and feedback. Use this to capture live traffic for later
 review and conversion into tests. Fails with 429 once the workspace
 hits its trace limit.
 `,

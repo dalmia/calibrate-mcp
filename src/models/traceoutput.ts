@@ -8,11 +8,15 @@ import { TraceToolCall, TraceToolCall$zodSchema } from "./tracetoolcall.js";
 export type TraceOutput = {
   response?: string | null | undefined;
   tool_calls?: Array<TraceToolCall> | null | undefined;
+  stopped_early?: boolean | null | undefined;
 };
 
 export const TraceOutput$zodSchema: z.ZodType<TraceOutput> = z.object({
   response: z.string().nullable().optional().describe(
     "The assistant reply text for this turn. Omit for turns that only issued tool calls",
+  ),
+  stopped_early: z.boolean().nullable().optional().describe(
+    "True when the agent was stopped after calling tools as many times in a row as it may, before it replied",
   ),
   tool_calls: z.array(TraceToolCall$zodSchema).nullable().optional().describe(
     "Tool calls the agent issued for this turn. Omit for plain text replies",
