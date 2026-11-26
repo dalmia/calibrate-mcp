@@ -1,6 +1,6 @@
 {
   "name": "@dalmia/calibrate-mcp",
-  "version": "0.0.100",
+  "version": "0.0.101",
   "author": "Speakeasy",
   "type": "module",
   "sideEffects": false,
