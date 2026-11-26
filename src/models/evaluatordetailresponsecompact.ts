@@ -19,7 +19,7 @@ import {
  * - `llm`: a reply with its conversation history
  * - `llm-general`: a standalone input and output pair
  * - `conversation`: a full conversation
- * - `tool-call`: whether the agent called the right tool, labelled by a person
+ * - `tool-call`: the tool calls an agent made
  */
 export const EvaluatorDetailResponseCompactEvaluatorType = {
   Tts: "tts",
@@ -39,7 +39,7 @@ export const EvaluatorDetailResponseCompactEvaluatorType = {
  * - `llm`: a reply with its conversation history
  * - `llm-general`: a standalone input and output pair
  * - `conversation`: a full conversation
- * - `tool-call`: whether the agent called the right tool, labelled by a person
+ * - `tool-call`: the tool calls an agent made
  */
 export type EvaluatorDetailResponseCompactEvaluatorType = ClosedEnum<
   typeof EvaluatorDetailResponseCompactEvaluatorType
@@ -53,7 +53,7 @@ export const EvaluatorDetailResponseCompactEvaluatorType$zodSchema = z.enum([
   "conversation",
   "tool-call",
 ]).describe(
-  "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n- `tool-call`: whether the agent called the right tool, labelled by a person\n",
+  "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n- `tool-call`: the tool calls an agent made\n",
 );
 
 /**
@@ -147,7 +147,7 @@ export const EvaluatorDetailResponseCompact$zodSchema: z.ZodType<
   ),
   evaluator_type: EvaluatorDetailResponseCompactEvaluatorType$zodSchema
     .describe(
-      "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n- `tool-call`: whether the agent called the right tool, labelled by a person\n",
+      "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n- `tool-call`: the tool calls an agent made\n",
     ),
   is_default: z.boolean().describe(
     "True when the evaluator is a built-in default or your workspace's editable copy of one. False for an evaluator you created yourself",

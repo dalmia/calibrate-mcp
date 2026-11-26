@@ -68,7 +68,7 @@ export type ItemPayload = {
 
 export const ItemPayload$zodSchema: z.ZodType<ItemPayload> = z.object({
   actual_tool_calls: z.array(ToolCall$zodSchema).nullable().optional().describe(
-    "Tool calls the agent made. Sending this marks the item as a tool call for a person to judge. For `llm` and `llm-general` tasks",
+    "Tool calls the agent made. Sending this marks the item as a tool call, which only a tool-call evaluator scores. Omit for an item judged on its text reply. For `llm` and `llm-general` tasks",
   ),
   agent_response: z.union([
     TurnText$zodSchema,
@@ -91,7 +91,7 @@ export const ItemPayload$zodSchema: z.ZodType<ItemPayload> = z.object({
     ),
   expected_tool_calls: z.array(ToolCall$zodSchema).nullable().optional()
     .describe(
-      "Tool calls the agent should have made. Sending this marks the item as a tool call for a person to judge. For `llm` and `llm-general` tasks",
+      "Tool calls the agent should have made, shown to the judge beside the calls the agent made. Omit to judge without expected calls. Sending this marks the item as a tool call, which only a tool-call evaluator scores. For `llm` and `llm-general` tasks",
     ),
   input: z.union([
     TurnText$zodSchema,
@@ -118,7 +118,7 @@ export const ItemPayload$zodSchema: z.ZodType<ItemPayload> = z.object({
     "The text that was spoken. For `tts` tasks",
   ),
   tool_calls: z.array(ToolCall$zodSchema).nullable().optional().describe(
-    "Tool calls the agent made in place of a text reply. With no text reply, sending this marks the item as a tool call for a person to judge. For `llm` and `llm-general` tasks",
+    "Tool calls the agent made. With no text reply, sending at least one marks the item as a tool call, which only a tool-call evaluator scores. Omit when the agent made no tool calls. For `llm` and `llm-general` tasks",
   ),
   transcript: z.array(ChatTurn$zodSchema).nullable().optional().describe(
     "The full conversation to judge. For `conversation` tasks",

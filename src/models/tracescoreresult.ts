@@ -74,7 +74,7 @@ export const TraceScoreResult$zodSchema: z.ZodType<TraceScoreResult> = z.object(
   {
     evaluator_type: TraceScoreResultEvaluatorType$zodSchema.nullable()
       .optional().describe(
-        "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n- `tool-call`: whether the agent called the right tool, labelled by a person\n",
+        "What the evaluator judges:\n\n- `tts`: TTS audio\n- `stt`: one transcript\n- `llm`: a reply with its conversation history\n- `llm-general`: a standalone input and output pair\n- `conversation`: a full conversation\n- `tool-call`: the tool calls an agent made\n",
       ),
     evaluator_uuid: z.string().describe(
       "ID of the evaluator that produced this result",
