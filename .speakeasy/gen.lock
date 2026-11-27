@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
-id: 9105bcdf-01fe-4a0c-a07a-ee36e7e1c1e6
+id: 4dc91fa7-9132-4569-91ab-c757c3fde48d
 management:
   docChecksum: 92166ccc5df165d0e99a96a8e0d9dbb8
   docVersion: 0.1.0
   speakeasyVersion: 1.788.1
   generationVersion: 2.915.1
-  releaseVersion: 0.0.105
-  configChecksum: 48598b6137131d92f6e91b32e54c3bb4
+  releaseVersion: 0.0.106
+  configChecksum: 521f7cb3bbe859163a4d46e3f808c47c
   repoURL: https://github.com/dalmia/calibrate-mcp
   installationURL: https://github.com/dalmia/calibrate-mcp
 persistentEdits:
-  generation_id: 9386e69c-df88-4809-89c3-0ca658300594
-  pristine_commit_hash: a792048055ecc514d671a7cdad60cd6007528316
-  pristine_tree_hash: 17e9b58a6b27119af6dc37b7e7749b304ab70174
+  generation_id: 2a689b9e-a356-4fbf-babe-cbf4d36262d8
+  pristine_commit_hash: 2181d0606468e8679afede9efdd241662706f438
+  pristine_tree_hash: 42dbd328bf864d47d13e425470890bb1a59a01bd
 features:
   mcp-typescript:
     additionalDependencies: 0.1.0
@@ -53,8 +53,8 @@ trackedFiles:
     pristine_git_object: c8d605b4414b326691c7b4affcfc7d98723c1c2d
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:d044e57356a0be25d41f95bcffedc3362abd3387
-    pristine_git_object: 793286e366a89992af10ee249ba7f5e82726a5d1
+    last_write_checksum: sha1:2ecc46bedf65c41232f1b3146475f2306d2088dd
+    pristine_git_object: 66f892b0b6cf3d6fbb180f192c6925a5ff788785
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:ba4cbfb98a88ee288942d4e0e7a792171569b0f8
@@ -261,16 +261,16 @@ trackedFiles:
     pristine_git_object: 9c36bf01332084f735909a71036c3544cc4c7e3a
   src/landing-page.ts:
     id: ef64a6ee46d7
-    last_write_checksum: sha1:a0354a1bd86569a3760a17b82e6c8256e6c25b72
-    pristine_git_object: 36238615408e8345df0267b4f565848f5d144eee
+    last_write_checksum: sha1:c33a42d1e08ba55c125d1284df35804204693afa
+    pristine_git_object: b8c1de949f52df140babc12a4feca2dbf0bf6c9d
   src/lib/base64.ts:
     id: "598522066688"
     last_write_checksum: sha1:e9f04a037018040361043104960982f7c22db52d
     pristine_git_object: d4bd8b341290e7a828a171d840bd0b0fff7c7cd7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:8f7bf6843dc707e258fb4c448c46750a49d1c707
-    pristine_git_object: d6709115e9da8b60042d4cfdd431021815bf2e79
+    last_write_checksum: sha1:1a1721ca98eb73a24d24b65d9e1daccefef1a64a
+    pristine_git_object: 3a3e095148f3531617b55254b15d375504c115c4
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:3ff4ad6809b749125820fd39c01427b84d3fe0d6
@@ -357,8 +357,8 @@ trackedFiles:
     pristine_git_object: b42d7cda985b8199f2245063f22bb68efb5ecdd0
   src/mcp-server/mcp-server.ts:
     id: aabbc4ab07c1
-    last_write_checksum: sha1:22b68575521a0366a41c88f57ec0d1e46fdd987d
-    pristine_git_object: c3201d1a6c5a646a548268de7465ec20bb065eca
+    last_write_checksum: sha1:8f16297cbc793882bba98cabda90ee5fb99ea4da
+    pristine_git_object: 339a2ad38afb200465783cee84475eefb500c69a
   src/mcp-server/prompts.ts:
     id: 26f3d73cbf31
     last_write_checksum: sha1:dde03ff7d9c2659a0c3a4e2aa21d615a0b4f2b0b
@@ -373,8 +373,8 @@ trackedFiles:
     pristine_git_object: cb8330e4ae705d283de6ab337eefd3b4b8191fca
   src/mcp-server/server.ts:
     id: 2784dd48e82a
-    last_write_checksum: sha1:7b8970a32cf36bec62fa39aa8032244f586ab169
-    pristine_git_object: b53a642f976fea7818a58632b0114d420efb3813
+    last_write_checksum: sha1:efd1591a304f5d237e7b4a3ea7f18cf02272f723
+    pristine_git_object: 1561120d8840acc5f9a2081925ed92ab9874a080
   src/mcp-server/shared.ts:
     id: 074e80d4be1e
     last_write_checksum: sha1:19c9034032819a14f15c430de4350c8aba99d725
