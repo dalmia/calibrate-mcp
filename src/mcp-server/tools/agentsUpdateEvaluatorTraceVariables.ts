@@ -21,7 +21,7 @@ export const tool$agentsUpdateEvaluatorTraceVariables: ToolDefinition<
     `Choose which part of a trace fills each variable of an evaluator linked
 to an agent, replacing any earlier choices. Each value is input,
 output.response, output.tool_calls, labels, conversation_id, message_id,
-or metadata.<key>. Traces are scored by the evaluator once every variable
+feedback.comment, or metadata.<key>. Traces are scored by the evaluator once every variable
 has a value.
 `,
   scopes: ["write"],

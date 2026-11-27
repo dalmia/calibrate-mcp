@@ -32,7 +32,7 @@ generation:
     skipResponseBodyAssertions: false
   repoUrl: https://github.com/dalmia/calibrate-mcp
 mcp-typescript:
-  version: 0.0.108
+  version: 0.0.109
   additionalDependencies:
     dependencies: {}
     devDependencies: {}

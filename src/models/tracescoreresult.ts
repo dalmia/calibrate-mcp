@@ -67,6 +67,7 @@ export type TraceScoreResult = {
   value: number;
   reasoning?: string | null | undefined;
   evaluator_version_id: string;
+  variable_values?: { [k: string]: string } | null | undefined;
   passed: boolean;
 };
 
@@ -103,5 +104,9 @@ export const TraceScoreResult$zodSchema: z.ZodType<TraceScoreResult> = z.object(
     value: z.number().describe(
       "The judged result. Binary stores 0 or 1. Rating stores the numeric score",
     ),
+    variable_values: z.record(z.string(), z.string()).nullable().optional()
+      .describe(
+        "The value each variable of the evaluator was given for this trace, by variable name. Kept as it was when the trace was scored, even if the agent later fills the variable from another part of the trace",
+      ),
   },
 );

@@ -11,6 +11,6 @@ export type TraceVariablesRequest = {
 export const TraceVariablesRequest$zodSchema: z.ZodType<TraceVariablesRequest> =
   z.object({
     trace_variables: z.record(z.string(), z.string()).describe(
-      "Which part of a trace fills each variable, keyed by variable name. Each value is one of:\n\n- `input`: the trace's input\n- `output.response`: the agent's reply\n- `output.tool_calls`: the tool calls the agent issued\n- `labels`: the trace's labels\n- `conversation_id`: the conversation ID sent with the trace\n- `message_id`: the message ID sent with the trace\n- `metadata.<key>`: the metadata entry with that key\n\nEvery variable needs a value. Replaces the stored choices, and an empty object clears them",
+      "Which part of a trace fills each variable, keyed by variable name. Each value is one of:\n\n- `input`: the trace's input\n- `output.response`: the agent's reply\n- `output.tool_calls`: the tool calls the agent issued\n- `labels`: the trace's labels\n- `conversation_id`: the conversation ID sent with the trace\n- `message_id`: the message ID sent with the trace\n- `feedback.comment`: the comment given by the user along with the feedback for the trace\n- `metadata.<key>`: the metadata entry with that key\n\nEvery variable needs a value. Replaces the stored choices, and an empty object clears them",
     ),
   });

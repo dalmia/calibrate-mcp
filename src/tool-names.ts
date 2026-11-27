@@ -34,7 +34,7 @@ export const toolNames: Array<{ name: string; description: string }>= [
   },
   {
     "name": "update-agent-evaluator-trace-variables",
-    "description": "Choose which part of a trace fills each variable of an evaluator linked\nto an agent, replacing any earlier choices. Each value is input,\noutput.response, output.tool_calls, labels, conversation_id, message_id,\nor metadata.<key>. Traces are scored by the evaluator once every variable\nhas a value.\n"
+    "description": "Choose which part of a trace fills each variable of an evaluator linked\nto an agent, replacing any earlier choices. Each value is input,\noutput.response, output.tool_calls, labels, conversation_id, message_id,\nfeedback.comment, or metadata.<key>. Traces are scored by the evaluator once every variable\nhas a value.\n"
   },
   {
     "name": "bulk-create-tests",
