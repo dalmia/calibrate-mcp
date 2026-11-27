@@ -8,9 +8,9 @@ import {
   HTTPValidationError$zodSchema,
 } from "./httpvalidationerror.js";
 import {
-  PaginatedResponseEvaluatorResponse,
-  PaginatedResponseEvaluatorResponse$zodSchema,
-} from "./paginatedresponseevaluatorresponse.js";
+  PaginatedResponseAgentEvaluatorResponse,
+  PaginatedResponseAgentEvaluatorResponse$zodSchema,
+} from "./paginatedresponseagentevaluatorresponse.js";
 
 export type ListAgentEvaluatorsAgentsAgentUuidEvaluatorsGetRequest = {
   agent_uuid: string;
@@ -36,11 +36,11 @@ export const ListAgentEvaluatorsAgentsAgentUuidEvaluatorsGetRequest$zodSchema:
   });
 
 export type ListAgentEvaluatorsAgentsAgentUuidEvaluatorsGetResponse =
-  | PaginatedResponseEvaluatorResponse
+  | PaginatedResponseAgentEvaluatorResponse
   | HTTPValidationError;
 
 export const ListAgentEvaluatorsAgentsAgentUuidEvaluatorsGetResponse$zodSchema:
   z.ZodType<ListAgentEvaluatorsAgentsAgentUuidEvaluatorsGetResponse> = z.union([
-    PaginatedResponseEvaluatorResponse$zodSchema,
+    PaginatedResponseAgentEvaluatorResponse$zodSchema,
     HTTPValidationError$zodSchema,
   ]);

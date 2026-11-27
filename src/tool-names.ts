@@ -33,6 +33,10 @@ export const toolNames: Array<{ name: string; description: string }>= [
     "description": "Link one or more evaluators to an agent, skipping any already linked.\nEach evaluator must be one you created or a built-in default, and the\nagent must be in your workspace.\n"
   },
   {
+    "name": "update-agent-evaluator-trace-variables",
+    "description": "Choose which part of a trace fills each variable of an evaluator linked\nto an agent, replacing any earlier choices. Each value is input,\noutput.response, output.tool_calls, labels, conversation_id, message_id,\nor metadata.<key>. Traces are scored by the evaluator once every variable\nhas a value.\n"
+  },
+  {
     "name": "bulk-create-tests",
     "description": "Create multiple tests in the caller's organization in one call. Provide\na list of test definitions (name, type, config). Returns the created\ntests including their UUIDs.\n"
   },

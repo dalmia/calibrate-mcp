@@ -24,6 +24,7 @@ import { tool$agentsList } from "./tools/agentsList.js";
 import { tool$agentsListEvaluators } from "./tools/agentsListEvaluators.js";
 import { tool$agentsResolve } from "./tools/agentsResolve.js";
 import { tool$agentsUpdate } from "./tools/agentsUpdate.js";
+import { tool$agentsUpdateEvaluatorTraceVariables } from "./tools/agentsUpdateEvaluatorTraceVariables.js";
 import { tool$agentsVerifyConnection } from "./tools/agentsVerifyConnection.js";
 import { tool$agentTestsBenchmark } from "./tools/agentTestsBenchmark.js";
 import { tool$agentTestsBulkUnlink } from "./tools/agentTestsBulkUnlink.js";
@@ -79,7 +80,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CalibrateMcp",
-    version: "0.0.106",
+    version: "0.0.107",
   });
 
   const getClient = deps.getSDK || (() =>
@@ -132,6 +133,7 @@ export function createMCPServer(deps: {
   tool(tool$agentsUpdate);
   tool(tool$agentsListEvaluators);
   tool(tool$agentsLinkEvaluators);
+  tool(tool$agentsUpdateEvaluatorTraceVariables);
   tool(tool$testsBulkCreate);
   tool(tool$testsCreate);
   tool(tool$testsList);
